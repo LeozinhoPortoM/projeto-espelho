@@ -1,4 +1,4 @@
-const usersController = {
+const UsersController = {
     // Lista todos os usuário
     // Pode retornar uma página ou não
     index: (req, res) => {
@@ -23,4 +23,4 @@ const usersController = {
     // O método acima pode ser chamado de destroy
     // destroy: (req, res)=>{},
 };
-module.exports = usersController;
+module.exports = UsersController;

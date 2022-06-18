@@ -1,0 +1,13 @@
+<%- include("./partials/head") %>
+
+    <main>
+        <h1>Página editar produtos</h1>
+        <form action="/product/edit?_method=PUT" method="POST">
+            <input type="text" name="name" id="" value="<%= produto.nome %> ">
+            <input type="number" name="preco" id="" value="<%= produto.preco %> ">
+            <input type="text" name="descricao" id="" value="<%= produto.descricao %> ">
+            <button type="submit">Enviar</button>
+        </form>
+    </main>
+
+    <%- include('./partials/footer') %>

@@ -1,5 +1,14 @@
 <%- include("./partials/head") %>
     <main>
         <h1>Produtos</h1>
+
+        <ul>
+            <% listaProdutos.forEach(produto => { %> 
+                <li><%= produto.nome %></li>
+                <form action="/product/delete/<%= produto.id %>?_method=DELETE " method="POST">
+                    <button type="submit">Deletar</button>
+                </form>
+            <% }) %>  
+        </ul>
     </main>
-<%- include('./partials/footer') %>
+    <%- include('./partials/footer') %>

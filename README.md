@@ -86,3 +86,11 @@ app.set('views', __dirname + '/src/views');
 ```javascript
 app.use(express.json());
 ```
+### Pacote utilizado para sobrescrever com PUT/DELETE o methode GET/POST no formulário
+```node js
+npm install method-override --save
+```
+### Biblioteca para receber arquivos do cliente e envialos para o servidor
+```node js
+npm install multer
+```
