@@ -4,11 +4,9 @@ const router = express.Router();
 
 
 router.get("/create", UserController.create);
-
 router.post("/create", UserController.store);
 
 router.get("/edit/:id", UserController.edit);
-
 router.put("/edit/:id", UserController.update);
 
 

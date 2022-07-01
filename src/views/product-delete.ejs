@@ -2,10 +2,9 @@
     <%- include("./partials/header")%>
         <main id="container">
             <h1>Bem vindo ao painel administrativo</h1>
-            <h2>Visualizar produtos</h2>
+            <h2>Deletar produto</h2>
             <% if(locals.product){ %>
                 <div>
-                    <!-- <img src="<%=  %> " alt="avatar"> -->
                     <span>
                         <%= product.nome %>
                     </span>
@@ -19,8 +18,13 @@
                         <%= product.tamanho %>
                     </span>
                 </div>
+                <form action="/product/delete/<%= product.id %>?_method=delete" method="post">
+                    <h2>Deseja deletar esse produto?</h2>
+                    <a href="/product"><button type="button">Não</button></a>
+                    <button type="submit">Sim</button>
+                </form>
                 <% }else {%>
-                    <h2>Produto não encontrado!</h2>
+                    <h2 class="error-alert">Produto não encontrado!</h2>
                     <% } %>
         </main>
         <%- include("./partials/footer")%>

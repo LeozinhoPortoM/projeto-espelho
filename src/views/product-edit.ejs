@@ -1,13 +1,21 @@
 <%- include("./partials/head") %>
+    <%- include("./partials/header") %>
 
-    <main>
-        <h1>Página editar produtos</h1>
-        <form action="/product/edit?_method=PUT" method="POST">
-            <input type="text" name="name" id="" value="<%= produto.nome %> ">
-            <input type="number" name="preco" id="" value="<%= produto.preco %> ">
-            <input type="text" name="descricao" id="" value="<%= produto.descricao %> ">
-            <button type="submit">Enviar</button>
-        </form>
-    </main>
+        <main id="container">
+            <h1>Bem vindo ao painel administrativo</h1>
+            <h2>Atualizar produto</h2>
+            <% if(locals.error){ %>
+                <h2 class="error-alert">
+                    <%= error.message %>
+                </h2>
+                <% } %>
+                    <form action="/product/edit/<%= product.id %>?_method=put" method="post">
+                        <input value="<%= product.nome %>" type="text" name="nome" placeholder="Nome" />
+                        <input value="<%= product.descricao %>" type="text" name="descricao" placeholder="Descrição" />
+                        <input value="<%= product.preco %>" type="number" name="preco" placeholder="Preço" />
+                        <input value="<%= product.tamanho %>" type="text" name="tamanho" placeholder="Tamanho" />
+                        <button type="submit">Atualizar</button>
+                    </form>
+        </main>
 
-    <%- include('./partials/footer') %>
+        <%- include('./partials/footer') %>

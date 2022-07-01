@@ -1,13 +1,21 @@
 <%- include("./partials/head") %>
+    <%- include("./partials/header") %>
 
-    <main>
-        <h1>Página para criar produtos</h1>
-        <form action="/product/create" method="POST">
-            <input type="text" name="nome" id="" placeholder="Nome do produto"><br><br>
-            <input type="number" name="preco" id="" placeholder="Preço do produto"><br><br>
-            <input type="text" name="descricao" id="" placeholder="Descrição do produto"><br><br>
-            <button type="submit">Salvar</button>
-        </form>
-    </main>
+        <main id="container">
+            <h1>Bem vindo ao painel administrativo</h1>
+            <h2>Adicionar produtos</h2>
+            <% if(locals.error){ %>
+                <h2 class="error-alert">
+                    <%= error.message %>
+                </h2>
+                <% } %>
+            <form action="/product/create" method="POST">
+                <input type="text" name="nome" id="" placeholder="Nome do produto"><br><br>
+                <input type="text" name="descricao" id="" placeholder="Descrição do produto"><br><br>
+                <input type="number" name="preco" id="" placeholder="Preço do produto"><br><br>
+                <input type="text" name="tamanho" id="" placeholder="Tamanho do produto"><br><br>
+                <button type="submit">Salvar</button>
+            </form>
+        </main>
 
-    <%- include('./partials/footer') %>
+        <%- include('./partials/footer') %>
