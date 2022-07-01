@@ -1,14 +1,48 @@
 <%- include("./partials/head") %>
-    <main>
-        <h1>Produtos</h1>
 
-        <ul>
-            <% listaProdutos.forEach(produto => { %> 
-                <li><%= produto.nome %></li>
-                <form action="/product/delete/<%= produto.id %>?_method=DELETE " method="POST">
-                    <button type="submit">Deletar</button>
-                </form>
-            <% }) %>  
-        </ul>
-    </main>
-    <%- include('./partials/footer') %>
+    <%- include("./partials/header") %>
+
+        <main>
+            <h1>Bem vindo ao painel administrativo</h1>
+            <h2>Lista de produtos</h2>
+            <% if(listProducts.length> 0) { %>
+                <div>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Nome</th>
+                                <th>Preço</th>
+                                <th>Descrição</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <% for (let product of listProducts) { %>
+                                <tr>
+                                    <td>
+                                        <%= product.nome %>
+                                    </td>
+                                    <td>
+                                        <%= product.preco %>
+                                    </td>
+                                    <td>
+                                        <%= product.descricao %>
+                                    </td>
+                                    <td class="table-actions">
+                                        <a href="/product/<%= product.id %>" class="table-link-show"
+                                            href="">Visualizar</a>
+                                        <a href="/product/edit/<%= product.id %>" class="table-link-edit"
+                                            href="">Editar</a>
+                                        <a href="/product/delete/<%= product.id %>" class="table-link-delete"
+                                            href="">Excluir</a>
+                                    </td>
+                                </tr>
+                                <% } %>
+                        </tbody>
+                    </table>
+                </div>
+                <% } else { %>
+                    <h2 class="error-alert">Nenhum produto encontrado!!</h2>
+                    <% } %>
+        </main>
+
+        <%- include("./partials/footer") %>

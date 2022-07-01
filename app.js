@@ -13,7 +13,7 @@ const methodOverride = require('method-override');
 // Atribui conteúdo do Route a variável
 const productRoute = require('./src/routes/productRoute');
 const indexRoute = require('./src/routes/indexRoute');
-const usersRoute = require('./src/routes/usersRoute');
+const userRoute = require('./src/routes/userRoute');
 
 // Configuração para acessar externamente conteúdo de uma pasta
 app.use(express.static(__dirname + "/public"));
@@ -34,12 +34,12 @@ app.use(express.urlencoded({extended: false}));
 app.use(methodOverride('_method'));
 
 app.use('/', indexRoute);
-app.use('/users', usersRoute);
+app.use('/user', userRoute);
 app.use('/product', productRoute);
 
 // Rota de erros 404
 app.use((req, res) => {
-    return res.status(404).render('not-found', {title: "Error"});
+    return res.status(404).render('not-found', {title: "Error", message:"Página não encontrada"});
 });
 
 // Roda o express na porta definida

@@ -1,0 +1,163 @@
+/*
+* 
+* @author Léo Porto
+*/
+
+/* Reset CSS */
+*,
+*:after,
+*:before {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    text-decoration: none;
+    list-style-type: none;
+    font-family: Helvetica, Arial, sans-serif;
+    font-weight: normal;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    width: 90%;
+    margin: 0 auto;
+    min-height: 100vh;
+    max-width: 100%;
+}
+
+/* Barra de navegação
+---------------------------------*/
+
+nav.navbar-transparente {
+    padding: 15px 0;
+    background: rgb(0, 0, 0, 0.6);
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #9bf0e1;
+}
+
+.navbar-light .navbar-toggler {
+    color: rgba(255, 255, 255, .5);
+    border-color: rgba(255, 255, 255, 0.5);
+}
+
+.divisor {
+    width: 1px;
+    background: white;
+    margin: 12px 15px;
+}
+
+.dropdown-menu {
+    color: white;
+    background: transparent;
+}
+
+.dropdown-menu .dropdown-item {
+    color: white;
+}
+
+.dropdown-menu .dropdown-item:hover {
+    color: #9bf0e1;
+    background: transparent;
+}
+
+.dropdown-divider {
+    width: 10em;
+}
+
+/* Tipografia
+-----------------------*/
+
+h1{
+	letter-spacing: -0.05em;
+    margin: 60px 0;
+	color: rgb(0, 0, 0);
+}
+
+h2{
+	font-size: 3em;
+	font-weight: 100;
+	letter-spacing: -0.04;
+}
+
+h3{
+	font-size: 2em;
+	font-weight: 700;
+	letter-spacing: -0.04;
+}
+
+#container{
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+
+form{
+    width: 40%;
+    min-height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    border: 2px solid antiquewhite;
+    background-color: aliceblue;
+    margin: 5px;
+}
+
+form input{
+    width: 100%;
+    height:2.5rem;
+    margin-bottom: 10px;
+}
+
+
+
+/* Extra small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+
+
+
+
+}
+
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) {
+
+
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+
+
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+
+	h1{
+		font-size: 5em;
+	}
+}
+
+/* X-Large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+
+}
+
+/* XX-Large devices (larger desktops, 1400px and up) */
+@media (min-width: 1400px) {
+
+
+}
