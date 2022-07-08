@@ -94,3 +94,22 @@ npm install method-override --save
 ```node js
 npm install multer
 ```
+### Biblioteca para validar as requisições que chegam dos formulários são as que esperamos
+```node js
+npm install express-validator
+```
+
+### Permite armazenar informações de maneira segura no servidor durante a visita do usuário ao site
+```node js
+npm install express-session --save
+```
+
+### Permite salvar arquivos no lado do cliente
+```node js
+npm install cookie-parser
+```
+
+### Biblioteca que permite criptografar as informações
+```node js
+npm install crypto ou npm install bcrypt
+```

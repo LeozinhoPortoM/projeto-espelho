@@ -10,6 +10,9 @@ const port = 3000;
 // Pacote utilizado para sobrescrever com PUT/DELETE o methode GET/POST no formulário
 const methodOverride = require('method-override');
 
+// Pacote utilizado para armazenar informações de maneira segura no servidor durante a visita do usuário ao site
+const session = require('express-session');
+
 // Atribui conteúdo do Route a variável
 const productRoute = require('./src/routes/productRoute');
 const indexRoute = require('./src/routes/indexRoute');
@@ -21,25 +24,40 @@ app.use(express.static(__dirname + "/public"));
 // Altera confugiração inicial do express para do template engine para ejs
 app.set('view engine', 'ejs');
 
+// Configurando a frase para criptografia e mudar algumas configurações como essas informações seram salvas
+app.use(session({
+    secret: "projetoExpress",
+    resave: true,
+    saveUninitialized: true,
+}));
+
 // ALtera configuração inicial do express do caminho do views para o nosso caminho de arquivos
 app.set('views', __dirname + '/src/views');
 
 // Converte o "body" da requisição para json (objeto)
 app.use(express.json());
 
+//Middleware global
+app.use((req, res, next) => {
+    next();
+});
+
 // Pegar o conteúdo do body das requisições e deixar organizado pra gente trabalhar mais fácil esses dados
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 
 // Metodo utilizado para sobrescrever com PUT/DELETE o methode GET/POST no formulário
 app.use(methodOverride('_method'));
 
+//localhost:3000/
 app.use('/', indexRoute);
+//localhost:3000/user/
 app.use('/user', userRoute);
+//localhost:3000/product/
 app.use('/product', productRoute);
 
 // Rota de erros 404
-app.use((req, res) => {
-    return res.status(404).render('not-found', {title: "Error", message:"Página não encontrada"});
+app.use((req, res, next) => {
+    return res.status(404).render('not-found', { title: "Error", message: "Página não encontrada" });
 });
 
 // Roda o express na porta definida

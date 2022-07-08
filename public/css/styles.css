@@ -184,7 +184,10 @@ tbody tr:hover {
 
 .error-alert {
     font-size: 1.5rem;
-    color: red;
+    background-color: rgb(146, 51, 51, 0.6);
+    color: antiquewhite;
+    border-radius: 6px;
+    text-transform: capitalize;
 }
 
 .success-alert {

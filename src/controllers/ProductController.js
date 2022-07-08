@@ -43,6 +43,8 @@ const products = [
     },
 ];
 
+const { validationResult } = require('express-validator');
+
 const ProductController = {
 
     // Lista todos os produtos
@@ -82,16 +84,12 @@ const ProductController = {
     // Cria produto
     // Não retorna página
     store: (req, res) => {
-        let { id } = req.params;
-        let { nome, descricao, preco, tamanho } = req.body;
-        if (!nome || !descricao || !preco || !tamanho) {
-            return res.render("product-create", {
-                title: "Cadastrar produto",
-                error: {
-                    message: "Preencha todos os campos!",
-                },
-            });
+        const errors = validationResult(req);
+        const { nome, descricao, preco, tamanho } = req.body;
+        if (!errors.isEmpty()) {
+            return res.render("product-create", { title: "Cadastrar produto", errors: errors.mapped(), old: req.body });
         }
+
         const newProduct = {
             id: products.length + 1,
             nome,
@@ -99,6 +97,7 @@ const ProductController = {
             preco,
             tamanho,
         };
+        
         products.push(newProduct);
         return res.render("success", {
             title: "Sucesso!",
