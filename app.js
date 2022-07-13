@@ -7,6 +7,9 @@ const app = express();
 // Porta que irá rodar o Servidor
 const port = 3000;
 
+// Pacote para salvar aquivos no lado do cliente "no navegador do usuário"
+const cookieParser = require('cookie-parser');
+
 // Pacote utilizado para sobrescrever com PUT/DELETE o methode GET/POST no formulário
 const methodOverride = require('method-override');
 

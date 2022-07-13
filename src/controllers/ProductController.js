@@ -45,7 +45,7 @@ const products = [
 
 const { validationResult } = require('express-validator');
 
-const ProductController = {
+const productController = {
 
     // Lista todos os produtos
     // Pode retornar uma página ou não
@@ -179,4 +179,4 @@ const ProductController = {
     },
 
 };
-module.exports = ProductController;
+module.exports = productController;

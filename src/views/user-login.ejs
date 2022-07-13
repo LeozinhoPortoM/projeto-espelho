@@ -3,13 +3,14 @@
         <main id="container">
             <h1>Login</h1>
             <form action="/user/login" method="post">
-                <h3>E-mail</h3>
+                <label>E-mail</label>
                 <input type="email" name="email" id="">
-                <h3>Senha</h3>
+                <label>Senha</label>
                 <input type="password" name="senha" id="">
-                <input type="checkbox" name="logado" id="">
-                <br>
-                <label for="">Manter logado?</label>
+                <div class="login-checkbox">
+                    <input type="checkbox" name="logado" id="">
+                    <label for="">Lembrar meu usuário</label>
+                </div>
                 <button type="submit">Login</button>
             </form>
         </main>

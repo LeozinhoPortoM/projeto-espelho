@@ -1,0 +1,66 @@
+[
+ {
+  "id": 1,
+  "nome": "Léo",
+  "sobrenome": "Porto Maranhão",
+  "email": "luanypm@yahoo.com.br",
+  "senha": "2345",
+  "avatar": "user2.jpeg"
+ },
+ {
+  "id": 2,
+  "nome": " Carlos",
+  "sobrenome": "Alberto",
+  "email": "carlos@gmail.com",
+  "senha": "123456",
+  "avatar": "user3.jpeg"
+ },
+ {
+  "id": 3,
+  "nome": " Maria",
+  "sobrenome": "Dolores",
+  "email": "maria@hotmail.com",
+  "senha": "12345",
+  "avatar": "user4.jpeg"
+ },
+ {
+  "id": 4,
+  "nome": "  Léo Filho",
+  "sobrenome": "  Porto Maranhão",
+  "email": "leo.porto.lpm@hotmail.com",
+  "senha": "$2b$10$Y.ouZjzxPIc.yzLioqNwe.7IVIumesmWpyPfD525AeAG9/o4CzdUm",
+  "avatar": "68f7ba96728078a72ed1.jpg"
+ },
+ {
+  "id": 5,
+  "nome": " Maria  ",
+  "sobrenome": "  Porto Maranhão",
+  "email": "mari@hotmail.com",
+  "senha": "$2b$10$X0ZTrxE3/6j3nPXcyWWcpeeYJ82G92HNmfluqp9hvF8sUbTGr1aFu",
+  "avatar": "user-default.jpeg"
+ },
+ {
+  "id": 6,
+  "nome": " emanuel",
+  "sobrenome": "Silva pereira",
+  "email": "emanuel@hotmail.com",
+  "senha": "$2b$10$FdOfJOS2GgxIRLQi7TA/M./Gdm.9U/16tKeroUm9ejdWTb04RPQXu",
+  "avatar": "015795f13af010b2e002.jpg"
+ },
+ {
+  "id": 7,
+  "nome": " Rodolfo",
+  "sobrenome": "Pereira Gois",
+  "email": "rodolfo@gmail.com",
+  "senha": "$2b$10$UAXgD3QfF1jWyQ/EResCSOpF9F6DeAZ.vrTLsX4CP6I4hJqsYL9s.",
+  "avatar": "71efc2283671e56f9515.jpg"
+ },
+ {
+  "id": 8,
+  "nome": " Antonio",
+  "sobrenome": "Carlos",
+  "email": "antonio@hotmail.com",
+  "senha": "$2b$10$BJadENzxRfsMKr5ZRGYMK.wXrNjzjvcT5fbVteu5B7HJy76jyr1r2",
+  "avatar": "d08f69394b36c66555d6.jpg"
+ }
+]

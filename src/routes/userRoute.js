@@ -1,32 +1,37 @@
 const express = require('express');
-const UserController = require('../controllers/UserController');
 const router = express.Router();
-const upload = require('../helpers/multer');
-const { check } = require('express-validator');
 
+// Controllers
+const userController = require('../controllers/UserController');
 
-const validacoes = [
-    check('nome').notEmpty().withMessage('Campo obrigatório').bail().isString().isLength({ min: 3 }).withMessage('O nome deve ter no mínimo 4 caracteres!'),
-    check('sobrenome').notEmpty().withMessage('Campo obrigatório').bail().isString(),
-    check('email').notEmpty().withMessage('Campo obrigatório').bail().isEmail().withMessage('Preencha com um e-mail válido!'),
-    check('idade').notEmpty().withMessage('Campo obrigatório').bail().isNumeric(),
-    check('avatar').notEmpty().withMessage('Campo obrigatório').bail(),
-];
+// Middlewares
+const upload = require('../middlewares/multer');
+const validator = require('../middlewares/validatorRegisterMiddleware');
 
+// Criar usuário
+router.get("/create", userController.create);
+router.post("/create", upload.single("avatar"), validator, userController.store);
 
-router.get("/create", UserController.create);
-router.post("/create", upload.single("avatar"), UserController.store);
+// Editar usuário
+router.get("/edit/:id", userController.edit);
+router.put("/edit/:id", upload.single("avatar"), userController.update);
 
-router.get("/edit/:id", UserController.edit);
-router.put("/edit/:id", upload.single("avatar"), UserController.update);
+// Deletar usuário
+router.get("/delete/:id", userController.delete);
+router.delete("/delete/:id", userController.destroy);
 
-router.get("/delete/:id", UserController.delete);
-router.delete("/delete/:id", UserController.destroy);
+// Login de usuário
+router.get('/login', userController.loginForm);
+router.post('/login', userController.loginUser);
 
-router.get('/login', UserController.loginForm);
-router.post('/login', UserController.loginUser);
+// Perfil de usuário
+router.get('/profile/', userController.profile);
 
-router.get("/", UserController.index);
-router.get('/:id', UserController.show);
+// Logout
+router.get('/logout/', userController.logout);
+
+// Visualizar usuário
+router.get("/", userController.index);
+router.get('/:id', userController.show);
 
 module.exports = router;
