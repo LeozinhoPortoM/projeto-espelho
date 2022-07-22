@@ -10,28 +10,23 @@ const validator = require('../middlewares/validatorRegisterMiddleware');
 
 // Criar usuário
 router.get("/create", userController.create);
-router.post("/create", upload.single("avatar"), validator, userController.store);
+router.post("/create", upload.single('avatar'), userController.store);
 
 // Editar usuário
 router.get("/edit/:id", userController.edit);
-router.put("/edit/:id", upload.single("avatar"), userController.update);
+router.put("/edit/:id", upload.single('avatar'), userController.update);
 
 // Deletar usuário
 router.get("/delete/:id", userController.delete);
 router.delete("/delete/:id", userController.destroy);
 
 // Login de usuário
-router.get('/login', userController.loginForm);
-router.post('/login', userController.loginUser);
-
-// Perfil de usuário
-router.get('/profile/', userController.profile);
-
-// Logout
-router.get('/logout/', userController.logout);
+router.get("/login", userController.loginForm);
+// router.post('/login', userController.loginUser);
 
 // Visualizar usuário
 router.get("/", userController.index);
 router.get('/:id', userController.show);
+
 
 module.exports = router;

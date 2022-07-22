@@ -27,60 +27,13 @@ body {
     max-width: 100%;
 }
 
-/* Barra de navegação
----------------------------------*/
-
-.container .navbar-brand {
-    color: white;
-}
-
-nav.navbar-transparente {
-    padding: 15px 0;
-    background: rgb(0, 0, 0, 0.6);
-}
-
-.navbar-light .navbar-nav .nav-link {
-    color: white;
-}
-
-.navbar-light .navbar-nav .nav-link:hover {
-    color: #9bf0e1;
-}
-
-.navbar-light .navbar-toggler {
-    color: rgba(255, 255, 255, .5);
-    border-color: rgba(255, 255, 255, 0.5);
-}
-
-.divisor {
-    width: 1px;
-    background: white;
-    margin: 12px 15px;
-}
-
-.dropdown-menu {
-    color: white;
-    background: transparent;
-}
-
-.dropdown-menu .dropdown-item {
-    color: white;
-}
-
-.dropdown-menu .dropdown-item:hover {
-    color: #9bf0e1;
-    background: transparent;
-}
-
-.dropdown-divider {
-    width: 10em;
-}
 
 /* Tipografia
 -----------------------*/
 
 h1 {
     letter-spacing: -0.05em;
+    font-size: 4rem;
     margin: 60px 0 20px;
     color: rgb(0, 0, 0);
 }
@@ -106,8 +59,14 @@ h3 {
 
 }
 
+#container input {
+    padding-left: 5px;
+    border-radius: 6px;
+    border: none;
+}
+
 .caixa {
-    width: 25%;
+    max-width: 35%;
     min-height: 50vh;
     display: flex;
     flex-direction: column;
@@ -272,7 +231,7 @@ form a button[type="button"]:hover {
 }
 
 .delete-buttons h2 {
-    font-size: 2rem;
+    font-size: 1.5rem;
 }
 
 
@@ -287,12 +246,7 @@ form a button[type="button"]:hover {
 @media (min-width: 768px) and (max-width: 991.98px) {}
 
 /* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {
-
-    h1 {
-        font-size: 5em;
-    }
-}
+@media (min-width: 992px) {}
 
 /* X-Large devices (large desktops, 1200px and up) */
 @media (min-width: 1200px) {}

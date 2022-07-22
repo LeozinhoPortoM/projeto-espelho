@@ -1,8 +1,8 @@
 <%- include("./partials/head") %>
     <%- include("./partials/header") %>
         <main id="container">
-            <h1>Bem vindo ao painel administrativo</h1>
-            <h2>Adicionar usuário</h2>
+            <!-- <h1>Bem vindo ao painel administrativo</h1> -->
+            <h2>Cadastrar</h2>
             <form action="/user/create" method="post" enctype="multipart/form-data">
 
                 <label for="nome">Nome</label>
@@ -38,16 +38,25 @@
                                             </div>
                                             <% } %>
 
-                                                <label for="avatar">Avatar</label>
-                                                <input type="file" name="avatar"
-                                                    value="<%= locals.old ? old.avatar : null %>" />
-                                                <% if(locals.errors && errors.avatar){ %>
-                                                    <div class="error-alert">
-                                                        <%= errors.avatar.msg %>
-                                                    </div>
-                                                    <% } %>
+                                            <label for="confirmar_senha">Confirmar senha</label>
+                                            <input type="password" name="confirmar_senha"
+                                                value="<%= locals.old ? old.confirmar_senha : null %>" />
+                                            <% if(locals.errors && errors.confirmar_senha){ %>
+                                                <div class="error-alert">
+                                                    <%= errors.confirmar_senha.msg %>
+                                                </div>
+                                                <% } %>
 
-                                                        <button type="submit">Adicionar</button>
+                                                        <label for="avatar">Avatar</label>
+                                                        <input type="file" name="avatar"
+                                                            value="<%= locals.old ? old.avatar : null %>" />
+                                                        <% if(locals.errors && errors.avatar){ %>
+                                                            <div class="error-alert">
+                                                                <%= errors.avatar.msg %>
+                                                            </div>
+                                                            <% } %>
+
+                                                                <button type="submit">Adicionar</button>
             </form>
         </main>
         <%- include("./partials/footer") %>

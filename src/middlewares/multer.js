@@ -2,7 +2,7 @@ const multer = require('multer');
 const crypto = require("crypto");
 const path = require('path');
 
-const multerDiskStorage = multer.diskStorage({
+const storage = multer.diskStorage({
     destination: (req, file, callback) => {
         const folder = path.join(__dirname + "/../../uploads/");
         callback(null, folder);
@@ -18,6 +18,6 @@ const multerDiskStorage = multer.diskStorage({
     },
 });
 
-const upload = multer({ storage: multerDiskStorage });
+const upload = multer({ storage: storage});
 
 module.exports = upload;

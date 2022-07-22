@@ -1,17 +1,18 @@
 <%- include("./partials/head") %>
-    <%- include("./partials/header") %>
-        <main id="container">
-            <h1>Login</h1>
-            <form action="/user/login" method="post">
-                <label>E-mail</label>
-                <input type="email" name="email" id="">
-                <label>Senha</label>
-                <input type="password" name="senha" id="">
-                <div class="login-checkbox">
-                    <input type="checkbox" name="logado" id="">
-                    <label for="">Lembrar meu usuário</label>
-                </div>
-                <button type="submit">Login</button>
-            </form>
-        </main>
-        <%- include("./partials/footer") %>
+<%- include("./partials/header") %>
+<main id="container">
+  <h1>Login</h1>
+  <% if(locals.error){ %>
+    <h2 class="error-alert"><%= error.message %></h2>
+   <% } %>
+  <form action="/user/login" method="post">
+    <input type="email" name="email" placeholder="E-mail"/>
+    <input type="password" name="senha" placeholder="Senha"/>
+    <button type="submit">Entrar</button>
+  </form>
+  <section>
+    <span>Não possui conta?</span>
+    <a href="/user/create">Cadastre-se</a>
+  </section>
+</main>
+<%- include("./partials/footer") %>

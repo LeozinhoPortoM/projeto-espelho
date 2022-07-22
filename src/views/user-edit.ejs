@@ -9,12 +9,25 @@
                 </h2>
                 <% } %>
                     <form action="/user/edit/<%= user.id %>?_method=put" method="post" enctype="multipart/form-data">
-                        <input value="<%= user.nome %>" type="text" name="nome" placeholder="Nome" />
-                        <input value="<%= user.sobrenome %>" type="text" name="sobrenome" placeholder="Sobrenome" />
-                        <input value="<%= user.email %>" type="email" name="email" placeholder="Email" />
-                        <input value="<%= user.senha %>" type="password" name="senha" placeholder="Senha" />
+                        <label for="nome">Nome</label>
+                        <input value="<%= user.nome %>" type="text" name="nome" />
+                        
+                        <label for="sobrenome">Sobrenome</label>
+                        <input value="<%= user.sobrenome %>" type="text" name="sobrenome" />
+
+                        <label for="email">E-mail</label>
+                        <input value="<%= user.email %>" type="email" name="email" />
+
+                        <label for="senha">Senha</label>
+                        <input value="<%= user.senha %>" type="password" name="senha" />
+
+                        <label for="confirmar_senha">Confirmar senha</label>
+                        <input value="<%= user.confirmar_senha %>" type="password" name="confirmar_senha" />
+
+                        <label for="avatar">Avatar</label>
                         <input type="file" name="avatar"
                             placeholder="Número do Avatar" />
+
                         <button type="submit">Atualizar</button>
                     </form>
         </main>

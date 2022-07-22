@@ -20,6 +20,7 @@ const session = require('express-session');
 const productRoute = require('./src/routes/productRoute');
 const indexRoute = require('./src/routes/indexRoute');
 const userRoute = require('./src/routes/userRoute');
+const authRoute = require('./src/routes/authRoute');
 
 // Configuração para acessar externamente conteúdo de uma pasta
 app.use(express.static(__dirname + "/public"));
@@ -53,6 +54,8 @@ app.use(methodOverride('_method'));
 
 //localhost:3000/
 app.use('/', indexRoute);
+//localhost:3000/
+app.use('/', authRoute);
 //localhost:3000/user/
 app.use('/user', userRoute);
 //localhost:3000/product/

@@ -1,23 +1,63 @@
 const path = require('path');
-const { check } = require('express-validator');
+const { body } = require('express-validator');
+
 
 module.exports = [
-    check('nome').notEmpty().withMessage('Campo obrigatório').bail().isString().isLength({ min: 3 }).withMessage('O nome deve ter no mínimo 4 caracteres!'),
-    check('sobrenome').notEmpty().withMessage('Campo obrigatório').bail().isString(),
-    check('email').notEmpty().withMessage('Campo obrigatório').bail().isEmail().withMessage('Preencha com um e-mail válido!'),
-    check('senha').notEmpty().withMessage('Campo obrigatório').bail().isLength({min: 6}).withMessage("A senha deve conter mais de 6 caracteres").bail(),
-    check('avatar').custom((value, { req }) => {
-        let file = req.file;
-        let acceptedExtensions = ['.jpg', '.png', '.gif'];
+    body('nome').isLength({ min: 3 }).withMessage('O nome deve ter no mínimo 3 caracteres!'),
+    body('nome').custom((value, { req }) => {
+        if (!value) {
+            return Promise.reject('Campo obrigatório');
+        }
+        return true
+    }),
 
-        if (!file) {
-            throw new Error('Precisa escolher um arquivo');
-        } else {
+    body('sobrenome').custom((value) => {
+        if (!value) {
+            return Promise.reject('Campo obrigatório');
+        }
+        return true
+    }),
+
+    body('email').isEmail().withMessage('Preencha com um e-mail válido!'),
+    body('email').custom((value, { req }) => {
+        if (!value) {
+            return Promise.reject('E-mail é obrigatório');
+        }
+        if (value === req.body.email) {
+            return Promise.reject('E-mail já cadastrado');
+        }
+        return true
+    }),
+
+    body('senha').isLength({ min: 8 }).withMessage("A senha deve conter no mínimo 8 caracteres"),
+    body('senha').custom((value, { req }) => {
+        if (!value) {
+            return Promise.reject('Campo obrigatório');
+        }
+        return true
+    }),
+
+    body('confirmar_senha').custom((value, { req }) => {
+        if (!value) {
+            return Promise.reject('Campo obrigatório');
+        }
+        if (value === req.body.senha) {
+            return Promise.reject('Senhas não coincidem');
+        }
+        return true
+    }),
+
+    body('avatar').custom((value, { req }) => {
+        let file = req.file;
+        let acceptedExtensions = ['.jpg', '.png', '.gif', '.jpeg'];
+
+        if (file) {
             let fileExtension = path.extname(file.originalname);
             if (!acceptedExtensions.includes(fileExtension)) {
-                throw new Error(`As extensões de arquivo permitidas são ${acceptedExtensions.join(', ')}`);
+                return Promise.reject(`As extensões de arquivo permitidas são ${acceptedExtensions.join(', ')}`);
             }
         }
         return true;
     })
+
 ];

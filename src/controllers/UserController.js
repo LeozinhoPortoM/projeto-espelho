@@ -3,93 +3,19 @@ const fs = require('fs');
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const upload = require('../config/upload');
-const fileName = __dirname + '/../database/users.json';
+const path = require('path');
+const fileName = path.join(__dirname, "..", "database", "users.json");
 
-
-const User = require('../models/User');
-
-// const users = [
-//   {
-//     id: 1,
-//     nome: "Roberto",
-//     sobrenome: "Silva",
-//     email: "robertinho123@email.com",
-//     senha: 27678843,
-//     avatar: "user1.jpeg",
-//   },
-//   {
-//     id: 2,
-//     nome: "Ana",
-//     sobrenome: "Monteiro",
-//     email: "aninha123@email.com",
-//     senha: 22434588,
-//     avatar: "user2.jpeg",
-//   },
-//   {
-//     id: 3,
-//     nome: "Juliana",
-//     sobrenome: "Rios",
-//     email: "ju123@email.com",
-//     senha: 16788948,
-//     avatar: "user3.jpeg",
-//   },
-//   {
-//     id: 4,
-//     nome: "João",
-//     sobrenome: "Oliveira",
-//     email: "joaozinho123@email.com",
-//     senha: 4567894,
-//     avatar: "user4.jpeg",
-//   },
-//   {
-//     id: 5,
-//     nome: "Roberto",
-//     sobrenome: "Carlos",
-//     email: "robertinho123@email.com",
-//     senha: 70578854,
-//     avatar: "user5.jpeg",
-//   },
-//   {
-//     id: 6,
-//     nome: "Pedro",
-//     sobrenome: "Santos",
-//     email: "pedrinho123@email.com",
-//     senha: 2068854,
-//     avatar: "user6.jpeg",
-//   },
-//   {
-//     id: 7,
-//     nome: "Lucas",
-//     sobrenome: "Morais",
-//     email: "luquinhas123@email.com",
-//     senha: 3578933,
-//     avatar: "user7.jpeg",
-//   },
-//   {
-//     id: 8,
-//     nome: "Hélder",
-//     sobrenome: "Santos",
-//     email: "helder123@email.com",
-//     senha: 2566744,
-//     avatar: "user8.jpeg",
-//   },
-//   {
-//     id: 9,
-//     nome: "Marcos",
-//     sobrenome: "Souza",
-//     email: "marquinhos123@email.com",
-//     senha: 406543,
-//     avatar: "user9.jpeg",
-//   },
-// ];
 
 const userController = {
-  
+
   // Lista todos os usuário
   // Pode retornar uma página ou não
   index: (req, res) => {
-    const allUsers = JSON.parse(fs.readFileSync(fileName, 'utf-8'));
-    return res.render('users', { title: 'Lista de usuários', users: allUsers });
+    const allUsersJson = JSON.parse(fs.readFileSync(fileName, 'utf-8'));
+    // Filtra os usuários ativos
+    const usersActive = allUsersJson.filter(user => user.ativo === true);
+    return res.render('users', { title: 'Lista de usuários', users: usersActive });
   },
   // Mostra um usuário
   // Pode retornar uma página ou não
@@ -98,9 +24,9 @@ const userController = {
     // localhost:3000/user/4
     // id = 4
     const { id } = req.params;
-    const allUsers = JSON.parse(fs.readFileSync(fileName, 'utf-8'));
-    const userResult = allUsers.find(user => user.id === parseInt(id));
-    // const userResult = allUsers.find((user) => user.id.toString() === id);
+    const allUsersJson = JSON.parse(fs.readFileSync(fileName, 'utf-8'));
+    const userResult = allUsersJson.find(user => user.id === parseInt(id));
+    
     if (!userResult) {
       return res.render("not-found", {
         title: "Ops!",
@@ -127,18 +53,17 @@ const userController = {
   // Não retorna página
   store: (req, res) => {
     const errors = validationResult(req);
+    const allUsersJson = JSON.parse(fs.readFileSync(fileName, 'utf-8'));
 
-    let filename = "user-default.jpeg";
+    const { nome, sobrenome, email, senha, confirmar_senha } = req.body;
 
-    if (req.file) {
-      filename = req.file.filename;
-    }
-
+    // Verifica se os campos foram preenchidos corretamente
     if (!errors.isEmpty()) {
       return res.render("user-create", { title: "Cadastrar usuário", errors: errors.mapped(), old: req.body });
     }
-
-    let userExists = User.findUserByField('email', req.body.email);
+    
+    // Verifica se o email já está cadastrado
+    const userExists = allUsersJson.find(user => user.email === email);
 
     if (userExists) {
       return res.render('user-create', {
@@ -152,41 +77,85 @@ const userController = {
       });
     }
 
-    let userToCreate = {
-      ...req.body,
-      senha: bcrypt.hashSync(req.body.senha, 10),
-      avatar: filename,
+    // Verifica se a senha realmente está correta 
+    if (senha !== confirmar_senha) {
+      return res.render('user-create', {
+        title: "Error",
+        errors: {
+          confirmar_senha: {
+            msg: "Senhas não coincidem",
+          }
+        },
+        old: req.body
+      });
     }
 
-    let userCreated = User.create(userToCreate);
+    // Atribui a variavel filename uma imagem default
+    let filename = "user-default.jpeg";
 
-    return res.redirect("/user/login");
+    // Atribui ao avatar uma imagem default caso tenha tido algo de errado no download
+    if (req.file) {
+      filename = req.file.filename;
+    }
+
+    // Atribui 1 se não tiver nenhum usuário cadastrado, caso contrario ele pega o valor do último usuário e acrescenta + 1 
+    const lastId = allUsersJson.length != 0 ? allUsersJson[allUsersJson.length - 1].id + 1 : 1;
+
+    // Objeto com dados do novo usuário
+    const newUser = {
+      id: lastId,
+      nome,
+      sobrenome,
+      email,
+      senha: bcrypt.hashSync(req.body.senha, 10),
+      avatar: filename,
+      admin: false,
+      ativo: true,
+      criadoEm: new Date(),
+      modificadoEm: new Date(),
+    };
+
+    allUsersJson.push(newUser);
+    fs.writeFileSync(
+      // Caminho e nome do arquivo que será criado/atualizado
+      fileName,
+      // Conteúdo que será salvo no arquivo
+      JSON.stringify(allUsersJson, null, " ")
+    );
+
+    return res.redirect("login");
   },
+  
   // Página para editar usuário
   edit: (req, res) => {
     const { id } = req.params;
-    const userResult = User.findUserById(id);
-    // const userResult = users.find((user) => user.id === parseInt(id));
+
+    const allUsersJson = JSON.parse(fs.readFileSync(fileName, 'utf-8'));
+    const userResult = allUsersJson.find(user => user.id === parseInt(id));
     // const userResult = users.find((user) => user.id.toString() === id);
+
     if (!userResult) {
       return res.render("not-found", {
         title: "Ops!",
         message: "Nenhum usuário encontrado",
       });
     }
+
+    userResult.confirmar_senha = userResult.senha;
     return res.render("user-edit", {
       title: "Editar usuário",
       user: userResult,
     });
   },
+
   // Edita usuário
   // Não retorna página
   update: (req, res) => {
     const { id } = req.params;
-    const { nome, sobrenome, senha, email } = req.body;
-    const userResult = User.findUserById(id);
-    // const userResult = users.find((user) => user.id === parseInt(id));
-    // const userResult = users.find((user) => user.id.toString() === id);
+    const { nome, sobrenome, email, senha, confirmar_senha } = req.body;
+
+    const allUsersJson = JSON.parse(fs.readFileSync(fileName, 'utf-8'));
+    const userResult = allUsersJson.find(user => user.id === parseInt(id));
 
     let filename;
     if (req.file) {
@@ -199,28 +168,51 @@ const userController = {
         message: "Nenhum usuário encontrado",
       });
     }
-    const updateUser = userResult;
-    if (nome) updateUser.nome = nome;
-    if (sobrenome) updateUser.sobrenome = sobrenome;
-    if (email) updateUser.email = email;
-    if (senha) updateUser.senha = senha;
-    if (filename) {
-      let avatarTmp = updateUser.avatar;
-      fs.unlinkSync(upload.path + avatarTmp);
-      updateUser.avatar = filename;
+
+    // Verifica se a senha realmente está correta 
+    if (senha !== confirmar_senha) {
+      return res.render('user-create', {
+        title: "Error",
+        errors: {
+          confirmar_senha: {
+            msg: "Senhas não coincidem",
+          }
+        },
+        old: req.body
+      });
     }
+
+    // Salvando as alterações n0 id encontrado do userResult
+    if (nome) userResult.nome = nome;
+    if (sobrenome) userResult.sobrenome = sobrenome;
+    if (email) userResult.email = email;
+    if (senha) userResult.senha = senha;
+    if (filename) {
+      let avatarTmp = userResult.avatar;
+      fs.unlinkSync(upload.path + avatarTmp);
+      userResult.avatar = filename;
+    }
+    userResult.modificadoEm = new Date();
+
+    fs.writeFileSync(
+      // Caminho e nome do arquivo que será criado/atualizado
+      fileName,
+      // Conteúdo que será salvo no arquivo
+      JSON.stringify(allUsersJson, null, " ")
+    );
 
     return res.render("success", {
       title: "Usuário atualizado",
       message: `Usuário ${updateUser.nome} foi atualizado`,
     });
   },
+
   // Deleta usuário
   // Não retorna página
   delete: (req, res) => {
     const { id } = req.params;
-    const userResult = User.findUserById(id);
-    // const userResult = users.find((user) => user.id === parseInt(id));
+    const allUsersJson = JSON.parse(fs.readFileSync(fileName, 'utf-8'));
+    const userResult = allUsersJson.find(user => user.id === parseInt(id));
     // const userResult = users.find((user) => user.id.toString() === id);
     if (!userResult) {
       return res.render("not-found", {
@@ -237,58 +229,46 @@ const userController = {
       user,
     });
   },
+
   // O método acima pode ser chamado de destroy
   destroy: (req, res) => {
     const { id } = req.params;
-    const result = users.findIndex((user) => user.id === parseInt(id));
-    if (result === -1) {
+    const allUsersJson = JSON.parse(fs.readFileSync(fileName, 'utf-8'));
+    const userResult = allUsersJson.find(user => user.id === parseInt(id));
+    if (!userResult) {
       return res.render("not-found", {
         title: "Ops!",
         message: "Nenhum usuário encontrado",
       });
     }
-    fs.unlinkSync(upload.path + users[result].avatar);
-    users.splice(result, 1);
+    // Torna o usuário inativo
+    userResult.ativo = false;
+
+    fs.writeFileSync(
+      // Caminho e nome do arquivo que será criado/atualizado
+      fileName,
+      // Conteúdo que será salvo no arquivo
+      JSON.stringify(allUsersJson, null, " ")
+    );
+
+    // fs.unlinkSync(upload.path + userResult.avatar);
+    // allUsersJson.splice(userResult, 1);
+
+    // fs.writeFileSync(
+    //   // Caminho e nome do arquivo que será criado/atualizado
+    //   fileName,
+    //   // Conteúdo que será salvo no arquivo
+    //   JSON.stringify(allUsersJson, null, " ")
+    // );
+
     return res.render("success", {
       title: "Usuário deletado",
       message: "Usuário deletado com sucesso!",
     });
   },
-
+  
   loginForm: (req, res) => {
-    res.render('user-login', { title: "Login" });
-  },
-
-  loginUser: (req, res) => {
-    const { email, senha, logado } = req.body;
-    const userSave = fs.readFileSync(userJson, { encoding: 'utf-8' });
-    userSave = JSON.parse(userSave);
-
-    if (email != userSave.email) {
-      return res.send('Usuário invalido!');
-    }
-
-    if (!bcrypt.compareSync(senha, userSave.senha)) {
-      return res.send("Senha invalida");
-    }
-
-    req.session.user = userSave;
-
-    if (logado != undefined) {
-      res.cookie('logado', userSave.email, { maxAge: 600000 })
-    }
-
-    res.redirect('/user');
-  },
-
-  profile: (req, res) => {
-    return res.render('user-profile', { title: "Perfil do usuário" });
-  },
-
-  logout: (req, res) => {
-    res.clearCookie('userEmail');
-    req.session.destroy();
-    return res.redirect('/')
+    return res.render("user-login", { title: "Login" });
   },
 
 };
