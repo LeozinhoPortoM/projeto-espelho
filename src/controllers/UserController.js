@@ -26,7 +26,7 @@ const userController = {
     const { id } = req.params;
     const allUsersJson = JSON.parse(fs.readFileSync(fileName, 'utf-8'));
     const userResult = allUsersJson.find(user => user.id === parseInt(id));
-    
+
     if (!userResult) {
       return res.render("not-found", {
         title: "Ops!",
@@ -60,8 +60,9 @@ const userController = {
     // Verifica se os campos foram preenchidos corretamente
     if (!errors.isEmpty()) {
       return res.render("user-create", { title: "Cadastrar usuário", errors: errors.mapped(), old: req.body });
+      
     }
-    
+
     // Verifica se o email já está cadastrado
     const userExists = allUsersJson.find(user => user.email === email);
 
@@ -125,7 +126,7 @@ const userController = {
 
     return res.redirect("login");
   },
-  
+
   // Página para editar usuário
   edit: (req, res) => {
     const { id } = req.params;
@@ -266,7 +267,7 @@ const userController = {
       message: "Usuário deletado com sucesso!",
     });
   },
-  
+
   loginForm: (req, res) => {
     return res.render("user-login", { title: "Login" });
   },

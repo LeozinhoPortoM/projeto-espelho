@@ -21,33 +21,180 @@ html {
 }
 
 body {
-    width: 90%;
+    width: 100%;
     margin: 0 auto;
     min-height: 100vh;
     max-width: 100%;
 }
 
-
 /* Tipografia
 -----------------------*/
 
 h1 {
-    letter-spacing: -0.05em;
+    letter-spacing: -0.05rem;
     font-size: 4rem;
     margin: 60px 0 20px;
-    color: rgb(0, 0, 0);
 }
 
 h2 {
-    font-size: 3em;
+    font-size: 3rem;
     font-weight: 100;
     letter-spacing: -0.04;
 }
 
 h3 {
-    font-size: 2em;
+    font-size: 2rem;
     font-weight: 700;
     letter-spacing: -0.04;
+}
+
+h4 {
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: -0.04;
+}
+
+/* Header top
+---------------------------------*/
+
+#container-header {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 5vh;
+    color: white;
+    background-color: rgb(161, 46, 196, 0.4);
+}
+
+#container-header img {
+    width: 10%;
+    padding: 4px;
+}
+
+.container-logo-pesquisa {
+    width: 100%;
+    height: 10vh;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.container-logo-pesquisa .logo,
+.container-logo-pesquisa .img-lovbag {
+    width: 20%;
+    height: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.logo a img {
+    width: 90%;
+}
+
+.container-logo-pesquisa h5 a:hover {
+    color: rgba(134, 84, 149, 0.456);
+}
+
+.container-search {
+    width: 50%;
+    position: relative;
+    text-align: center;
+
+}
+
+.container-search input[type='search'] {
+    width: 100%;
+    height: 7vh;
+    border: 2px solid black;
+    border-radius: 4px;
+    outline: none;
+    padding: 8px;
+    font-size: 1rem;
+    transition: .3s;
+    cursor: pointer;
+}
+
+.container-search input[type='search']:focus {
+    border-color: rgb(146, 70, 169);
+    box-shadow: 0 0 8px 0 rgb(146, 70, 169);
+}
+
+.container-search img {
+    position: absolute;
+    right: 2%;
+    top: 15px;
+}
+
+.img-search img,
+.img-lovbag a img {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+}
+
+.img-lovbag a img:hover {
+    border-radius: 50%;
+    box-shadow: 0 0 5px 0 rgb(146, 70, 169);
+}
+
+
+/* Barra de navegação
+---------------------------------*/
+
+nav {
+    margin: 0 auto;
+    width: 100%;
+}
+
+nav.fixed-top {
+    top: 15%;
+}
+
+nav.navbar-transparente {
+    background-color: rgb(146, 70, 169, 0.6);
+}
+
+.navbar-light,
+.navbar-toggler {
+    background-color: rgb(255, 255, 255);
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: white;
+}
+
+.navbar-brand h5 {
+    color: white;
+}
+
+/* Section carousel
+-----------------------*/
+
+
+/* Corpo
+------------------------*/
+
+.container-main {
+    width: 100%;
+    min-height: 50vh;
+    text-align: center;
+    margin: 5px 0;
+}
+
+.img-whats {
+    width: 20%;
+    position: fixed;
+    right: 0;
+    bottom: 0;
+    z-index: 10;
+    margin: 0 10px 10px 0;
+    cursor: pointer;
+}
+
+.img-whats img {
+    width: 100%;
 }
 
 #container {
@@ -63,6 +210,81 @@ h3 {
     padding-left: 5px;
     border-radius: 6px;
     border: none;
+}
+
+.section-categorias {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+.img-categorias {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.section-categorias h3,
+section h3 {
+    text-transform: uppercase;
+    color: rgb(146, 70, 169, 0.6);
+}
+
+.section-categorias img {
+    width: 30%;
+    min-height: 20%;
+}
+
+.section-perfumes {
+    width: 100%;
+    min-height: 40%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.perfumes {
+    width: 45%;
+    padding-bottom: 7px;
+    background-color: rgb(146, 70, 169, 0.1);
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+
+.perfumes a {
+    text-decoration: none;
+    color: rgb(146, 70, 169);
+}
+
+.perfumes h4 {
+    font-weight: bolder;
+    font-size: 1.3rem;
+}
+
+.section-perfumes img {
+    width: 90%;
+    min-height: 30%;
+    padding: 5px 0;
+}
+
+.perfumes button[type="submit"] {
+    width: 60%;
+    height: 30%;
+    cursor: pointer;
+    text-align: center;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    background-color: rgb(146, 70, 169, 0.6);
+    color: rgb(255, 255, 255);
+    border-radius: 10px;
+    border: none;
+}
+
+.perfumes button[type="submit"]:hover {
+    background-color: rgb(146, 70, 169, 0.3);
 }
 
 .caixa {
@@ -83,32 +305,6 @@ h3 {
     margin: 10px 0;
 }
 
-form {
-    width: 40%;
-    min-height: 50%;
-    display: flex;
-    justify-content: center;
-    align-items: flex-start;
-    flex-direction: column;
-    border: 1px solid rgb(128, 128, 128, 0.3);
-    padding: 10px;
-}
-
-label {
-    margin: 0;
-}
-
-form label {
-    font-weight: bolder;
-}
-
-form input {
-    width: 100%;
-    height: 2.5rem;
-    background-color: rgb(128, 128, 128, 0.2);
-    margin-bottom: 10px;
-}
-
 .login-checkbox {
     width: 100%;
     display: flex;
@@ -120,6 +316,9 @@ form input {
     width: 20px;
     margin: 0px 5px 0;
 }
+
+/* Tabelas
+------------------------*/
 
 .table-container {
     width: 90%;
@@ -183,6 +382,9 @@ tbody tr:hover {
     background-color: #923333aa;
 }
 
+/* Mensagens de alertas
+------------------------*/
+
 .error-alert {
     font-size: 1.2rem;
     color: rgb(146, 51, 51, 0.6);
@@ -192,6 +394,39 @@ tbody tr:hover {
     font-size: 1.5rem;
     color: green;
 }
+
+/* Formulários
+------------------------*/
+
+form {
+    width: 40%;
+    min-height: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    flex-direction: column;
+    border: 1px solid rgb(128, 128, 128, 0.3);
+    padding: 10px;
+}
+
+label {
+    margin: 0;
+}
+
+form label {
+    font-weight: bolder;
+}
+
+form input {
+    width: 100%;
+    height: 2.5rem;
+    background-color: rgb(128, 128, 128, 0.2);
+    margin-bottom: 10px;
+}
+
+
+/* Butões dos formulários
+------------------------*/
 
 form button[type="submit"],
 button[type="button"] {
@@ -210,17 +445,17 @@ form button[type="submit"]:hover {
 
 }
 
-.delete-buttons a {
-    width: 100%;
-    text-decoration: none;
-}
-
 form button[type="button"] {
     background-color: rgb(255, 0, 0, 0.7);
 }
 
 form a button[type="button"]:hover {
     background-color: rgb(255, 0, 0, 0.4);
+}
+
+.delete-buttons a {
+    width: 100%;
+    text-decoration: none;
 }
 
 .delete-buttons,
@@ -234,22 +469,230 @@ form a button[type="button"]:hover {
     font-size: 1.5rem;
 }
 
+/* Rodapé
+-----------------------*/
+
+.footer-texto {
+    width: 100%;
+    color: black;
+    text-align: center;
+}
+
+.footer-texto h5 {
+    margin-bottom: 15px;
+    font-size: 0.9rem;
+}
+
+.footer-texto span {
+    color: dodgerblue;
+    font-weight: bold;
+    font-size: 1rem;
+}
+
+.redes-sociais {
+    width: 100%;
+    min-height: 10%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.img-sociais img {
+    padding: 0 5px;
+    width: 50px;
+    cursor: pointer;
+}
+
+.container-footer {
+    width: 100%;
+    min-height: 30vh;
+    display: flex;
+    flex-direction: column;
+    background-color: rgb(161, 46, 196, 0.4);
+}
+
+.menu-footer {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    border-bottom: 1px solid rgb(255, 255, 255, 0.2);
+}
+
+.menu-footer li a {
+    color: rgb(255, 255, 255);
+    font-weight: bolder;
+}
+
+.dropdown-menu {
+    background-color: rgb(146, 70, 169, 0.9);
+    width: 100%;
+    margin-left: 3px;
+}
+
+.container-footer-pg-redesSociais {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    padding: 10px 15px;
+    color: white;
+    font-weight: bolder;
+}
+
+.pagamentos-cartoes {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.pagamentos,
+.redes-sociais-app {
+    margin-bottom: 10px;
+}
+
+.pagamentos-cartoes img,
+.img-sociais-app img {
+    width: 35px;
+    cursor: pointer;
+}
+
+.img-sociais-app img {
+    margin: 0 20px;
+}
+
+.politicas-empresa {
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    margin-top: 10px;
+    color: white;
+}
+
+.politicas-empresa p {
+    font-size: 0.6rem;
+    padding: 0 10px;
+    margin-bottom: 0.5rem;
+}
+
 
 /* Extra small devices (portrait phones, less than 576px) */
-@media (max-width: 575.98px) {}
+@media (max-width: 767.98px) {
+    #mobile-first, #mobile-big {
+        display: none;
+    }
 
+    .img-whats {
+        width: 10%;
+    }
+}
 
-/* Small devices (landscape phones, 576px and up) */
-@media (min-width: 576px) {}
 
 /* Medium devices (tablets, 768px and up) */
-@media (min-width: 768px) and (max-width: 991.98px) {}
+@media (min-width: 768px) and (max-width: 991.98px) {
+    #container-header img {
+        width: 5%;
+        padding: 4px;
+    }
+
+    .logo a img {
+        width: 50%;
+    }
+
+    .container-footer .footer {
+        display: flex;
+        align-items: center;
+        text-align: center;
+    }
+
+    .container-footer-pg-redesSociais {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        text-align: center;
+    }
+
+    .politicas-empresa p {
+        font-size: 0.9rem;
+    }
+
+    .pagamentos,
+    .redes-sociais-app {
+        width: 40%;
+    }
+
+    .img-whats {
+        width: 8%;
+    }
+
+    #mobile-first, #mobile-big {
+        display: none;
+    }
+
+}
 
 /* Large devices (desktops, 992px and up) */
-@media (min-width: 992px) {}
+@media (min-width: 992px) and (max-width: 1999.98px) {
+    #container-header img {
+        width: 3%;
+        padding: 3px;
+    }
+
+    .logo a img {
+        width: 30%;
+    }
+
+    .container-footer .footer {
+        display: flex;
+        align-items: center;
+        text-align: center;
+    }
+
+    .container-footer-pg-redesSociais {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-around;
+        text-align: center;
+    }
+
+    .politicas-empresa p {
+        font-size: 0.9rem;
+    }
+
+    .pagamentos,
+    .redes-sociais-app {
+        width: 40%;
+    }
+
+    .perfumes {
+        width: 30%;
+    }
+
+    .img-whats {
+        width: 8%;
+    }
+
+
+}
 
 /* X-Large devices (large desktops, 1200px and up) */
-@media (min-width: 1200px) {}
+@media (min-width: 1200px) and (max-width: 1399.98px) {
+    .img-whats {
+        width: 6%;
+    }
+
+    .perfumes {
+        width: 20%;
+    }
+}
 
 /* XX-Large devices (larger desktops, 1400px and up) */
-@media (min-width: 1400px) {}
+@media (min-width: 1400px) {
+    .img-whats {
+        width: 6%;
+    }
+    .perfumes {
+        width: 20%;
+    }
+}

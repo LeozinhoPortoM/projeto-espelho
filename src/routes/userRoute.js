@@ -1,6 +1,10 @@
 const express = require('express');
 const router = express.Router();
 
+
+const { validationResult } = require('express-validator');
+
+
 // Controllers
 const userController = require('../controllers/UserController');
 
@@ -10,11 +14,11 @@ const validator = require('../middlewares/validatorRegisterMiddleware');
 
 // Criar usuário
 router.get("/create", userController.create);
-router.post("/create", upload.single('avatar'), userController.store);
+router.post("/create", upload, validator, userController.store);
 
 // Editar usuário
 router.get("/edit/:id", userController.edit);
-router.put("/edit/:id", upload.single('avatar'), userController.update);
+router.put("/edit/:id", upload, userController.update);
 
 // Deletar usuário
 router.get("/delete/:id", userController.delete);

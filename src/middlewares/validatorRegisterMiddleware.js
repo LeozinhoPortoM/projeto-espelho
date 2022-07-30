@@ -18,16 +18,7 @@ module.exports = [
         return true
     }),
 
-    body('email').isEmail().withMessage('Preencha com um e-mail válido!'),
-    body('email').custom((value, { req }) => {
-        if (!value) {
-            return Promise.reject('E-mail é obrigatório');
-        }
-        if (value === req.body.email) {
-            return Promise.reject('E-mail já cadastrado');
-        }
-        return true
-    }),
+    body('email').notEmpty().withMessage('Campo obrigatório').isEmail().withMessage('Preencha com um e-mail válido!'),
 
     body('senha').isLength({ min: 8 }).withMessage("A senha deve conter no mínimo 8 caracteres"),
     body('senha').custom((value, { req }) => {
@@ -58,6 +49,6 @@ module.exports = [
             }
         }
         return true;
-    })
+    }),
 
 ];
