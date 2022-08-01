@@ -1,0 +1,95 @@
+<%- include("./partials/head") %>
+    
+        <main>
+            <div id="container-principal-adm">
+                <div class="container-lateral-adm">
+
+                    <div class="titulo-adm"><h3>Administrador</h3></div>
+
+                    <div class="btn-menus-adm">
+                        <button>Vendedor</button>
+                        <button>Clientes</button>
+                        <button>Representantes</button>
+                        <button>Tablela de preço</button>
+                        <button>Produtos</button>
+                        <button>Pedidos</button>
+                        <button>Relatórios</button>
+                    </div>
+
+
+
+                </div>
+                <div class="container-central-adm">
+                    <div class="container-header-adm">
+                        <div class="center-adm">
+                            <img src="/img/do-utilizador.png" alt="">
+                            <h2>Pedido</h2>
+                        </div>
+                        <div class="container-menu-adminstrador-adm">
+                            <ul>
+                                <li><a href="/logout">Sair</a></li>
+                            </ul>
+                        </div>
+                    </div>
+                    <div class="caminho-adm">
+                        <h5>Início</h5>
+                        <h5>/</h5>
+                        <h5>Clientes</h5>
+                    </div>
+                    <div class="usuario-adicionar-produto-adm">
+                        <span>Clientes</span>
+                        <button><img src="/img/adicionar.png" alt="">Novo</button>
+                    </div>
+                    <div class="div-table-adm">
+                        <table class="table-adm">
+                            <div class="in-table-adm">
+                                <div>
+                                    <input type="number" name="" id="">
+                                    <label for="">resultados por página</label>
+                                </div>
+                                <div>
+                                    <label for="">Pesquisar</label>
+                                    <input type="search" name="" id="">
+                                </div>
+                            </div>
+                            <thead>
+                                <tr class="purpul-adm">
+                                    <th>Produto</th>
+                                    <th>Preco</th>
+                                    <th>Descrição</th>
+                                    <th>Ações</th>
+                                </tr>
+
+                            </thead>
+                            <tbody>
+
+                                <tr class="purpul-adm">
+                                    <td>Perfume Femino</td>
+                                    <td>32,00</td>
+                                    <td>Perfume feminino aromatizado</td>
+                                    <td><button><img src="/img/pen.png" alt=""></button> <button><img
+                                                src="/img/lata-de-lixo.png" alt=""></button></td>
+                                </tr>
+
+                                <tr class="purpul-adm">
+                                    <td>Perfume Masculino</td>
+                                    <td>55,00</td>
+                                    <td>Perfume masculino adocicado</td>
+                                    <td><button><img src="/img/pen.png" alt=""></button> <button><img
+                                                src="/img/lata-de-lixo.png" alt=""></button></td>
+                                </tr>
+                                <tr class="purpul-adm">
+                                    <td>Perfume Infantil</td>
+                                    <td>35,00</td>
+                                    <td>Perfume infantil</td>
+                                    <td><button><img src="/img/pen.png" alt=""></button> <button><img
+                                                src="/img/lata-de-lixo.png" alt=""></button></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <%- include("./partials/footer") %>

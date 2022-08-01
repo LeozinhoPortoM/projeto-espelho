@@ -17,6 +17,7 @@ const methodOverride = require('method-override');
 const session = require('express-session');
 
 // Atribui conteúdo do Route a variável
+const administratorRoute = require('./src/routes/administratorPanelRoute');
 const productRoute = require('./src/routes/productRoute');
 const indexRoute = require('./src/routes/indexRoute');
 const userRoute = require('./src/routes/userRoute');
@@ -35,6 +36,8 @@ app.use(session({
     saveUninitialized: true,
 }));
 
+app.use(cookieParser());
+
 // ALtera configuração inicial do express do caminho do views para o nosso caminho de arquivos
 app.set('views', __dirname + '/src/views');
 
@@ -52,14 +55,16 @@ app.use(express.urlencoded({ extended: false }));
 // Metodo utilizado para sobrescrever com PUT/DELETE o methode GET/POST no formulário
 app.use(methodOverride('_method'));
 
-//localhost:3000/
-app.use('/', indexRoute);
-//localhost:3000/
-app.use('/', authRoute);
+//localhost:3000/administrator/
+app.use('/administrator', administratorRoute);
 //localhost:3000/user/
 app.use('/user', userRoute);
 //localhost:3000/product/
 app.use('/product', productRoute);
+//localhost:3000/
+app.use('/', indexRoute);
+//localhost:3000/
+app.use('/', authRoute);
 
 // Rota de erros 404
 app.use((req, res, next) => {

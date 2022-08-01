@@ -6,7 +6,7 @@
   "email": "leo.porto.lpm@hotmail.com",
   "senha": "$2b$10$U5EVw0lU/5zwW1BFs1OBgeV6mXogSN9dp2MCk/Th6v11tPNJ3v9vu",
   "avatar": "0cbeedc17be5ce8ca475.jpg",
-  "admin": false,
+  "admin": true,
   "ativo": true,
   "criadoEm": "2022-07-17T00:21:39.368Z",
   "modificadoEm": "2022-07-19T23:51:31.157Z"

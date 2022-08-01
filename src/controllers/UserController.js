@@ -124,7 +124,7 @@ const userController = {
       JSON.stringify(allUsersJson, null, " ")
     );
 
-    return res.redirect("login");
+    return res.redirect("/login");
   },
 
   // Página para editar usuário

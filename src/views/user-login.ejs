@@ -3,12 +3,12 @@
     <main class="container-main">
       <section id="container">
         <h1>Login</h1>
-        <% if(locals.error){ %>
+        <% if(locals.errors){ %>
           <h2 class="error-alert">
-            <%= error.message %>
+            <%= errors.msg %>
           </h2>
           <% } %>
-            <form action="/user/login" method="post">
+            <form action="/login" method="post">
               <input type="email" name="email" placeholder="E-mail" />
               <input type="password" name="senha" placeholder="Senha" />
               <button type="submit">Entrar</button>

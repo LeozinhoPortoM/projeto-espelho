@@ -9,7 +9,15 @@
     <div class="logo">
       <a href="/"><img src="/img/logo perfuma.png" alt=""></a>
     </div>
-    <div class="container-search img-search">
+
+    <!-- <% if (locals.user) {%>
+      <div>
+        <h5>Bem vindo - <%= locals.user %>
+        </h5>
+      </div>
+      <% }%> -->
+
+    <div class=" container-search img-search">
       <input type="search" name="" id="" placeholder="Oi, o que procura? :)">
       <img src="/img/lupa.png" alt="">
     </div>
@@ -54,58 +62,46 @@
             </div> -->
 
           <!-- </li> -->
+          <% if (locals.user) {%>
+            <a class="nav-link">Olá - <%= locals.user %></a>
+            <li class="navbar-item divisor d-none d-md-block"></li>
+            <% }%>
 
+              <% if(locals.user && locals.admin==="false" ){ %>
 
-          <li class="navbar-item">
-            <a href="/user/login" class="nav-link">Login</a>
-          </li>
-          <!-- <li class="navbar-item">
-            <a href="" class="nav-link">Baixar</a>
-          </li> -->
+                <li class="navbar-item">
+                  <a href="/profile" class="nav-link">Perfil</a>
+                </li>
 
-          <li class="navbar-item divisor d-none d-md-block"></li>
+                <li class="navbar-item divisor d-none d-md-block"></li>
 
-          <li class="navbar-item">
-            <a href="/user/create" class="nav-link">Cadastre-se</a>
-          </li>
-          <li class="navbar-item divisor d-none d-md-block"></li>
+                <li class="navbar-item">
+                  <a href="/logout" class="nav-link">Sair</a>
+                </li>
 
-          <li class="navbar-item">
-            <a href="" class="nav-link">Entrar</a>
-          </li>
+                <% } %>
+
+                  <% if(locals.user===undefined){ %>
+
+                    <li class="navbar-item">
+                      <a href="/login" class="nav-link">Login</a>
+                    </li>
+
+                    <li class="navbar-item divisor d-none d-md-block"></li>
+
+                    <li class="navbar-item">
+                      <a href="/register" class="nav-link">Cadastre-se</a>
+                    </li>
+
+                    <% } %>
+
         </ul>
-
 
       </div>
 
     </div>
 
   </nav>
-
-  <!-- <div class="container">
-
-    <ul class="navbar">
-      <li class="navbar-item">
-        <a href="/user/login" class="navbar-brand">Login</a>
-      </li>
-
-      <li class="navbar-item">
-        <a href="/user" class="navbar-brand">Usuários</a>
-      </li>
-
-      <li class="navbar-item">
-        <a href="/user/create" class="navbar-brand">Cadastrar Usuário</a>
-      </li>
-
-      <li class="navbar-item">
-        <a href="/product" class="navbar-brand">Produtos</a>
-      </li>
-
-      <li class="navbar-item">
-        <a href="/product/create" class="navbar-brand">Adicionar produto</a>
-      </li>
-    </ul> -->
-
 
   </div>
 
