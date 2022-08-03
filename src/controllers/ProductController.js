@@ -50,9 +50,11 @@ const productController = {
     // Lista todos os produtos
     // Pode retornar uma página ou não
     index: (req, res) => {
-        return res.render("products", {
+        return res.render("administrator-panel", {
             title: "Lista de Produtos",
-            listProducts: products,
+            listProducts: products, 
+            user: req.cookies.user, 
+            admin: req.cookies.admin,
         });
     },
     // Mostra um produto

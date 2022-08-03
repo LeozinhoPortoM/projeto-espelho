@@ -1,61 +1,91 @@
 <%- include("./partials/head") %>
-    
-        <main>
-            <div id="container-principal-adm">
-                <div class="container-lateral-adm">
 
-                    <div class="titulo-adm"><h3>Administrador</h3></div>
+    <main>
+        <div id="container-principal-adm">
+            <nav class="navbar navbar-expand-md navbar-light navbar-transparente">
 
-                    <div class="btn-menus-adm">
-                        <button>Vendedor</button>
-                        <button>Clientes</button>
-                        <button>Representantes</button>
-                        <button>Tablela de preço</button>
-                        <button>Produtos</button>
-                        <button>Pedidos</button>
-                        <button>Relatórios</button>
-                    </div>
+                <a href="/" class="navbar-brand">
+                    <h5>Administrador</h5>
+                </a>
+
+                <button class="navbar-toggler" data-toggle="collapse" data-target="#nav-principal">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+
+                <div class="collapse navbar-collapse" id="nav-principal">
+
+                    <ul class="navbar-nav ml-auto">
+
+                        <li class="navbar-item">
+                            <a href="/login" class="nav-link">Clientes</a>
+                        </li>
+
+                        <li class="navbar-item divisor d-none d-md-block"></li>
+
+                        <li class="navbar-item">
+                            <a href="/register" class="nav-link">Produtos</a>
+                        </li>
+
+                        <li class="navbar-item divisor d-none d-md-block"></li>
+
+                        <li class="navbar-item">
+                            <a href="/login" class="nav-link">Categoria</a>
+                        </li>
+
+                        <li class="navbar-item divisor d-none d-md-block"></li>
+
+                        <li class="navbar-item">
+                            <a href="/register" class="nav-link">Pedidos</a>
+                        </li>
+
+                        <li class="navbar-item divisor d-none d-md-block"></li>
 
 
+                        <li class="navbar-item">
+                            <a href="/logout" class="nav-link">Sair</a>
+                        </li>
+
+                    </ul>
 
                 </div>
-                <div class="container-central-adm">
-                    <div class="container-header-adm">
-                        <div class="center-adm">
-                            <img src="/img/do-utilizador.png" alt="">
-                            <h2>Pedido</h2>
-                        </div>
-                        <div class="container-menu-adminstrador-adm">
-                            <ul>
-                                <li><a href="/logout">Sair</a></li>
-                            </ul>
-                        </div>
+
+            </nav>
+            <div class="container-central-adm">
+                <div class="header-adm">
+                    <div class="center-adm">
+                        <img src="/img/do-utilizador.png" alt="">
+                        <% if (locals.user) {%>
+                            <h3>Olá - <%= locals.user %>
+                            </h3>
+                            <% }%>
                     </div>
-                    <div class="caminho-adm">
-                        <h5>Início</h5>
-                        <h5>/</h5>
-                        <h5>Clientes</h5>
+                    <div class="logo-adm">
+                        <img src="/img/logo5.png" alt="">
                     </div>
-                    <div class="usuario-adicionar-produto-adm">
-                        <span>Clientes</span>
-                        <button><img src="/img/adicionar.png" alt="">Novo</button>
-                    </div>
-                    <div class="div-table-adm">
-                        <table class="table-adm">
-                            <div class="in-table-adm">
-                                <div>
-                                    <input type="number" name="" id="">
-                                    <label for="">resultados por página</label>
-                                </div>
-                                <div>
-                                    <label for="">Pesquisar</label>
-                                    <input type="search" name="" id="">
-                                </div>
-                            </div>
+                </div>
+                <div class="caminho-adm">
+                    <h5>Produtos</h5>
+                    <!-- <h5>/</h5> -->
+                </div>
+                <div class="adicionar-item-adm">
+                    <button type="button">Adicionar</button>
+                </div>
+
+                <div class="in-table-adm">
+
+                    <input type="search" name="" id="" placeholder="Pesquisar...">
+                    <img src="/img/lupa.png" alt="">
+
+                </div>
+
+                <% if(listProducts.length> 0) { %>
+                    <div class="table">
+
+                        <table>
                             <thead>
-                                <tr class="purpul-adm">
+                                <tr>
                                     <th>Produto</th>
-                                    <th>Preco</th>
+                                    <th>Preço</th>
                                     <th>Descrição</th>
                                     <th>Ações</th>
                                 </tr>
@@ -63,33 +93,51 @@
                             </thead>
                             <tbody>
 
-                                <tr class="purpul-adm">
-                                    <td>Perfume Femino</td>
-                                    <td>32,00</td>
-                                    <td>Perfume feminino aromatizado</td>
-                                    <td><button><img src="/img/pen.png" alt=""></button> <button><img
-                                                src="/img/lata-de-lixo.png" alt=""></button></td>
-                                </tr>
+                                <% for (let product of listProducts) { %>
+                                    <tr>
+                                        <td>
+                                            <%= product.nome %>
+                                        </td>
+                                        <td>
+                                            R$ <%= product.preco %>
+                                        </td>
+                                        <td>
+                                            <%= product.descricao %>
+                                        </td>
+                                        <td>
+                                            <div class="btn-adm">
+                                                <button type="button">
+                                                    <img src="/img/pen.png" alt="">
+                                                </button>
+                                                <button type="button">
+                                                    <img src="/img/lata-de-lixo.png" alt="">
+                                                </button>
+                                            </div>
+                                    </tr>
 
-                                <tr class="purpul-adm">
-                                    <td>Perfume Masculino</td>
-                                    <td>55,00</td>
-                                    <td>Perfume masculino adocicado</td>
-                                    <td><button><img src="/img/pen.png" alt=""></button> <button><img
-                                                src="/img/lata-de-lixo.png" alt=""></button></td>
-                                </tr>
-                                <tr class="purpul-adm">
-                                    <td>Perfume Infantil</td>
-                                    <td>35,00</td>
-                                    <td>Perfume infantil</td>
-                                    <td><button><img src="/img/pen.png" alt=""></button> <button><img
-                                                src="/img/lata-de-lixo.png" alt=""></button></td>
-                                </tr>
+                                    <% } %>
                             </tbody>
                         </table>
                     </div>
-                </div>
-            </div>
-        </main>
+                    <% } else { %>
+                        <h2 class="error-alert">Nenhum produto encontrado!!</h2>
+                        <% } %>
 
-        <%- include("./partials/footer") %>
+            </div>
+        </div>
+    </main>
+
+    <!-- JavaScript (Opcional) -->
+    <!-- jQuery primeiro, depois Popper.js, depois Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js"
+        integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo"
+        crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"
+        integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"
+        crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"
+        integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
+        crossorigin="anonymous"></script>
+    </body>
+
+    </html>

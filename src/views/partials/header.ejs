@@ -7,7 +7,7 @@
 
   <div class="container-logo-pesquisa">
     <div class="logo">
-      <a href="/"><img src="/img/logo perfuma.png" alt=""></a>
+      <a href="/"><img src="/img/logo5.png" alt=""></a>
     </div>
 
     <!-- <% if (locals.user) {%>
@@ -25,7 +25,11 @@
     <!-- <a href="/painel_usuario"><p>Ou Cadastre-se</p></a> -->
 
     <div class="img-lovbag">
+      <% if(locals.user===undefined){ %>
       <a href="/login"><img src="/img/user.png" alt="Login"></a>
+      <% } else {%>
+      <a href=""><img src="/img/love.png" alt="Favoritos"></a>
+      <% }%>
       <a href="/"><img src="/img/shopping-bag.png" alt="Carrinho"></a>
     </div>
   </div>
@@ -35,7 +39,7 @@
     <div class="container">
 
       <a href="/" class="navbar-brand">
-        <h5>Perfuma</h5>
+        <img src="/img/logo1.png" alt="">
       </a>
 
       <button class="navbar-toggler" data-toggle="collapse" data-target="#nav-principal">

@@ -64,7 +64,7 @@ h4 {
     width: 100%;
     height: 5vh;
     color: white;
-    background-color: rgb(161, 46, 196, 0.4);
+    background-color: rgb(161, 46, 196, 0.6);
 }
 
 #container-header img {
@@ -90,11 +90,11 @@ h4 {
 }
 
 .logo a img {
-    width: 90%;
+    width: 80%;
 }
 
 .container-logo-pesquisa h5 a:hover {
-    color: rgba(134, 84, 149, 0.456);
+    color: rgba(134, 84, 149, 0.6);
 }
 
 .container-search {
@@ -102,23 +102,6 @@ h4 {
     position: relative;
     text-align: center;
 
-}
-
-.container-search input[type='search'] {
-    width: 100%;
-    height: 7vh;
-    border: 2px solid black;
-    border-radius: 4px;
-    outline: none;
-    padding: 8px;
-    font-size: 1rem;
-    transition: .3s;
-    cursor: pointer;
-}
-
-.container-search input[type='search']:focus {
-    border-color: rgb(146, 70, 169);
-    box-shadow: 0 0 8px 0 rgb(146, 70, 169);
 }
 
 .container-search img {
@@ -135,7 +118,7 @@ h4 {
 }
 
 .img-lovbag a img:hover {
-    border-radius: 50%;
+    border-radius: 5px;
     box-shadow: 0 0 5px 0 rgb(146, 70, 169);
 }
 
@@ -153,7 +136,7 @@ nav.fixed-top {
 }
 
 nav.navbar-transparente {
-    background-color: rgb(146, 70, 169, 0.6);
+    background-color: rgba(146, 70, 169, 0.6);
 }
 
 .navbar-light,
@@ -165,8 +148,9 @@ nav.navbar-transparente {
     color: white;
 }
 
-.navbar-brand h5 {
-    color: white;
+.navbar-brand img {
+    width: 100%;
+    height: 5vh;
 }
 
 .divisor {
@@ -179,7 +163,7 @@ nav.navbar-transparente {
 -----------------------*/
 
 
-/* Corpo index
+/* Main index
 ------------------------*/
 
 .container-main {
@@ -204,12 +188,10 @@ nav.navbar-transparente {
 }
 
 #container {
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
 }
 
 #container input {
@@ -224,7 +206,7 @@ nav.navbar-transparente {
     flex-direction: column;
     justify-content: space-around;
     align-items: center;
-    margin-bottom: 20px;
+    margin: 20px 0;
 }
 
 .img-categorias {
@@ -237,6 +219,7 @@ nav.navbar-transparente {
 .section-categorias h3,
 section h3 {
     text-transform: uppercase;
+    font-weight: bolder;
     color: rgb(146, 70, 169, 0.6);
 }
 
@@ -251,12 +234,12 @@ section h3 {
     display: flex;
     justify-content: space-around;
     align-items: center;
-    margin-bottom: 10px;
+    margin: 10px 0 40px 0;
 }
 
 .perfumes {
     width: 45%;
-    padding-bottom: 7px;
+    padding: 0 5px 25px 5px;
     background-color: rgb(146, 70, 169, 0.1);
     box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
 }
@@ -277,21 +260,9 @@ section h3 {
     padding: 5px 0;
 }
 
-.perfumes button[type="submit"] {
-    width: 60%;
-    height: 30%;
-    cursor: pointer;
-    text-align: center;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-    background-color: rgb(146, 70, 169, 0.6);
-    color: rgb(255, 255, 255);
-    border-radius: 10px;
-    border: none;
-}
+/* Main show user
+------------------------*/
 
-.perfumes button[type="submit"]:hover {
-    background-color: rgb(146, 70, 169, 0.3);
-}
 
 .caixa {
     max-width: 35%;
@@ -311,19 +282,6 @@ section h3 {
     margin: 10px 0;
 }
 
-.login-checkbox {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    padding-right: 5px;
-}
-
-.login-checkbox input[type="checkbox"] {
-    width: 20px;
-    margin: 0px 5px 0;
-}
-
-
 
 /* Main user panel
 ------------------------*/
@@ -331,263 +289,14 @@ section h3 {
 
 .container-principal-PainelUsuario {
     width: 100%;
-    min-height: 100vh;
-    display: flex;
-    background-color: #c2b2c710;
-
-
-}
-
-.container-lateral-PainelUsuario {
-    width: 40%;
-    height: 100%;
-    display: flex;
-    flex-direction: column;
-    border: 2px solid rgba(158, 137, 161, 0.311);
-    padding: 10px;
-}
-
-.usuario img {
-    width: 100px;
-}
-
-.usuario h1,
-.informacao h1,
-.meus-pedidos h2 {
-    font-weight: bolder;
-    color: #a12ec4;
-}
-
-.creditos,
-.notificacoes {
-    width: 100%;
-    border: 1px solid rgba(66, 6, 71, 0.288);
-    border-radius: 5px;
-    margin: 10px 0;
-    color: rgb(249, 249, 249)
-}
-
-.creditos ul h3,
-.notificacoes h3 {
-    padding: 3px;
-    font-size: 1.2rem;
-    background-color: rgb(146, 70, 169);
-    font-weight: 600;
-}
-
-.creditos ul li,
-.caixa1,
-.caixa2 {
-    background-color: rgba(134, 84, 149, 0.456);
-    padding: 3px;
-    color: rgba(72, 21, 88);
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-bottom: 1px solid white;
-}
-
-.switch {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
-}
-
-.switch .switch-text {
-    padding-right: 0.3rem;
-}
-
-.switch .switch-wrapper {
-    display: inline-block;
-    width: 40px;
-    height: 22px;
-    position: relative;
-}
-
-.switch .switch-wrapper .switch-button {
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    border-radius: 40px;
-    background-color: #a12ec489;
-}
-
-.switch .switch-wrapper input {
-    opacity: 0;
-    width: 0;
-    height: 0;
-}
-
-.switch .switch-wrapper .switch-button::before {
-    content: "";
-    width: 14px;
-    height: 14px;
-    position: absolute;
-    left: 4px;
-    bottom: 4px;
-    border-radius: 50%;
-    transition: .4s all ease;
-    background-color: aliceblue;
-}
-
-.switch .switch-wrapper input:checked+.switch-button {
-    background-color: #58A721;
-}
-
-.switch .switch-wrapper input:checked+.switch-button::before {
-    transform: translateX(26px);
-}
-
-.btn-menus {
-    width: 100%;
-    display: flex;
-    flex-direction: column;
-}
-
-.btn-menus button {
-    margin-bottom: 10px;
-    width: 100%;
-    height: 2rem;
-    text-transform: uppercase;
-    border-radius: 5px;
-    color: rgba(72, 21, 88);
-    font-weight: bolder;
-    cursor: pointer;
-    border-color: #a12ec4;
-    background-color: rgba(134, 84, 149, 0.456);
-}
-
-.btn-menus button:hover {
-    color: rgba(134, 84, 149, 0.456);
-
-}
-
-.atendimento-cliente h3 {
-    padding: 3px;
-    font-size: 1rem;
-    font-weight: 600;
-    color: rgba(72, 21, 88);
-
-}
-
-.atendimento-cliente h5 {
-    padding: 3px;
-    color: rgba(72, 21, 88);
-}
-
-.atendimento-cliente a {
-    display: block;
-    margin: 15px 0 0 3px;
-    color: rgba(72, 21, 88);
-}
-
-.atendimento-cliente a:hover {
-    color: rgba(123, 127, 133, 0.7);
-}
-
-.container-central {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), white);
-}
-
-.info-carrinho {
-    display: flex;
-    margin: 0 20px;
-    justify-content: space-between;
-    align-items: center;
-    color: rgba(72, 21, 88);
-}
-
-.informacao h5 {
-    font-weight: 600;
-    color: rgba(72, 21, 88);
-
-}
-
-.informacao span,
-.meus-pedidos span {
-    color: rgba(72, 21, 88);
-}
-
-.carrinho-compras {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-items: center;
-    color: rgb(124, 41, 151);
-
-}
-
-.carrinho-compras img {
-    width: 100px;
-}
-
-.table td img {
-    width: 20px;
-}
-
-.meus-pedidos {
-    width: 100%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    color: rgba(72, 21, 88)
-}
-
-.meus-pedidos span,
-.meus-pedidos h2 {
-    margin-left: 20px;
-}
-
-.table-PainelUsuario {
-    width: 100%;
-    border: 2px solid #650d80f4;
-    border-radius: 10px;
-    background-color: #9c60ae25;
-}
-
-
-.table {
-    width: 100%;
-    margin-top: 20px;
-}
-
-.th-PainelUsuario tr th {
-    text-align: center;
-    background-color: rgba(194, 178, 199);
-}
-
-.tb-PainelUsuario tr td {
-    text-align: center;
-    background-color: rgba(194, 178, 199, 0.4);
-}
-
-
-
-
-/* Main administrator panel
-------------------------*/
-
-
-#container-principal-adm {
-    width: 100%;
     height: 100vh;
-    margin: 0;
     display: flex;
     justify-content: center;
     background-color: rgb(146, 70, 169, 0.3);
+    margin-top: 5px;
 }
 
-.container-lateral-adm {
+.container-lateral-PainelUsuario {
     width: 20%;
     height: 100%;
     padding: 20px;
@@ -595,26 +304,63 @@ section h3 {
     color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
-
+    margin-bottom: 10px;
 }
 
-.titulo-adm {
-    margin: 10px 0 30px;
-    text-align: center;
-    color: #a12ec4;
+.usuario img {
+    width: 80px;
+}
+
+.usuario h4,
+.informacao h2,
+.meus-pedidos h3,
+.informacao h5 {
     font-weight: bolder;
-    text-transform: uppercase;
+    color: rgb(255, 255, 255)
 }
 
-.btn-menus-adm {
+.informacao {
+    margin-bottom: 10px;
+}
+
+.creditos {
+    width: 100%;
+    border: 1px solid #a12ec4;
+    border-radius: 5px;
+    margin: 10px 0;
+}
+
+.creditos ul h3 {
+    padding: 3px;
+    font-size: 1.2rem;
+    background-color: rgb(146, 70, 169);
+    font-weight: 600;
+    color: rgb(255, 255, 255)
+}
+
+.creditos ul span {
+    color: rgb(255, 255, 255);
+}
+
+.creditos ul li {
+    background-color: rgb(146, 70, 169, 0.4);
+    padding: 3px;
+    color: rgb(255, 255, 255);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid white;
+}
+
+.btn-menus {
     width: 100%;
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-self: center;
 }
 
-.btn-menus-adm button {
+.btn-menus button {
     margin-bottom: 10px;
     width: 100%;
     height: 2rem;
@@ -625,39 +371,103 @@ section h3 {
     cursor: pointer;
     border-color: rgb(255, 255, 255);
     background-color: rgb(146, 70, 169, 0.3);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
 }
 
-.btn-menus-adm button:hover {
+.btn-menus button:hover {
     background-color: rgb(146, 70, 169, 0.1);
+
 }
 
-.container-lateral-adm ul li {
-    margin-bottom: 10px;
-    padding-bottom: 10px;
-    border-bottom: 1px solid rgb(146, 70, 169, 0.3);
+.atendimento-cliente h4 {
+    padding: 3px;
+    font-weight: 600;
     color: rgb(255, 255, 255);
-    cursor: pointer;
-    max-width: 100%;
+
+}
+
+.atendimento-cliente h5 {
+    padding: 3px;
+    color: rgb(255, 255, 255);
+}
+
+.atendimento-cliente a {
+    display: block;
+    margin: 15px 0 0 3px;
+    color: rgb(255, 255, 255);
+}
+
+.atendimento-cliente a:hover {
+    color: rgb(255, 255, 255, 0.4);
+}
+
+.container-central {
+    width: 80%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    padding: 0 10px;
+}
+
+.informacao span,
+.meus-pedidos span {
+    color: rgb(255, 255, 255);
+}
+
+.meus-pedidos {
+    width: 100%;
+    min-height: 70vh;
+    display: flex;
+    flex-direction: column;
+    color: rgb(255, 255, 255);
+    border: 1px solid rgba(0, 0, 0, 0.1);
+}
+
+.table td img {
+    width: 20px;
+}
+
+
+/* Main administrator panel
+------------------------*/
+
+
+#container-principal-adm {
+    width: 100%;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(146, 70, 169, 0.3);
+}
+
+.navbar-brand h5{
+    color: white;
 }
 
 .container-central-adm {
-    width: 80%;
+    width: 95%;
     display: flex;
     flex-direction: column;
-    max-width: 100%;
+    justify-content: center;
 }
 
-.container-header-adm {
+#container-principal-adm .navbar-brand h5 {
+    font-weight: bolder;
+    font-size: 2rem;
+}
+
+.header-adm {
     display: flex;
     justify-content: space-between;
-    align-items: center;
-    padding: 20px 10px;
     border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-    margin: 0 10px 10px;
+    padding: 10px;
 }
 
-.container-header-adm img {
+.logo-adm img{
+    width: 100%;
+}
+
+.header-adm img {
     width: 40px;
     margin-right: 10px;
 }
@@ -669,27 +479,9 @@ section h3 {
     font-weight: bolder;
 }
 
-.container-menu-adminstrador-adm ul {
-    display: flex;
-    flex-direction: row;
-    color: #a12ec4;
-    font-weight: bolder;
-}
-
-.container-menu-adminstrador-adm ul li a {
-    font-size: 1.6rem;
-    list-style: none;
-    text-decoration: none;
-    color: #a12ec4;
-}
-
-.container-menu-adminstrador-adm ul li a:hover {
-    color: rgb(161, 46, 196, 0.3);
-}
-
 .caminho-adm {
+    width: 100%;
     display: flex;
-    margin: 0 10px;
     justify-content: flex-start;
     align-items: center;
     padding: 10px;
@@ -697,116 +489,68 @@ section h3 {
     border-radius: 4px;
     color: aliceblue;
     font-weight: bolder;
+    margin: 10px 0;
 }
 
-.caminho-adm h5{
+.caminho-adm h5 {
     padding-right: 10px;
 }
 
-.usuario-adicionar-produto-adm {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    align-items: center;
-    padding: 10px;
-    margin: 0 0 0 10px;
-    color: #783a8d;
+.adicionar-item-adm {
+    width: 100%;
 }
 
-.usuario-adicionar-produto-adm button {
-    width: 8%;
+.adicionar-item-adm button {
+    width: 100%;
+    height: 5vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin-right: 20px;
-    text-transform: uppercase;
+    margin: 10px 0;
     border-radius: 10px;
-    color: rgb(255, 255, 255);
-    font-weight: bolder;
     cursor: pointer;
-    border: none;
-    background-color: rgb(146, 70, 169, 0.3);
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
-}
-
-.usuario-adicionar-produto-adm button:hover {
-    background-color: rgb(146, 70, 169, 0.1);
-
-}
-
-.usuario-adicionar-produto-adm button img {
-    width: 20px;
-    margin: 5px;
-}
-
-.div-table-adm {
-    margin: 0 10px;
-    border: 1px solid rgba(0, 0, 0, 0.1);
-}
-
-.table-adm {
-    text-align: left;
-    font-size: 1.2rem;
-    width: 100%;
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    font-weight: bolder;
     color: rgb(255, 255, 255);
+    border-color: rgb(255, 255, 255);
+    background-color: rgb(146, 70, 169, 0.3);
 }
 
 .in-table-adm {
+    width: 100%;
+    position: relative;
+    margin: 10px 0;
+}
+
+.in-table-adm img {
+    position: absolute;
+    width: 20px;
+    top: 30%;
+    right: 10px;
+}
+
+.btn-adm button[type="button"]{
+    width: 100%;
+    padding: 3px;
     display: flex;
-    flex-direction: row;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
-    margin: 10px 10px 10px;
-    color: rgb(255, 255, 255);
-    font-weight: bolder;
-    font-size: 1.2rem;
+    border-radius: 10px;
+    cursor: pointer;
+    border-color: rgb(255, 255, 255);
+    background-color: rgb(146, 70, 169, 0.3);
+    padding: 5px;
+    margin: 5px 0;
 }
 
-.in-table-adm div input[type="search"] {
-    width: 200px;
-    border-radius: 5px;
+.btn-adm button:hover, .adicionar-item-adm button:hover {
+    background-color: rgb(146, 70, 169, 0.1);
 }
 
-.in-table-adm div input[type="number"] {
-    width: 40px;
-    height: 5vh;
-    border: 2px solid #aaa;
-    border-radius: 4px;
-}
-
-.table-adm tr th {
-    background-color: #a12ec4;
-    color: rgb(255, 255, 255);
-    font-weight: bolder;
-}
-
-.table-adm tr th {
-    padding: 10px;
-}
-
-.table-adm tbody tr td {
-    background-color: rgb(161, 46, 196, 0.4);
-}
-
-.table-adm tr td button img {
+.btn-adm button img {
     width: 20px;
     height: 15px;
     cursor: pointer;
 }
-
-.purpul-menu-adm {
-    background-color: #a12ec4;
-    color: rgb(255, 255, 255);
-}
-
-.purpul-adm {
-    background-color: #eee;
-    color: rgb(255, 255, 255);
-    border-color: #783a8d;
-
-}
-
 
 
 /* Tables
@@ -818,25 +562,33 @@ section h3 {
 }
 
 table {
-    width: 1000px;
+    width: 100%;
 }
 
 thead tr th {
-    background-color: darkgray;
+    padding: 5px;
     text-align: center;
     border: 1px solid white;
     font-weight: bolder;
     text-transform: uppercase;
+    background-color: #a12ec4;
+    color: rgb(255, 255, 255);
+}
+
+tbody tr {
+    background-color: #eee;
+    color: rgb(255, 255, 255);
+    border-color: #783a8d;
 }
 
 tbody tr td {
     padding: 5px;
-    background-color: rgb(128, 128, 128, 0.2);
+    background-color: rgb(161, 46, 196, 0.4);
     border: 1px solid white;
 }
 
 tbody tr:hover {
-    background-color: rgb(30, 144, 255, 0.5);
+    background-color: rgb(161, 46, 196, 0.2);
 }
 
 .table-actions a {
@@ -912,29 +664,47 @@ form label {
 form input {
     width: 100%;
     height: 2.5rem;
-    background-color: rgb(128, 128, 128, 0.2);
+    background-color: rgb(161, 46, 196, 0.2);
     margin-bottom: 10px;
 }
 
 
-/* Botões dos formulários
+/* Botões e inputs
 ------------------------*/
 
+.container-search input[type='search'], .in-table-adm input[type="search"] {
+    width: 100%;
+    height: 6vh;
+    border-radius: 4px;
+    outline: none;
+    padding: 5px;
+    font-size: 1rem;
+    transition: .3s;
+    cursor: pointer;
+    background-color: rgb(255, 255, 255, 0.2);
+}
+
+.container-search input[type='search']:focus, .in-table-adm input[type='search']:focus {
+    background-color: rgb(255, 255, 255, 0.2);
+    border-color: rgb(146, 70, 169);
+    box-shadow: 0 0 8px 0 rgb(146, 70, 169);
+}
+
 form button[type="submit"],
-button[type="button"] {
-    width: 40%;
+form button[type="button"], .perfumes button[type="button"] {
+    width: 60%;
     height: 30px;
     padding: 0 10px;
     margin: 10px 0;
     cursor: pointer;
-    background-color: dodgerblue;
+    border-color: rgb(255, 255, 255);
+    background-color: rgb(146, 70, 169, 0.8);
     color: rgb(255, 255, 255);
     border-radius: 10px;
 }
 
-form button[type="submit"]:hover {
-    background-color: rgb(30, 144, 255, 0.7);
-
+form button[type="submit"]:hover, .perfumes button[type="button"]:hover {
+    background-color: rgb(146, 70, 169, 0.3);
 }
 
 form button[type="button"] {
@@ -1080,6 +850,11 @@ form a button[type="button"]:hover {
     .img-whats {
         width: 10%;
     }
+
+    .table{
+        overflow-x: scroll;
+    }
+
 }
 
 
@@ -1125,6 +900,24 @@ form a button[type="button"]:hover {
         display: none;
     }
 
+    .btn-adm {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .btn-adm button {
+        margin: 0 5px;
+    }
+
+    .table{
+        overflow-x: scroll;
+    }
+
+    .in-table-adm input[type="search"]{
+        height: 4vh;
+    }
+
 }
 
 /* Large devices (desktops, 992px and up) */
@@ -1161,13 +954,22 @@ form a button[type="button"]:hover {
     }
 
     .perfumes {
-        width: 30%;
+        width: 24%;
     }
 
     .img-whats {
         width: 8%;
     }
 
+    .btn-adm {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .btn-adm button {
+        margin: 0 5px;
+    }
 
 }
 
@@ -1178,6 +980,20 @@ form a button[type="button"]:hover {
     }
 
     .perfumes {
+        width: 24%;
+    }
+
+    .btn-adm {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .btn-adm button {
+        margin: 0 5px;
+    }
+
+    .logo a img {
         width: 20%;
     }
 }
@@ -1190,5 +1006,19 @@ form a button[type="button"]:hover {
 
     .perfumes {
         width: 20%;
+    }
+
+    .btn-adm {
+        display: flex;
+        justify-content: space-around;
+        align-items: center;
+    }
+
+    .btn-adm button {
+        margin: 0 5px;
+    }
+
+    .logo a img {
+        width: 25%;
     }
 }

@@ -131,7 +131,7 @@ const authController = {
     res.cookie("admin", user.admin);
 
     if (req.session.usuario.admin) {
-      return res.redirect("/administrator/adm");
+      return res.redirect("/product");
     }
 
     return res.redirect("/");
