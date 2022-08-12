@@ -62,9 +62,9 @@ app.use('/user', userRoute);
 //localhost:3000/product/
 app.use('/product', productRoute);
 //localhost:3000/
-app.use('/', indexRoute);
-//localhost:3000/
 app.use('/', authRoute);
+//localhost:3000/
+app.use('/', indexRoute);
 
 // Rota de erros 404
 app.use((req, res, next) => {

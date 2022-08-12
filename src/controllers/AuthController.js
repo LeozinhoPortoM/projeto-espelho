@@ -21,7 +21,7 @@ const authController = {
     const errors = validationResult(req);
     const allUsersJson = JSON.parse(fs.readFileSync(fileName, 'utf-8'));
 
-    const { nome, email, senha, confirmar_senha } = req.body;
+    const { nome, sobrenome, email, senha, confirmar_senha } = req.body;
 
     // Verifica se os campos foram preenchidos corretamente
     if (!errors.isEmpty()) {
@@ -62,6 +62,7 @@ const authController = {
     const newUser = {
       id: lastId,
       nome,
+      sobrenome,
       senha: bcrypt.generateHash(senha),
       email,
       admin: false,
@@ -117,8 +118,6 @@ const authController = {
       });
     }
 
-
-
     // Filtra as chaves que o objeto irá ter
     const user = JSON.parse(
       JSON.stringify(userAuth, ["id", "nome", "admin", "ativo"])
@@ -137,6 +136,11 @@ const authController = {
     return res.redirect("/");
 
   },
+
+  profile: (req, res) => {
+    return res.render("user-panel", { title: "Perfil", user: req.cookies.user, admin: req.cookies.admin});
+  },
+
   // Processamento do deslogar
   logout: (req, res) => {
     req.session.destroy();
@@ -144,12 +148,6 @@ const authController = {
     res.clearCookie("admin");
 
     return res.redirect("/");
-  },
-
-  profile: (req, res) => {
-    res.clearCookie("user");
-    res.clearCookie("admin");
-    return res.render("user-panel", { title: "Perfil", user: req.cookies.user, admin: req.cookies.admin});
   },
 
   forgout: (req, res) => { },

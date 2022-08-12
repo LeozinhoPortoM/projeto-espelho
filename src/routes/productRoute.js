@@ -10,7 +10,7 @@ const upload = require('../middlewares/multer');
 const validator = require('../middlewares/validatorProduct');
 
 router.get("/create", productControlller.create);
-router.post("/create",validator, productControlller.store);
+router.post("/create", upload.single('imageProduct'), validator, productControlller.store);
 
 router.get("/edit/:id", productControlller.edit);
 router.put("/edit/:id", productControlller.update);

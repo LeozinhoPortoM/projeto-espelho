@@ -29,6 +29,6 @@ const upload = multer({ storage: storage,
     // limits:{
     //     fileSize: 1024 * 1024
     // }
-}).single('avatar');
+})//.single('avatar');
 
 module.exports = upload;

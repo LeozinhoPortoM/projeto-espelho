@@ -7,30 +7,22 @@
 
   <div class="container-logo-pesquisa">
     <div class="logo">
-      <a href="/"><img src="/img/logo5.png" alt=""></a>
+      <a href="/"><img src="/img/logo6.png" alt=""></a>
     </div>
-
-    <!-- <% if (locals.user) {%>
-      <div>
-        <h5>Bem vindo - <%= locals.user %>
-        </h5>
-      </div>
-      <% }%> -->
 
     <div class=" container-search img-search">
       <input type="search" name="" id="" placeholder="Oi, o que procura? :)">
       <img src="/img/lupa.png" alt="">
     </div>
-    <!-- <h5><a href="/login">Oie! <br> Vem fazer seu login ;)</a></h5> -->
-    <!-- <a href="/painel_usuario"><p>Ou Cadastre-se</p></a> -->
+
 
     <div class="img-lovbag">
       <% if(locals.user===undefined){ %>
-      <a href="/login"><img src="/img/user.png" alt="Login"></a>
-      <% } else {%>
-      <a href=""><img src="/img/love.png" alt="Favoritos"></a>
-      <% }%>
-      <a href="/"><img src="/img/shopping-bag.png" alt="Carrinho"></a>
+        <a href="/login"><img src="/img/user.png" alt="Login"></a>
+        <% } else {%>
+          <a href=""><img src="/img/love.png" alt="Favoritos"></a>
+          <% }%>
+            <a href="/"><img src="/img/shopping-bag.png" alt="Carrinho"></a>
     </div>
   </div>
 
@@ -50,22 +42,7 @@
 
         <ul class="navbar-nav ml-auto">
 
-          <!-- <li class="navbar-item dropdown">
-            
-            <a href="" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Premium</a> -->
 
-
-          <!-- Menu dropdown -->
-
-          <!-- <div class="dropdown-menu">
-              <a class="dropdown-item" href="#">Ação</a>
-              <a class="dropdown-item" href="#">Outra ação</a>
-              <a class="dropdown-item" href="#">Algo mais aqui</a>
-              <div class="dropdown-divider"></div>
-              <a class="dropdown-item" href="#">Link isolado</a>
-            </div> -->
-
-          <!-- </li> -->
           <% if (locals.user) {%>
             <a class="nav-link">Olá - <%= locals.user %></a>
             <li class="navbar-item divisor d-none d-md-block"></li>
@@ -73,14 +50,22 @@
 
               <% if(locals.user && locals.admin==="false" ){ %>
 
-                <li class="navbar-item">
-                  <a href="/profile" class="nav-link">Perfil</a>
-                </li>
+                <li class="navbar-item dropdown">
 
-                <li class="navbar-item divisor d-none d-md-block"></li>
+                  <a href="/profile" class="nav-link dropdown-toggle" data-toggle="dropdown" href="#" role="button"
+                    aria-haspopup="true" aria-expanded="false">Minha Conta</a>
 
-                <li class="navbar-item">
-                  <a href="/logout" class="nav-link">Sair</a>
+                  <!-- Menu dropdown -->
+
+                  <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/profile">Meu perfil</a>
+                    <a class="dropdown-item" href="#">Pedidos</a>
+                    <a class="dropdown-item" href="#">Favoritos</a>
+                    <a class="dropdown-item" href="#">Configuração</a>
+                    <div class="dropdown-divider"></div>
+                    <a class="dropdown-item" href="/logout">Sair</a>
+                  </div>
+
                 </li>
 
                 <% } %>

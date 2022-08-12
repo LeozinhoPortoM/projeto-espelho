@@ -64,7 +64,7 @@ h4 {
     width: 100%;
     height: 5vh;
     color: white;
-    background-color: rgb(161, 46, 196, 0.6);
+    background-color: #a12ec4;
 }
 
 #container-header img {
@@ -91,10 +91,6 @@ h4 {
 
 .logo a img {
     width: 80%;
-}
-
-.container-logo-pesquisa h5 a:hover {
-    color: rgba(134, 84, 149, 0.6);
 }
 
 .container-search {
@@ -136,7 +132,7 @@ nav.fixed-top {
 }
 
 nav.navbar-transparente {
-    background-color: rgba(146, 70, 169, 0.6);
+    background-color: #a12ec4;
 }
 
 .navbar-light,
@@ -168,9 +164,11 @@ nav.navbar-transparente {
 
 .container-main {
     width: 100%;
-    min-height: 50vh;
+    min-height: 20vh;
+    display: flex;
+    justify-content: center;
     text-align: center;
-    margin: 5px 0;
+    margin: 10px 0;
 }
 
 .img-whats {
@@ -187,14 +185,29 @@ nav.navbar-transparente {
     width: 100%;
 }
 
-#container {
+#container,
+#container-form {
+    width: 90%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    padding: 10px 0;
 }
 
-#container input {
+#container-form {
+    box-shadow: rgba(0, 0, 0, 0.05) 0px 6px 24px 0px, rgba(0, 0, 0, 0.08) 0px 0px 0px 1px;
+    border-radius: 5px;
+}
+
+#container h2,
+#container-form h2 {
+    color: #a12ec4;
+    font-weight: bolder;
+}
+
+#container input,
+#container-form input {
     padding-left: 5px;
     border-radius: 6px;
     border: none;
@@ -232,21 +245,37 @@ section h3 {
     width: 100%;
     min-height: 40%;
     display: flex;
-    justify-content: space-around;
+    flex-wrap: wrap;
+    justify-content: center;
     align-items: center;
     margin: 10px 0 40px 0;
 }
 
 .perfumes {
-    width: 45%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 5px;
     padding: 0 5px 25px 5px;
-    background-color: rgb(146, 70, 169, 0.1);
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+    margin: 5px;
+    background-color: #a12ec4;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
 }
 
 .perfumes a {
     text-decoration: none;
-    color: rgb(146, 70, 169);
+    color: rgb(255, 255, 255);
+}
+
+.perfumes a button[type="button"] {
+    border-color: rgb(255, 255, 255);
+    background-color: rgb(255, 215, 0);
+}
+
+.perfumes a button:hover {
+    background-color: rgb(255, 215, 0, 0.4);
 }
 
 .perfumes h4 {
@@ -287,31 +316,42 @@ section h3 {
 ------------------------*/
 
 
-.container-principal-PainelUsuario {
+.container-principal-PanelUser {
     width: 100%;
-    height: 100vh;
     display: flex;
+    flex-direction: column;
     justify-content: center;
-    background-color: rgb(146, 70, 169, 0.3);
     margin-top: 5px;
 }
 
-.container-lateral-PainelUsuario {
-    width: 20%;
-    height: 100%;
-    padding: 20px;
-    background-color: rgb(146, 70, 169, 0.3);
+.container-PanelUser {
+    width: 100%;
+    padding: 5px;
     color: rgb(255, 255, 255);
     display: flex;
     flex-direction: column;
+    justify-content: center;
+    align-items: center;
     margin-bottom: 10px;
 }
 
-.usuario img {
-    width: 80px;
+.user {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background-color: rgb(146, 70, 169);
+    align-items: center;
+    border-radius: 5px;
+    padding: 10px;
 }
 
-.usuario h4,
+.user img {
+    width: 40%;
+    margin-bottom: 10px;
+}
+
+.user h4,
 .informacao h2,
 .meus-pedidos h3,
 .informacao h5 {
@@ -319,9 +359,6 @@ section h3 {
     color: rgb(255, 255, 255)
 }
 
-.informacao {
-    margin-bottom: 10px;
-}
 
 .creditos {
     width: 100%;
@@ -352,60 +389,26 @@ section h3 {
     border-bottom: 1px solid white;
 }
 
-.btn-menus {
+.atendimento-cliente {
     width: 100%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-self: center;
-}
-
-.btn-menus button {
-    margin-bottom: 10px;
-    width: 100%;
-    height: 2rem;
-    text-transform: uppercase;
-    border-radius: 10px;
-    color: rgb(255, 255, 255);
-    font-weight: bolder;
-    cursor: pointer;
-    border-color: rgb(255, 255, 255);
-    background-color: rgb(146, 70, 169, 0.3);
-}
-
-.btn-menus button:hover {
-    background-color: rgb(146, 70, 169, 0.1);
-
-}
-
-.atendimento-cliente h4 {
-    padding: 3px;
+    color: #a12ec4;
     font-weight: 600;
-    color: rgb(255, 255, 255);
-
-}
-
-.atendimento-cliente h5 {
-    padding: 3px;
-    color: rgb(255, 255, 255);
+    text-align: center;
+    margin-bottom: 15px;
 }
 
 .atendimento-cliente a {
     display: block;
-    margin: 15px 0 0 3px;
-    color: rgb(255, 255, 255);
+    margin: 5px 0 0 0;
+    color: #a12ec4;
 }
 
 .atendimento-cliente a:hover {
-    color: rgb(255, 255, 255, 0.4);
+    color: rgb(146, 70, 169, 0.3);
 }
 
-.container-central {
-    width: 80%;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-    padding: 0 10px;
+.informacao {
+    margin-bottom: 10px;
 }
 
 .informacao span,
@@ -437,18 +440,10 @@ section h3 {
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(146, 70, 169, 0.3);
 }
 
-.navbar-brand h5{
-    color: white;
-}
-
-.container-central-adm {
-    width: 95%;
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
+.navbar-brand h5 {
+    color: rgb(255, 215, 0);
 }
 
 #container-principal-adm .navbar-brand h5 {
@@ -456,27 +451,44 @@ section h3 {
     font-size: 2rem;
 }
 
-.header-adm {
+.center-adm {
+    width: 100%;
     display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 10px;
+    border-radius: 5px 0;
+    color: #a12ec4;
+    font-weight: bolder;
+    background-color: rgb(146, 70, 169, 0.2);
+}
+
+.header-adm {
+    width: 100%;
+    display: flex;
+    align-items: center;
     justify-content: space-between;
     border-bottom: 2px solid rgba(0, 0, 0, 0.1);
     padding: 10px;
 }
 
-.logo-adm img{
+.header-top-adm {
     width: 100%;
+    display: flex;
 }
 
-.header-adm img {
-    width: 40px;
+.header-top-adm h3 {
+    padding-top: 3px;
+}
+
+.header-top-adm img {
+    width: 50px;
+    height: 50px;
     margin-right: 10px;
 }
 
-.center-adm {
-    display: flex;
-    align-items: center;
-    color: #a12ec4;
-    font-weight: bolder;
+.header-adm img {
+    width: 50px;
 }
 
 .caminho-adm {
@@ -489,7 +501,7 @@ section h3 {
     border-radius: 4px;
     color: aliceblue;
     font-weight: bolder;
-    margin: 10px 0;
+    margin: 5px 0;
 }
 
 .caminho-adm h5 {
@@ -500,25 +512,25 @@ section h3 {
     width: 100%;
 }
 
-.adicionar-item-adm button {
+.adicionar-item-adm form button[type="submit"] {
     width: 100%;
     height: 5vh;
     display: flex;
     justify-content: center;
     align-items: center;
-    margin: 10px 0;
+    margin: 5px 0;
     border-radius: 10px;
     cursor: pointer;
     font-weight: bolder;
     color: rgb(255, 255, 255);
     border-color: rgb(255, 255, 255);
-    background-color: rgb(146, 70, 169, 0.3);
+    background-color: rgb(146, 70, 169, 0.8);
 }
 
 .in-table-adm {
     width: 100%;
     position: relative;
-    margin: 10px 0;
+    margin: 5px 0;
 }
 
 .in-table-adm img {
@@ -528,7 +540,71 @@ section h3 {
     right: 10px;
 }
 
-.btn-adm button[type="button"]{
+.table {
+    width: 100%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.box {
+    width: 95%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    padding: 5px;
+    margin: 0 5px 10px 5px;
+    border-radius: 5px;
+    color: #a12ec4;
+    background-color: #a12ec4;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 3px 6px, rgba(0, 0, 0, 0.23) 0px 3px 6px;
+}
+
+.box img {
+    width: 50%;
+}
+
+.box h4 {
+    font-weight: bolder;
+}
+
+.description {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 5px;
+    color: white;
+    border-bottom: 1px solid rgb(255, 255, 255);
+}
+
+.img-product {
+    margin-bottom: 5px;
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    text-align: center;
+    color: white;
+    border-bottom: 1px solid rgb(255, 255, 255);
+}
+
+.price {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    color: white;
+}
+
+.btn-adm {
+    width: 100%;
+    display: flex;
+}
+
+.btn-adm button[type="button"] {
     width: 100%;
     padding: 3px;
     display: flex;
@@ -537,13 +613,13 @@ section h3 {
     border-radius: 10px;
     cursor: pointer;
     border-color: rgb(255, 255, 255);
-    background-color: rgb(146, 70, 169, 0.3);
+    background-color: rgb(255, 215, 0);
     padding: 5px;
-    margin: 5px 0;
+    margin: 5px 3px;
 }
 
-.btn-adm button:hover, .adicionar-item-adm button:hover {
-    background-color: rgb(146, 70, 169, 0.1);
+.btn-adm button:hover {
+    background-color: rgb(255, 215, 0, 0.4);
 }
 
 .btn-adm button img {
@@ -643,13 +719,12 @@ tbody tr:hover {
 ------------------------*/
 
 form {
-    width: 40%;
+    width: 100%;
     min-height: 50%;
     display: flex;
     justify-content: center;
     align-items: flex-start;
     flex-direction: column;
-    border: 1px solid rgb(128, 128, 128, 0.3);
     padding: 10px;
 }
 
@@ -672,26 +747,30 @@ form input {
 /* Botões e inputs
 ------------------------*/
 
-.container-search input[type='search'], .in-table-adm input[type="search"] {
+.container-search input[type='search'],
+.in-table-adm input[type="search"] {
     width: 100%;
     height: 6vh;
-    border-radius: 4px;
+    border-radius: 5px;
     outline: none;
     padding: 5px;
     font-size: 1rem;
     transition: .3s;
     cursor: pointer;
+    border-color: #a12ec4;
     background-color: rgb(255, 255, 255, 0.2);
 }
 
-.container-search input[type='search']:focus, .in-table-adm input[type='search']:focus {
+.container-search input[type='search']:focus,
+.in-table-adm input[type='search']:focus {
     background-color: rgb(255, 255, 255, 0.2);
     border-color: rgb(146, 70, 169);
     box-shadow: 0 0 8px 0 rgb(146, 70, 169);
 }
 
 form button[type="submit"],
-form button[type="button"], .perfumes button[type="button"] {
+form button[type="button"],
+.perfumes button[type="button"] {
     width: 60%;
     height: 30px;
     padding: 0 10px;
@@ -703,17 +782,18 @@ form button[type="button"], .perfumes button[type="button"] {
     border-radius: 10px;
 }
 
-form button[type="submit"]:hover, .perfumes button[type="button"]:hover {
+form button[type="submit"]:hover,
+.perfumes button[type="button"]:hover {
     background-color: rgb(146, 70, 169, 0.3);
 }
 
-form button[type="button"] {
+/* form button[type="button"] {
     background-color: rgb(255, 0, 0, 0.7);
 }
 
 form a button[type="button"]:hover {
     background-color: rgb(255, 0, 0, 0.4);
-}
+} */
 
 .delete-buttons a {
     width: 100%;
@@ -772,7 +852,7 @@ form a button[type="button"]:hover {
     min-height: 30vh;
     display: flex;
     flex-direction: column;
-    background-color: rgb(161, 46, 196, 0.4);
+    background-color: #a12ec4;
 }
 
 .menu-footer {
@@ -842,17 +922,12 @@ form a button[type="button"]:hover {
 /* Extra small devices (portrait phones, less than 576px) */
 @media (max-width: 767.98px) {
 
-    #mobile-first,
-    #mobile-big {
-        display: none;
+    .perfumes {
+        width: 46%;
     }
 
     .img-whats {
         width: 10%;
-    }
-
-    .table{
-        overflow-x: scroll;
     }
 
 }
@@ -895,9 +970,8 @@ form a button[type="button"]:hover {
         width: 8%;
     }
 
-    #mobile-first,
-    #mobile-big {
-        display: none;
+    .perfumes {
+        width: 46%;
     }
 
     .btn-adm {
@@ -910,12 +984,16 @@ form a button[type="button"]:hover {
         margin: 0 5px;
     }
 
-    .table{
-        overflow-x: scroll;
+    .in-table-adm input[type="search"] {
+        height: 4vh;
     }
 
-    .in-table-adm input[type="search"]{
-        height: 4vh;
+    .box {
+        width: 46%;
+    }
+
+    #container-form {
+        width: 70%;
     }
 
 }
@@ -971,6 +1049,18 @@ form a button[type="button"]:hover {
         margin: 0 5px;
     }
 
+    .perfumes {
+        width: 23%;
+    }
+
+    .box {
+        width: 32%;
+    }
+
+    #container-form {
+        width: 70%;
+    }
+
 }
 
 /* X-Large devices (large desktops, 1200px and up) */
@@ -996,6 +1086,11 @@ form a button[type="button"]:hover {
     .logo a img {
         width: 20%;
     }
+
+    #container-form {
+        width: 70%;
+    }
+
 }
 
 /* XX-Large devices (larger desktops, 1400px and up) */
@@ -1021,4 +1116,13 @@ form a button[type="button"]:hover {
     .logo a img {
         width: 25%;
     }
+
+    .perfumes {
+        width: 24%;
+    }
+
+    #container-form {
+        width: 70%;
+    }
+
 }

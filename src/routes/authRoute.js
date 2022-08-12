@@ -17,11 +17,12 @@ router.post("/login", isGuest, authController.auth);
 router.get("/register", isGuest, authController.register);
 router.post("/register", isGuest, validator, authController.create);
 
+// Rota para página perfil do usuário
+router.get("/profile", isAuth, authController.profile);
+
 // Rota para sair do login
 router.get("/logout", isAuth, authController.logout);
 
-// Rota para página perfil do usuário
-router.get("/profile", isAuth, authController.profile);
 
 
 module.exports = router;

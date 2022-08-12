@@ -3,30 +3,30 @@ const { body } = require('express-validator');
 
 
 module.exports = [
-    body('nome').isLength({ min: 3 }).withMessage('O nome deve ter no mínimo 3 caracteres!'),
+    body('nome').isLength({ min: 3 }).withMessage('O nome deve ter no mínimo 3 caracteres!').bail(),
     body('nome').custom((value, { req }) => {
         if (!value) {
             return Promise.reject('Campo obrigatório');
         }
         return true
-    }),
+    }).bail(),
 
     body('sobrenome').custom((value) => {
         if (!value) {
             return Promise.reject('Campo obrigatório');
         }
         return true
-    }),
+    }).bail(),
 
-    body('email').notEmpty().withMessage('Campo obrigatório').isEmail().withMessage('Preencha com um e-mail válido!'),
+    body('email').notEmpty().withMessage('Campo obrigatório').bail().isEmail().withMessage('Preencha com um e-mail válido!').bail(),
 
-    body('senha').isLength({ min: 8 }).withMessage("A senha deve conter no mínimo 8 caracteres"),
+    body('senha').isLength({ min: 8 }).withMessage("A senha deve conter no mínimo 8 caracteres").bail(),
     body('senha').custom((value, { req }) => {
         if (!value) {
             return Promise.reject('Campo obrigatório');
         }
         return true
-    }),
+    }).bail(),
 
     body('confirmar_senha').custom((value, { req }) => {
         if (!value) {
@@ -36,7 +36,7 @@ module.exports = [
             return Promise.reject('Senhas não coincidem');
         }
         return true
-    }),
+    }).bail(),
 
     body('avatar').custom((value, { req }) => {
         let file = req.file;
@@ -49,6 +49,6 @@ module.exports = [
             }
         }
         return true;
-    }),
+    }).bail(),
 
 ];

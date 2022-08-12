@@ -22,41 +22,5 @@
   "ativo": true,
   "criadoEm": "2022-07-17T00:24:48.004Z",
   "modificadoEm": "2022-07-17T00:24:48.004Z"
- },
- {
-  "id": 3,
-  "nome": "Luany",
-  "sobrenome": "Porto",
-  "email": "luany@gmail.com",
-  "senha": "$2b$10$Ri/O.Ye2ILqSwLBDeFJf7ewfav9PTLP3kFU1bjoRmemrY0ox1mTZ2",
-  "avatar": "da7f1b5fcaa8aed9348a.JPG",
-  "admin": false,
-  "ativo": true,
-  "criadoEm": "2022-07-17T00:27:35.649Z",
-  "modificadoEm": "2022-07-17T00:27:35.649Z"
- },
- {
-  "id": 4,
-  "nome": "Antonio",
-  "sobrenome": "Luiz",
-  "email": "antonio@hotmail.com",
-  "senha": "$2b$10$kQCSv5qyUU74vskMF/KdMey/JJJYO6fZHWrjuYQ6PMEpdW30Qe43W",
-  "avatar": "user-default.jpeg",
-  "admin": false,
-  "ativo": false,
-  "criadoEm": "2022-07-18T01:46:38.481Z",
-  "modificadoEm": "2022-07-18T01:46:38.481Z"
- },
- {
-  "id": 5,
-  "nome": "Miguel",
-  "sobrenome": "Rocha",
-  "email": "miguel@gmail.com",
-  "senha": "$2b$10$zdZcG/sYO/U1c/2D7pwSK.53WWf972ZKY89Zm6iopf9ppBgArtH5i",
-  "avatar": "c1bf22c6d9ef830db944.png",
-  "admin": false,
-  "ativo": true,
-  "criadoEm": "2022-07-18T14:04:55.470Z",
-  "modificadoEm": "2022-07-18T14:04:55.470Z"
  }
 ]
