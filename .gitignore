@@ -2,5 +2,9 @@ node_modules
 package-lock.json
 yarn.lock
 
+oldfiles
+
+.env
+.env.production
 
 uploads

@@ -12,11 +12,12 @@ const productController = {
     // Pode retornar uma página ou não
     index: (req, res) => {
         const allProductsJson = JSON.parse(fs.readFileSync(fileName, 'utf-8'));
-        return res.render('administrator-panel', {
+
+
+        return res.render('products', {
             title: 'Lista de produtos',
             listProducts: allProductsJson,
             user: req.cookies.user,
-            admin: req.cookies.admin,
         });
     },
 
@@ -36,25 +37,22 @@ const productController = {
 
         const product = {
             ...productResult,
-            imageProduct: files.base64Encode(upload.path + productResult.imageProduct),
+            imageProduct: files.base64Encode(productResult.imageProduct),
         };
+
 
         return res.render("product", {
             title: "Visualizar produto",
             product,
         });
     },
-    // Página de exibição para criar produto através de um formulário
-    // viewCreateForm: (req, res) => {
-    //     return res.render('product-create', { title: "Criar Produtos" })
-    // },
+
     // Página para criar produto
     create: (req, res) => {
         // Salvar no banco
         return res.render("product-create", {
             title: "Cadastrar produto",
             user: req.cookies.user,
-            admin: req.cookies.admin,
         });
     },
     // Cria produto
@@ -66,6 +64,7 @@ const productController = {
         const { nome, descricao, preco, imageProduct } = req.body;
 
         if (!errors.isEmpty()) {
+            fs.unlinkSync(upload.path + req.file.filename);
             return res.render("product-create", { title: "Cadastrar produto", errors: errors.mapped(), old: req.body });
         }
 
@@ -135,7 +134,6 @@ const productController = {
             title: "Editar produto",
             product: productResult,
             user: req.cookies.user,
-            admin: req.cookies.admin,
         });
     },
     // Edita produto
@@ -234,6 +232,18 @@ const productController = {
             title: "Produto deletado",
             message: "Produto deletado com sucesso!",
         });
+    },
+
+    viewProduct: (req, res) => {
+        res.render('description-product', { title: "Produto", user: req.cookies.user, });
+    },
+
+    viewPayment: (req, res) => {
+        res.render('product-payment', { title: "Pagamento", user: req.cookies.user, });
+    },
+
+    viewFinishPayment: (req, res) => {
+        res.render('finished-product-payment', { title: "Compra finalizada", user: req.cookies.user, });
     },
 
 };

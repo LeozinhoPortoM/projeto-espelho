@@ -17,9 +17,8 @@ const userController = {
     const usersActive = allUsersJson.filter(user => user.ativo === true);
     return res.render('users', {
       title: 'Lista de usuários',
-      users: usersActive,
+      listUsers: usersActive,
       user: req.cookies.user,
-      admin: req.cookies.admin
     });
   },
   // Mostra um usuário
@@ -44,7 +43,7 @@ const userController = {
       avatar: files.base64Encode(upload.path + userResult.avatar),
     };
 
-    return res.render("user", {
+    return res.render("user-panel", {
       title: "Visualizar usuário",
       user,
     });
@@ -52,7 +51,7 @@ const userController = {
 
   // Página para criar usuário
   create: (req, res) => {
-    return res.render("user-create", { title: "Cadastrar usuário" });
+    return res.render("user-create", { title: "Cadastrar usuário", user: req.cookies.user, });
   },
   // Cria usuário
   // Não retorna página
@@ -62,8 +61,10 @@ const userController = {
 
     const { nome, sobrenome, email, senha, confirmar_senha } = req.body;
 
+
     // Verifica se os campos foram preenchidos corretamente
     if (!errors.isEmpty()) {
+      fs.unlinkSync(upload.path + req.file.filename);
       return res.render("user-create", { title: "Cadastrar usuário", errors: errors.mapped(), old: req.body });
     }
 
@@ -127,6 +128,7 @@ const userController = {
       // Conteúdo que será salvo no arquivo
       JSON.stringify(allUsersJson, null, " ")
     );
+
 
     return res.redirect("/login");
   },
@@ -232,6 +234,7 @@ const userController = {
     return res.render("user-delete", {
       title: "Deletar usuário",
       user,
+      user: req.cookies.user,
     });
   },
 
@@ -272,8 +275,8 @@ const userController = {
     });
   },
 
-  loginForm: (req, res) => {
-    return res.render("user-login", { title: "Login" });
+  profile: (req, res) => {
+    return res.render("user-panel", { title: "Perfil", user: req.cookies.user, });
   },
 
 };

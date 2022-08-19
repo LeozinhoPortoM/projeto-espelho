@@ -30,6 +30,24 @@ npm install ejs
 npm install nodemon -D
 ```
 
+## Instala o pacote dotenv para tornar a aplicação mais segura
+
+```node js
+npm install dotenv
+```
+
+## Instala o mysql o BD
+
+```node js
+npm install mysql2
+```
+
+## Instala o sequelize ORM(Object/Relational Mapper) onde suporta as linguagens BD
+
+```node js
+npm install sequelize
+```
+
 ### Criação do arquivo app.js
 
 * criar arquivo no diretorio raiz app.js

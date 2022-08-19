@@ -1,10 +1,18 @@
 <%- include("./partials/head") %>
-    <%- include("./partials/header") %>
+    <%- include("./partials/header-adm") %>
+        <div class="way">
+            <h5><a href="/user/">Cliente</a></h5>
+            <h5> - Cadastrar cliente</h5>
+        </div>
         <main class="container-main">
             <section id="container-form">
-                <!-- <h1>Bem vindo ao painel administrativo</h1> -->
+                <% if(locals.errors){ %>
+                    <h2 class="error-alert">
+                      <%= errors.messagem %>
+                    </h2>
+                    <% } %>
                 <h2>Cadastrar</h2>
-                <form action="/register" method="post" enctype="multipart/form-data">
+                <form action="/user/create" method="post" enctype="multipart/form-data">
 
                     <label for="nome">Nome</label>
                     <input type="text" name="nome" value="<%= locals.old ? old.nome : null %>" />
@@ -48,17 +56,17 @@
                                                         </div>
                                                         <% } %>
 
-                                                            <!-- <label for="avatar">Avatar</label>
+                                                            <label for="avatar">Avatar</label>
                                                             <input type="file" name="avatar"
                                                                 value="<%= locals.old ? old.avatar : null %>" />
                                                             <% if(locals.errors && errors.avatar){ %>
                                                                 <div class="error-alert">
                                                                     <%= errors.avatar.msg %>
                                                                 </div>
-                                                                <% } %> -->
+                                                                <% } %>
 
-                                                                    <button type="submit">Adicionar</button>
+                                                            <button type="submit">Adicionar</button>
                 </form>
             </section>
         </main>
-        <%- include("./partials/footer") %>
+        <%- include("./partials/footer-adm") %>

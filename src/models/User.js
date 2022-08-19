@@ -1,57 +1,31 @@
-const fs = require('fs');
+const db = require("../config/sequelize");
+const Sequelize = require("sequelize");
 
-const User = {
-    fileName: './src/database/users.json',
-
-    create: function (userData) {
-        let allUsers = this.getUsers();
-        let newUser = {
-            id: this.generateId(),
-            ...userData
-        }
-        allUsers.push(newUser);
-        fs.writeFileSync(this.fileName, JSON.stringify(allUsers, null, ' '));
-        return newUser;
+const User = db.define(
+  "User",
+  {
+    id: {
+      type: Sequelize.DataTypes.INTEGER.UNSIGNED,
+      autoIncrement: true,
+      primaryKey: true,
     },
-
-    update: function (userData){
-
+    name: {
+      type: Sequelize.DataTypes.STRING(100),
+      // Não permite valor nulo
+      // Por padrão ele permite nulo
+      allowNull: false,
     },
-    
-    // Gera id para os cadastros
-    generateId: function (){
-        let allUsers = this.getUsers();
-        let lastUser = allUsers.pop();
-        if (lastUser){
-            return lastUser.id + 1;
-        }
-        return 1;
+    email: {
+      type: Sequelize.DataTypes.STRING(100),
+      allowNull: false,
     },
-
-    // Exibe todos os usuários
-    getUsers: function () {
-        return JSON.parse(fs.readFileSync(this.fileName, 'utf-8'));
+    birthdate: {
+      type: Sequelize.DataTypes.DATE,
     },
-
-    // Exibe o usuário pelo id
-    findUserById: function (id) {
-        let allUsers = this.getUsers();
-        let userFound = allUsers.find(user => user.id === parseInt(id));
-        return userFound;
-    },
-
-    // Exibe usuário por campo recebendo o campo e o valor
-    findUserByField: function (field, value) {
-        let allUsers = this.getUsers();
-        let userFound = allUsers.find(user => user[field] === value);
-        return userFound;
-    },
-
-    delete: function (id){
-        let allUsers = this.getUsers();
-        let userFound = allUsers.find(user => user === parseInt(id));
-        allUsers.splice(userFound, 1);
-    }
-}
+  },
+  {
+    timestamps: false,
+  }
+);
 
 module.exports = User;
