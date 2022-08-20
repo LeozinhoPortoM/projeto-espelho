@@ -15,6 +15,13 @@ const userController = {
     const allUsersJson = JSON.parse(fs.readFileSync(fileName, 'utf-8'));
     // Filtra os usuários ativos
     const usersActive = allUsersJson.filter(user => user.ativo === true);
+
+
+    usersActive.map(user => {
+      user.avatar = files.base64Encode(upload.path + user.avatar);
+    });
+
+
     return res.render('users', {
       title: 'Lista de usuários',
       listUsers: usersActive,
@@ -234,7 +241,6 @@ const userController = {
     return res.render("user-delete", {
       title: "Deletar usuário",
       user,
-      user: req.cookies.user,
     });
   },
 

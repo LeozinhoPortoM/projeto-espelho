@@ -13,6 +13,9 @@ const productController = {
     index: (req, res) => {
         const allProductsJson = JSON.parse(fs.readFileSync(fileName, 'utf-8'));
 
+        allProductsJson.map((product) => {
+            product.imageProduct = files.base64Encode(upload.path + product.imageProduct);
+        });
 
         return res.render('products', {
             title: 'Lista de produtos',
@@ -61,7 +64,7 @@ const productController = {
         const errors = validationResult(req);
         const allProductsJson = JSON.parse(fs.readFileSync(fileName, 'utf-8'));
 
-        const { nome, descricao, preco, imageProduct } = req.body;
+        const { nome, descricao, preco, categoria, imageProduct } = req.body;
 
         if (!errors.isEmpty()) {
             fs.unlinkSync(upload.path + req.file.filename);
@@ -99,6 +102,7 @@ const productController = {
             nome,
             descricao,
             preco,
+            categoria,
             imageProduct: filename,
             criadoEm: new Date(),
             modificadoEm: new Date(),
@@ -140,7 +144,7 @@ const productController = {
     // Não retorna página
     update: (req, res) => {
         const { id } = req.params;
-        const { nome, descricao, preco, imageProduct } = req.body;
+        const { nome, descricao, preco, categoria, imageProduct } = req.body;
 
         const allProductsJson = JSON.parse(fs.readFileSync(fileName, 'utf-8'));
         const productResult = allProductsJson.find((product) => product.id === parseInt(id));
@@ -160,6 +164,7 @@ const productController = {
         if (nome) productResult.nome = nome;
         if (descricao) productResult.descricao = descricao;
         if (preco) productResult.preco = preco;
+        if (categoria) productResult.categoria = categoria;
         if (filename) {
             let imageProductTmp = productResult.imageProduct;
             fs.unlinkSync(upload.path + imageProductTmp);
@@ -203,7 +208,6 @@ const productController = {
             title: "Deletar produto",
             product,
             user: req.cookies.user,
-            admin: req.cookies.admin,
         });
     },
     // O método acima pode ser chamado de destroy

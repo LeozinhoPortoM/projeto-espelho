@@ -6,6 +6,5 @@ const files = {
   base64Encode: (file)=>{
     return "data:image/gif;base64," + fs.readFileSync(file, "base64")
   },
-  base64Decode: (file) => {atob(file)}
 };
 module.exports = files;

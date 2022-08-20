@@ -157,17 +157,18 @@ const cellphoneBrMask = (value) => {
 };
 
 
-// document.querySelectorAll('.money').forEach(input => {
-//     const field = input.dataset.js
+function precoMask() {
+    document.querySelectorAll('.money').forEach(input => {
+        const field = input.dataset.js
 
-//     input.addEventListener('input', e => {
-//         e.target.value = masks[field](e.target.value)
-//     }, false)
-// })
-
+        input.addEventListener('input', e => {
+            e.target.value = money(e.target.value)
+        }, false)
+    })
+}
 
 function category(c) {
-    let item = document.getElementById('item-'+c).innerHTML;
+    let item = document.getElementById('item-' + c).innerHTML;
     document.getElementsByTagName('input')[3].value = item;
 }
 
@@ -176,7 +177,7 @@ function dropdown(p) {
     let d = ['block', 'none'];
 
     e.style.display = d[p];
-    setTimeout(function(){
+    setTimeout(function () {
         e.style.transform = 'translate(0px)';
     }, 0)
 };

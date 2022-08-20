@@ -103,6 +103,7 @@ const categoryController = {
         return res.render("category-edit", {
             title: "Editar categoria",
             category: categoryResult,
+            user: req.cookies.user,
         });
     },
 

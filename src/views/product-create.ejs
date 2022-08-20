@@ -13,7 +13,7 @@
                 <form action="/product/create" method="post" enctype="multipart/form-data">
 
                     <label for="nome">Nome do produto</label>
-                    <input type="text" name="nome" value="<%= locals.old ? old.nome : null %> " />
+                    <input type="text" name="nome" value="<%= locals.old ? old.nome : null %>" />
                     <% if(locals.errors && errors.nome){ %>
                         <div class="error-alert">
                             <%= errors.nome.msg %>
@@ -21,7 +21,7 @@
                         <% } %>
 
                             <label for="descricao">Descrição do produto</label>
-                            <input type="text" name="descricao" value="<%= locals.old ? old.descricao : null %> " />
+                            <input type="text" name="descricao" value="<%= locals.old ? old.descricao : null %>" />
                             <% if(locals.errors && errors.descricao){ %>
                                 <div class="error-alert">
                                     <%= errors.descricao.msg %>
@@ -32,8 +32,8 @@
                                         <div class="preco-categoria">
 
                                             <label for="preco">Preço do produto</label>
-                                            <input type="text" name="preco" data-js="money"
-                                                value="<%= locals.old ? old.preco : null %> " class="money" />
+                                            <input type="text" onkeyup="precoMask()" name="preco" data-js="money"
+                                                value="<%= locals.old ? old.preco : null %>" class="money" />
                                             <% if(locals.errors && errors.preco){ %>
                                                 <div class="error-alert">
                                                     <%= errors.preco.msg %>

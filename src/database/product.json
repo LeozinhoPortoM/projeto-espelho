@@ -1,37 +1,41 @@
 [
  {
   "id": 1,
-  "nome": " Carolina Herrera",
-  "descricao": " Perfume feminino com fragrância suave",
+  "nome": "Carolina Herrera",
+  "descricao": "Perfume feminino com fragrância suave",
   "preco": "400",
+  "categoria": "Perfume feminino",
   "imageProduct": "e1e68e5267c41688b19e.png",
   "criadoEm": "2022-08-05T14:31:08.593Z",
   "modificadoEm": "2022-08-14T00:28:04.277Z"
  },
  {
   "id": 2,
-  "nome": " Paco Rabanne",
-  "descricao": " Perfume masculino com fragrância suave",
+  "nome": "Paco Rabanne",
+  "descricao": "Perfume masculino com fragrância suave",
   "preco": "999",
-  "imageProduct": "c062c6af183d01ad67d9.png",
+  "categoria": "Perfume feminino",
+  "imageProduct": "e1e68e5267c41688b19e.png",
   "criadoEm": "2022-08-05T14:33:56.860Z",
   "modificadoEm": "2022-08-05T14:33:56.860Z"
  },
  {
   "id": 3,
-  "nome": " Mont Blanc",
-  "descricao": " Perfume masculino com fragrância forte",
+  "nome": "Mont Blanc",
+  "descricao": "Perfume masculino com fragrância forte",
   "preco": " 444",
-  "imageProduct": "626a7553c99a1bef61d6.png",
+  "categoria": "Perfume feminino",
+  "imageProduct": "e1e68e5267c41688b19e.png",
   "criadoEm": "2022-08-06T01:13:04.484Z",
   "modificadoEm": "2022-08-06T01:13:04.484Z"
  },
  {
   "id": 4,
-  "nome": " Dolce Gabbana",
-  "descricao": " Perfume feminino com fragrância com tempo duradouro",
+  "nome": "Dolce Gabbana",
+  "descricao": "Perfume feminino com fragrância com tempo duradouro",
   "preco": "2222",
-  "imageProduct": "a11d5ca6a2d0a49ad562.png",
+  "categoria": "Perfume masculino",
+  "imageProduct": "e1e68e5267c41688b19e.png",
   "criadoEm": "2022-08-06T01:26:29.515Z",
   "modificadoEm": "2022-08-06T01:26:29.515Z"
  },
@@ -40,7 +44,8 @@
   "nome": "Mont Blanc",
   "descricao": " Perfume feminino com fragrância suave  ",
   "preco": " 444  ",
-  "imageProduct": "505bd4534fd695855ad7.png",
+  "categoria": "Perfume masculino",
+  "imageProduct": "e1e68e5267c41688b19e.png",
   "criadoEm": "2022-08-07T14:05:50.788Z",
   "modificadoEm": "2022-08-07T14:05:50.788Z"
  }
