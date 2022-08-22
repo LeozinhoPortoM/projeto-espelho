@@ -2,25 +2,25 @@
  {
   "id": 1,
   "nome": "Léo",
-  "sobrenome": "Porto Mararanhão",
+  "sobrenome": "Porto",
+  "senha": "$2b$10$lZLQpjsfxt5VpWsbvm5vO.VkT9joaVqPwntkussKBXn5BDLECYx1e",
   "email": "leo.porto.lpm@hotmail.com",
-  "senha": "$2b$10$U5EVw0lU/5zwW1BFs1OBgeV6mXogSN9dp2MCk/Th6v11tPNJ3v9vu",
-  "avatar": "0cbeedc17be5ce8ca475.jpg",
+  "avatar": "user-default.jpeg",
   "admin": true,
   "ativo": true,
-  "criadoEm": "2022-07-17T00:21:39.368Z",
-  "modificadoEm": "2022-07-19T23:51:31.157Z"
+  "criadoEm": "2022-08-21T23:53:14.974Z",
+  "modificadoEm": "2022-08-21T23:53:14.974Z"
  },
  {
   "id": 2,
-  "nome": "Maria",
-  "sobrenome": "Dolores",
-  "email": "maria@hotmail.com",
-  "senha": "$2b$10$RSkGXSI4VNsqRWgDO8YuVugKhKHkNJ6skM3AGmeS.kT/GPWZYGSEC",
-  "avatar": "4f2ab71c552fee89b161.jpg",
+  "nome": "João",
+  "sobrenome": "Porto",
+  "senha": "$2b$10$WJrk2Zqm7Wb7Rc6eLFM8kuazEGvK4wwbTZ9QZKtn1nKkOWPEWNauK",
+  "email": "joao@gmail.com",
+  "avatar": "c81a386493658f2006dc.png",
   "admin": false,
   "ativo": true,
-  "criadoEm": "2022-07-17T00:24:48.004Z",
-  "modificadoEm": "2022-07-17T00:24:48.004Z"
+  "criadoEm": "2022-08-22T01:04:16.914Z",
+  "modificadoEm": "2022-08-22T01:04:16.914Z"
  }
 ]

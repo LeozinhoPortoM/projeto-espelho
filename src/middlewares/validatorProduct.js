@@ -28,6 +28,14 @@ module.exports = [
         return true
     }),
 
+    body('categoria').custom((value, { req }) => {
+        if (!value) {
+            return Promise.reject('Campo obrigatório');
+        }
+
+        return true
+    }),
+
     body('imageProduct').custom((value, { req }) => {
         let file = req.file;
         let acceptedExtensions = ['.jpg', '.png', '.gif', '.jpeg'];

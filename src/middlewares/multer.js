@@ -18,17 +18,6 @@ const storage = multer.diskStorage({
     },
 });
 
-const upload = multer({ storage: storage,
-    // fileFilter: function (req, file, callback) {
-    //     var ext = path.extname(file.originalname);
-    //     if(ext !== '.png' && ext !== '.jpg' && ext !== '.gif' && ext !== '.jpeg') {
-    //         return callback(new Error('Apenas imagens são permetidas!'))
-    //     }
-    //     callback(null, true)
-    // },
-    // limits:{
-    //     fileSize: 1024 * 1024
-    // }
-})//.single('avatar');
+const upload = multer({ storage: storage,});
 
 module.exports = upload;

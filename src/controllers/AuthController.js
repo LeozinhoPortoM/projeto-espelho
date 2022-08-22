@@ -1,7 +1,7 @@
 const fs = require('fs');
 const path = require("path");
 const bcrypt = require("../helpers/bcrypt");
-
+const upload = require('../config/upload');
 const { validationResult } = require('express-validator');
 const fileName = path.join(__dirname, "..", "database", "users.json");
 
@@ -19,13 +19,15 @@ const authController = {
     const errors = validationResult(req);
     const allUsersJson = JSON.parse(fs.readFileSync(fileName, 'utf-8'));
 
-    const { nome, sobrenome, email, senha, confirmar_senha } = req.body;
+    const { nome, sobrenome, email, senha, confirmar_senha, avatar } = req.body;
 
     // Verifica se os campos foram preenchidos corretamente
     if (!errors.isEmpty()) {
+      if (req.file) {
+        fs.unlinkSync(upload.path + req.file.filename);
+      }
       return res.render("user-register", { title: "Cadastro", errors: errors.mapped(), old: req.body });
     }
-    console.log('entrou')
 
     // Verifica se o email já está cadastrado
     const userExists = allUsersJson.find(user => user.email === email);
@@ -55,6 +57,14 @@ const authController = {
       });
     }
 
+    // Atribui a variavel filename uma imagem default
+    let filename = "user-default.jpeg";
+
+    // Atribui ao avatar uma imagem default caso tenha tido algo de errado no download
+    if (req.file) {
+      filename = req.file.filename;
+    }
+
     const lastId = allUsersJson.length != 0 ? allUsersJson[allUsersJson.length - 1].id + 1 : 1;
     // Objeto com dados do novo usuário
     const newUser = {
@@ -63,6 +73,7 @@ const authController = {
       sobrenome,
       senha: bcrypt.generateHash(senha),
       email,
+      avatar: filename,
       admin: false,
       ativo: true,
       criadoEm: new Date(),
@@ -122,7 +133,7 @@ const authController = {
 
     req.session.usuario = user;
 
-    res.cookie("user", user, );
+    res.cookie("user", user,);
 
     if (req.session.usuario.admin) {
       return res.redirect("/administrator");

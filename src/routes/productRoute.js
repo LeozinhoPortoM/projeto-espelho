@@ -11,7 +11,7 @@ const validator = require('../middlewares/validatorProduct');
 const isAuth = require('../middlewares/auth');
 
 
-router.get("/create",isAuth, productControlller.create);
+router.get("/create", isAuth, productControlller.create);
 router.post("/create",isAuth, upload.single('imageProduct'), validator, productControlller.store);
 
 router.get("/edit/:id",isAuth, productControlller.edit);

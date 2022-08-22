@@ -30,8 +30,7 @@
                         </div>
                     </div>
 
-
-                    <form class="form-delete" action="/product/delete/<%= product.id %>?_method=delete" method="post">
+                    <form action="/product/delete/<%= product.id %>?_method=delete" method="post" class="form-delete" >
                         <h3>Deseja deletar esse produto?</h3>
                         <a href="/product"><button type="button">Não</button></a>
                         <button type="submit">Sim</button>

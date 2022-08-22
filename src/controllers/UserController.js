@@ -66,12 +66,14 @@ const userController = {
     const errors = validationResult(req);
     const allUsersJson = JSON.parse(fs.readFileSync(fileName, 'utf-8'));
 
-    const { nome, sobrenome, email, senha, confirmar_senha } = req.body;
+    const { nome, sobrenome, email, senha, confirmar_senha, avatar } = req.body;
 
 
     // Verifica se os campos foram preenchidos corretamente
     if (!errors.isEmpty()) {
-      fs.unlinkSync(upload.path + req.file.filename);
+      if (req.file) {
+        fs.unlinkSync(upload.path + req.file.filename);
+      }
       return res.render("user-create", { title: "Cadastrar usuário", errors: errors.mapped(), old: req.body });
     }
 
@@ -156,10 +158,18 @@ const userController = {
     }
 
     userResult.confirmar_senha = userResult.senha;
-    return res.render("user-edit", {
-      title: "Editar usuário",
-      user: userResult,
-    });
+
+    if (req.cookies.user.admin) {
+      return res.render("user-edit-adm", {
+        title: "Editar usuário",
+        user: userResult,
+      });
+    } else {
+      return res.render("user-edit", {
+        title: "Editar usuário",
+        user: userResult,
+      });
+    }
   },
 
   // Edita usuário

@@ -52,12 +52,8 @@ const productController = {
 
     // Página para criar produto
     create: (req, res) => {
-        // Salvar no banco
-        return res.render("product-create", {
-            title: "Cadastrar produto",
-            user: req.cookies.user,
-        });
-    },
+        return res.render("product-create", { title: "Cadastrar produto", user: req.cookies.user, });
+      },
     // Cria produto
     // Não retorna página
     store: (req, res) => {
@@ -67,7 +63,9 @@ const productController = {
         const { nome, descricao, preco, categoria, imageProduct } = req.body;
 
         if (!errors.isEmpty()) {
-            fs.unlinkSync(upload.path + req.file.filename);
+            if(req.file){
+                fs.unlinkSync(upload.path + req.file.filename);
+            }
             return res.render("product-create", { title: "Cadastrar produto", errors: errors.mapped(), old: req.body });
         }
 
@@ -116,6 +114,7 @@ const productController = {
             JSON.stringify(allProductsJson, null, " ")
         );
 
+
         return res.redirect("/product");
 
 
@@ -145,6 +144,7 @@ const productController = {
     update: (req, res) => {
         const { id } = req.params;
         const { nome, descricao, preco, categoria, imageProduct } = req.body;
+
 
         const allProductsJson = JSON.parse(fs.readFileSync(fileName, 'utf-8'));
         const productResult = allProductsJson.find((product) => product.id === parseInt(id));
@@ -191,7 +191,7 @@ const productController = {
         const { id } = req.params;
         const allProductsJson = JSON.parse(fs.readFileSync(fileName, 'utf-8'));
         const productResult = allProductsJson.find((product) => product.id === parseInt(id));
-        // const productResult = products.find((product) => product.id.toString() === id);
+
         if (!productResult) {
             return res.render("not-found", {
                 title: "Ops!",
@@ -214,7 +214,8 @@ const productController = {
     destroy: (req, res) => {
         const { id } = req.params;
         const allProductsJson = JSON.parse(fs.readFileSync(fileName, 'utf-8'));
-        const productResult = allProductsJson.findIndex((product) => product.id === parseInt(id));
+        const productResult = allProductsJson.find(product => product.id === parseInt(id));
+
         if (!productResult) {
             return res.render("not-found", {
                 title: "Ops!",
@@ -232,10 +233,8 @@ const productController = {
             JSON.stringify(allProductsJson, null, " ")
         );
 
-        return res.render("success", {
-            title: "Produto deletado",
-            message: "Produto deletado com sucesso!",
-        });
+        return res.redirect("/product");
+
     },
 
     viewProduct: (req, res) => {

@@ -32,9 +32,6 @@ module.exports = [
         if (!value) {
             return Promise.reject('Campo obrigatório');
         }
-        if (value === req.body.senha) {
-            return Promise.reject('Senhas não coincidem');
-        }
         return true
     }).bail(),
 

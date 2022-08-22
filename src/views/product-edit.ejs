@@ -13,13 +13,13 @@
                         <%= error.message %>
                     </h2>
                     <% } %>
-                        <form action="/product/edit/<%= product.id %>?_method=put" method="post">
+                        <form action="/product/edit/<%= product.id %>?_method=put" method="post" enctype="multipart/form-data">
                             <label for="nome">Nome:</label>
                             <input value="<%= product.nome %>" type="text" name="nome" />
                             <label for="nome">Descrição:</label>
                             <input value="<%= product.descricao %>" type="text" name="descricao" />
                             <label for="nome">Preço:</label>
-                            <input value="<%= product.preco %>" type="number" name="preco" />
+                            <input value="<%= product.preco %>" onkeyup="precoMask()" class="money" type="text" name="preco" />
                             <label for="categoria">Categoria:</label>
                             <input value="<%= product.categoria %>" type="text" name="categoria" />
                             <label for="productImage">Imagem do produto:</label>
