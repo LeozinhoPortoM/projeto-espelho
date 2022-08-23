@@ -15,17 +15,32 @@ const User = db.define(
       // Por padrão ele permite nulo
       allowNull: false,
     },
+    last_name: {
+      type: Sequelize.DataTypes.STRING(100),
+      allowNull: false,
+    },
     email: {
       type: Sequelize.DataTypes.STRING(100),
       allowNull: false,
     },
-    birthdate: {
-      type: Sequelize.DataTypes.DATE,
+    password: {
+      type: Sequelize.DataTypes.STRING(100).BINARY,
+      allowNull: false,
     },
+    image: {
+      type: Sequelize.DataTypes.BLOB('medium'),
+    },
+    is_active: {
+      type: Sequelize.DataTypes.INTEGER.UNSIGNED,
+      defaultValue: 1,
+    },
+    is_admin: {
+      type: Sequelize.DataTypes.INTEGER.UNSIGNED,
+      defaultValue: 0,
+    },
+
   },
-  {
-    timestamps: false,
-  }
+
 );
 
 module.exports = User;

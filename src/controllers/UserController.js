@@ -1,10 +1,14 @@
 const files = require("../helpers/files");
-const fs = require('fs');
+// const fs = require('fs');
 const { validationResult } = require('express-validator');
 const bcrypt = require('bcrypt');
 const upload = require('../config/upload');
 const path = require('path');
-const fileName = path.join(__dirname, "..", "database", "users.json");
+// const fileName = path.join(__dirname, "..", "database", "users.json");
+
+
+// Configuração para conexão com o banco de dados
+const db = require('../config/sequelize');
 
 
 const userController = {

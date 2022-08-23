@@ -15,11 +15,17 @@ const userController = {
     const allUsersJson = JSON.parse(fs.readFileSync(fileName, 'utf-8'));
     // Filtra os usuários ativos
     const usersActive = allUsersJson.filter(user => user.ativo === true);
+
+
+    usersActive.map(user => {
+      user.avatar = files.base64Encode(upload.path + user.avatar);
+    });
+
+
     return res.render('users', {
       title: 'Lista de usuários',
-      users: usersActive,
+      listUsers: usersActive,
       user: req.cookies.user,
-      admin: req.cookies.admin
     });
   },
   // Mostra um usuário
@@ -44,7 +50,7 @@ const userController = {
       avatar: files.base64Encode(upload.path + userResult.avatar),
     };
 
-    return res.render("user", {
+    return res.render("user-panel", {
       title: "Visualizar usuário",
       user,
     });
@@ -52,7 +58,7 @@ const userController = {
 
   // Página para criar usuário
   create: (req, res) => {
-    return res.render("user-create", { title: "Cadastrar usuário" });
+    return res.render("user-create", { title: "Cadastrar usuário", user: req.cookies.user, });
   },
   // Cria usuário
   // Não retorna página
@@ -60,10 +66,14 @@ const userController = {
     const errors = validationResult(req);
     const allUsersJson = JSON.parse(fs.readFileSync(fileName, 'utf-8'));
 
-    const { nome, sobrenome, email, senha, confirmar_senha } = req.body;
+    const { nome, sobrenome, email, senha, confirmar_senha, avatar } = req.body;
+
 
     // Verifica se os campos foram preenchidos corretamente
     if (!errors.isEmpty()) {
+      if (req.file) {
+        fs.unlinkSync(upload.path + req.file.filename);
+      }
       return res.render("user-create", { title: "Cadastrar usuário", errors: errors.mapped(), old: req.body });
     }
 
@@ -128,6 +138,7 @@ const userController = {
       JSON.stringify(allUsersJson, null, " ")
     );
 
+
     return res.redirect("/login");
   },
 
@@ -147,10 +158,18 @@ const userController = {
     }
 
     userResult.confirmar_senha = userResult.senha;
-    return res.render("user-edit", {
-      title: "Editar usuário",
-      user: userResult,
-    });
+
+    if (req.cookies.user.admin) {
+      return res.render("user-edit-adm", {
+        title: "Editar usuário",
+        user: userResult,
+      });
+    } else {
+      return res.render("user-edit", {
+        title: "Editar usuário",
+        user: userResult,
+      });
+    }
   },
 
   // Edita usuário
@@ -272,8 +291,8 @@ const userController = {
     });
   },
 
-  loginForm: (req, res) => {
-    return res.render("user-login", { title: "Login" });
+  profile: (req, res) => {
+    return res.render("user-panel", { title: "Perfil", user: req.cookies.user, });
   },
 
 };

@@ -1,25 +1,28 @@
 const db = require("../config/sequelize");
 const Sequelize = require("sequelize");
 
-const Order = db.define(
-  "Order",
+const Category = db.define(
+  "Category",
   {
     id: {
       type: Sequelize.DataTypes.INTEGER.UNSIGNED,
       autoIncrement: true,
       primaryKey: true,
     },
-    status: {
-      type: Sequelize.DataTypes.ENUM("processando", "a caminho", "entregue"),
-      defaultValue: "processando",
+    name: {
+      type: Sequelize.DataTypes.STRING(100),
       allowNull: false,
     },
-    user_id: {
-      type: Sequelize.DataTypes.INTEGER.UNSIGNED,
+    description: {
+      type: Sequelize.DataTypes.TEXT('long'),
+      allowNull: false,
     },
+    
   },
   {
+    
   }
+  
 );
 
-module.exports = Order;
+module.exports = Category;

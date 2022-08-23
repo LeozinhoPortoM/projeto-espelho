@@ -1,3 +1,5 @@
+require("dotenv").config();
+
 // Importa o express e atribui a variável
 const express = require('express');
 
@@ -33,7 +35,7 @@ app.set('view engine', 'ejs');
 
 // Configurando a frase para criptografia e mudar algumas configurações como essas informações seram salvas
 app.use(session({
-    secret: "projetoExpress",
+    secret: process.env.SECRET_KEY,
     resave: true,
     saveUninitialized: true,
 }));
