@@ -1,8 +1,8 @@
 const db = require("../config/sequelize");
 const Sequelize = require("sequelize");
 
-const ImageProduct = db.define(
-  "ImageProduct",
+const Image = db.define(
+  "Image",
   {
     id: {
       type: Sequelize.DataTypes.INTEGER.UNSIGNED,
@@ -10,15 +10,10 @@ const ImageProduct = db.define(
       primaryKey: true,
     },
     image: {
-      type: Sequelize.DataTypes.BLOB('medium'),
+      type: Sequelize.DataTypes.STRING(400),
       allowNull: false,
     },
-    product_id: {
-      type: Sequelize.DataTypes.INTEGER.UNSIGNED,
-    },
   },
-  {
-  }
 );
 
-module.exports = ImageProduct;
+module.exports = Image;

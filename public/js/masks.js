@@ -159,8 +159,6 @@ const cellphoneBrMask = (value) => {
 
 function precoMask() {
     document.querySelectorAll('.money').forEach(input => {
-        const field = input.dataset.js
-
         input.addEventListener('input', e => {
             e.target.value = money(e.target.value)
         }, false)
@@ -181,4 +179,12 @@ function dropdown(p) {
         e.style.transform = 'translate(0px)';
     }, 0)
 };
+
+function activePagination(elemento){
+    let intens = document.getElementsByClassName('page-item');
+    for (let i = 0; i < intens.length; i++){
+        itens[i].classList.remove('active');
+    }
+    elemento.classList.add('active');
+}
 

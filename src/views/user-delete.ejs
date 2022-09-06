@@ -6,40 +6,48 @@
         </div>
         <main class="container-main">
             <section id="container-form">
+                <% if(locals.error){ %>
+                    <h2 class="error-alert">
+                        <%= error.message %>
+                    </h2>
+                    <% } %>
 
-                <% if(locals.user){ %>
-                    <div class="box-user">
-                        <div class="img-user">
-                            <img src=" <%= user.avatar %> " alt="avatar">
+                        <div class="success-alert">
+                            <%= locals.message %>
                         </div>
-                        <div class="user-name">
-                            <h4>Nome:</h4>
-                            <h4>
-                                <%= user.nome %>
-                            </h4>
-                        </div>
-                        <div class="user-sobrenome">
-                            <h4>Sobrenome:</h4>
-                            <h4>
-                                <%= user.sobrenome %>
-                            </h4>
-                        </div>
-                        <div class="user-email-delete">
-                            <h4>E-mail:</h4>
-                            <h4>
-                                <%= user.email %>
-                            </h4>
-                        </div>
-                    </div>
 
-                    <form class="form-delete" action="/user/delete/<%= user.id %>?_method=delete" method="post">
-                        <h3>Deseja deletar esse usuário?</h3>
-                        <a href="/user"><button type="button">Não</button></a>
-                        <button type="submit">Sim</button>
-                    </form>
-                    <% }else {%>
-                        <h2 class="error-alert">Usuário não encontrado!</h2>
-                        <% } %>
+                        <% if(locals.user){ %>
+                            <div class="box-user">
+                                <div class="img-user">
+                                    <img src=" <%= users.image %> " alt="avatar">
+                                </div>
+                                <div class="user-name">
+                                    <h4>Nome:</h4>
+                                    <h4>
+                                        <%= users.name %>
+                                    </h4>
+                                </div>
+                                <div class="user-sobrenome">
+                                    <h4>Sobrenome:</h4>
+                                    <h4>
+                                        <%= users.last_name %>
+                                    </h4>
+                                </div>
+                                <div class="user-email-delete">
+                                    <h4>E-mail:</h4>
+                                    <h4>
+                                        <%= users.email %>
+                                    </h4>
+                                </div>
+                            </div>
+
+                            <form class="form-delete" action="/user/delete/<%= users.id %>?_method=delete"
+                                method="post">
+                                <h3>Deseja deletar esse usuário?</h3>
+                                <a href="/user"><button type="button">Não</button></a>
+                                <button type="submit">Sim</button>
+                            </form>
+                            <% } %>
             </section>
         </main>
         <%- include("./partials/footer-adm")%>

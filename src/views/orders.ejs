@@ -1,0 +1,35 @@
+<%- include("./partials/head") %> <%- include("./partials/header-adm") %>
+
+<main class="container-adm">
+  <div class="way">
+    <h5><a href="/order">Pedidos</a></h5>
+  </div>
+  <!-- <div class="add-item">
+    <form action="/order/create" method="get">
+      <button type="submit">Adicionar</button>
+    </form>
+  </div> -->
+
+  <!-- <div class="in-table">
+    <input type="search" name="" id="" placeholder="Pesquisar..." />
+    <img src="/img/lupa.png" alt="" />
+  </div> -->
+
+  <% if(listOrders.length> 0) { %>
+
+  <div class="container-orders">
+    <% for (let order of listOrders) { %>
+    <div class="oders">
+      <a href="/order/<%= order.id %>/product">
+        <h4><%= order.id %></h4>
+        <h4><%= order.status %></h4>
+      </a>
+    </div>
+
+    <% } %>
+  </div>
+
+  <% } %> <%- include("./partials/pagination") %>
+</main>
+
+<%- include("./partials/footer-adm") %>

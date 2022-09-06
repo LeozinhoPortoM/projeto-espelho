@@ -7,21 +7,24 @@
 
         <main class="container-main">
             <section id="container-form">
-                <h2>Atualizar produto</h2>
                 <% if(locals.error){ %>
                     <h2 class="error-alert">
                         <%= error.message %>
                     </h2>
                     <% } %>
+
+                        <div class="success-alert">
+                            <%= locals.message %>
+                        </div>
                         <form action="/product/edit/<%= product.id %>?_method=put" method="post" enctype="multipart/form-data">
                             <label for="nome">Nome:</label>
-                            <input value="<%= product.nome %>" type="text" name="nome" />
+                            <input value="<%= product.name %>" type="text" name="nome" />
                             <label for="nome">Descrição:</label>
-                            <input value="<%= product.descricao %>" type="text" name="descricao" />
+                            <input value="<%= product.description %>" type="text" name="descricao" />
                             <label for="nome">Preço:</label>
-                            <input value="<%= product.preco %>" onkeyup="precoMask()" class="money" type="text" name="preco" />
+                            <input value="<%= product.price %>" onkeyup="precoMask()" class="money" type="text" name="preco" />
                             <label for="categoria">Categoria:</label>
-                            <input value="<%= product.categoria %>" type="text" name="categoria" />
+                            <input value="<%= product.category_id %>" type="text" name="categoria" />
                             <label for="productImage">Imagem do produto:</label>
                             <input value="<%= product.productImage %> " type="file" name="productImage" />
 

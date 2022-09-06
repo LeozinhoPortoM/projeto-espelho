@@ -1,3 +1,32 @@
 [
- 
+ {
+  "id": 1,
+  "nome": "Carolina Herrera",
+  "descricao": "Perfume feminino com fragrância suave",
+  "preco": "R$ 333,99",
+  "categoria": "Linha Masculina",
+  "imageProduct": "5c44e337a8952067d67c.png",
+  "criadoEm": "2022-09-01T18:33:36.295Z",
+  "modificadoEm": "2022-09-01T18:33:36.295Z"
+ },
+ {
+  "id": 2,
+  "nome": "Paco Rabanne",
+  "descricao": "Perfume para crianças",
+  "preco": "R$ 444,99",
+  "categoria": "Linha Feminina",
+  "imageProduct": "14bdccbf5ea6c44cbe11.png",
+  "criadoEm": "2022-09-01T18:34:00.745Z",
+  "modificadoEm": "2022-09-01T18:34:00.745Z"
+ },
+ {
+  "id": 3,
+  "nome": "Produto M",
+  "descricao": "Da hora e maneiro",
+  "preco": "R$ 444,99",
+  "categoria": "Linha Infaltil",
+  "imageProduct": "f7b9204afaf9afa3d598.png",
+  "criadoEm": "2022-09-01T18:34:27.039Z",
+  "modificadoEm": "2022-09-01T18:34:27.039Z"
+ }
 ]

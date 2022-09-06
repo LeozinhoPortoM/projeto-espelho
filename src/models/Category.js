@@ -14,15 +14,17 @@ const Category = db.define(
       allowNull: false,
     },
     description: {
-      type: Sequelize.DataTypes.TEXT('long'),
+      type: Sequelize.DataTypes.TEXT,
       allowNull: false,
     },
-    
+    is_active: {
+      type: Sequelize.DataTypes.INTEGER.UNSIGNED,
+      defaultValue: 1,
+    },
   },
   {
-    
+    tableName: "categorys",
   }
-  
 );
 
 module.exports = Category;

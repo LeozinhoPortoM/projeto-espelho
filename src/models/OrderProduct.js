@@ -17,6 +17,7 @@ const OrderProduct = db.define(
     },
   },
   {
+    tableName: "orders_products",
   }
 );
 

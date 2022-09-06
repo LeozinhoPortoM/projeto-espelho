@@ -14,6 +14,10 @@ const Order = db.define(
       defaultValue: "processando",
       allowNull: false,
     },
+    is_active: {
+      type: Sequelize.DataTypes.INTEGER.UNSIGNED,
+      defaultValue: 1,
+    },
     user_id: {
       type: Sequelize.DataTypes.INTEGER.UNSIGNED,
     },
