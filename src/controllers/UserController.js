@@ -74,19 +74,14 @@ const userController = {
       });
 
       const orders = await Order.findAll({
+        where: {
+          user_id: user.id,
+        },
         include: {
           model: Product,
           required: true,
         },
       });
-
-      // const products = await Product.findAll();
-
-      const orderProducts = orders.filter((order) => order.user_id === user.id);
-      // const pedidos = order.map(order => console.log(order.Products))
-console.log(orderProducts);
-      // orderProducts.map(orderProduct => console.log(orderProduct.Products));
-
       if (!user) {
         throw Error("USER_NOT_FOUND");
       }
@@ -96,6 +91,7 @@ console.log(orderProducts);
       return res.render("user-panel", {
         title: "Visualizar usuário",
         user,
+        listOrders: orders,
       });
     } catch (error) {
       if (error.message === "USER_NOT_FOUND") {
@@ -126,9 +122,9 @@ console.log(orderProducts);
     const { nome, sobrenome, email, senha, confirmar_senha } = req.body;
 
     if (!errors.isEmpty()) {
-      // if (req.file) {
-      //   fs.unlinkSync(upload.path + req.file.filename);
-      // }
+      if (req.file) {
+        delete(upload.path + req.file.filename);
+      }
       return res.render("user-create", {
         title: "Cadastrar usuário",
         errors: errors.mapped(),

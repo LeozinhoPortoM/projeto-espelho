@@ -226,6 +226,10 @@ nav.navbar-transparente {
   align-items: center;
 }
 
+.img-categorias a img{
+  width: 98%;
+}
+
 .section-categorias h3 {
   text-transform: uppercase;
   font-weight: bolder;

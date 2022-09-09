@@ -188,3 +188,78 @@ function activePagination(elemento){
     elemento.classList.add('active');
 }
 
+
+c('.cart--finalizar').addEventListener("click", () => {
+    cart = [];
+    updateCart();
+});
+
+// Carrinho
+
+let cart = [];
+let modalQt = 0;
+let key = 0;
+const c = (el) => document.querySelector(el);
+const cs = (el) => document.querySelectorAll(el);
+
+function updateCart() {
+  c(".menu-openner span").innerHTML = cart.length;
+  if (cart.length > 0) {
+    c("aside").classList.add("show");
+    c(".cart").innerHTML = "";
+    let subtotal = 0;
+    let desconto = 0;
+    let total = 0;
+    cart.map((itemCart, index) => {
+      let modelItem = modelsJson.find((itemBD) => itemBD.id == itemCart.id);
+      subtotal += modelItem.price[itemCart.size] * itemCart.qt;
+      let cartItem = c(".models .cart--item").cloneNode(true);
+      let modelSizeName;
+      switch (itemCart.size) {
+        case 0:
+          modelSizeName = "P";
+          break;
+        case 1:
+          modelSizeName = "M";
+          break;
+        case 2:
+          modelSizeName = "G";
+          break;
+      }
+      cartItem.querySelector("img").src = modelItem.img;
+      //   cartItem.querySelector(".cart--item-nome").innerHTML = `${modelItem.name} (${modelSizeName})`;
+      cartItem.querySelector(".cart--item-nome").innerHTML = `${
+        modelItem.name
+      } - ${modelItem.sizes[itemCart.size]}`;
+      cartItem.querySelector(".cart--item--qt").innerHTML = itemCart.qt;
+      cartItem
+        .querySelector(".cart--item-qtmenos")
+        .addEventListener("click", () => {
+          if (itemCart.qt > 1) {
+            itemCart.qt--;
+          } else {
+            cart.splice(index, 1);
+          }
+          updateCart();
+        });
+      cartItem
+        .querySelector(".cart--item-qtmais")
+        .addEventListener("click", () => {
+          itemCart.qt++;
+          updateCart();
+        });
+
+      c(".cart").append(cartItem);
+    });
+    desconto = subtotal * 0.1;
+    total = subtotal - desconto;
+    c(".subtotal span:last-child").innerHTML = `R$ ${subtotal.toFixed(2)}`;
+    c(".desconto span:last-child").innerHTML = `R$ ${desconto.toFixed(2)}`;
+    c(".total span:last-child").innerHTML = `R$ ${total.toFixed(2)}`;
+  } else {
+    c("aside").classList.remove("show");
+    c('aside').style.left = '100vw'
+  }
+}
+
+

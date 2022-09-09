@@ -5,6 +5,7 @@ const upload = require("../config/upload");
 const Product = require("../models/Product");
 const Category = require("../models/Category");
 const Image = require("../models/Image");
+const Order = require("../models/Order");
 
 const productController = {
   // Lista todos os produtos
@@ -44,13 +45,13 @@ const productController = {
       if (!products) {
         throw Error("PRODUCT_NOT_FOUND");
       }
-
-      products.map(product => console.log(product.Images));
-      // products.map((product) => {
-      //   if (product.Images.image) {
-      //     product.Images.image = files.base64Encode(upload.path + product.Images.image);
-      //   }
-      // });
+      products.map((product) => {
+        if (product.Image) {
+          product.Image.image = files.base64Encode(
+            upload.path + product.Image.image
+          );
+        }
+      });
 
       return res.render("products", {
         title: "Lista de produtos",
@@ -59,6 +60,7 @@ const productController = {
         user: req.cookies.user,
       });
     } catch (error) {
+      console.log(error);
       if (error.message === "PRODUCT_NOT_FOUND") {
         res.render("products", {
           title: "Produtos",
@@ -90,17 +92,29 @@ const productController = {
         where: {
           id,
         },
-        include: {
-          model: Order,
-          required: true,
-        },
+        include: [
+          {
+            model: Category,
+            required: true,
+          },
+          {
+            model: Image,
+            required: true,
+          },
+          {
+            model: Order,
+            required: true,
+          },
+        ],
       });
 
       if (!product) {
         throw Error("PRODUCT_NOT_FOUND");
       }
 
-      //   product.image = files.base64Encode(upload.path + product.image);
+      product.Image.image = files.base64Encode(
+        upload.path + product.Image.image
+      );
 
       return res.render("product", {
         title: "Visualizar Produto",
@@ -208,10 +222,16 @@ const productController = {
         where: {
           id,
         },
-        // include: {
-        //   model: Category,
-        //   required: true,
-        // },
+        include: [
+          {
+            model: Category,
+            required: true,
+          },
+          {
+            model: Image,
+            required: true,
+          },
+        ],
       });
       if (!product) {
         throw Error("PRODUCT_NOT_FOUND");
@@ -309,7 +329,9 @@ const productController = {
         throw Error("PRODUCT_NOT_FOUND");
       }
 
-      // products.image = files.base64Encode(upload.path + products.image);
+      product.Image.image = files.base64Encode(
+        upload.path + product.Image.image
+      );
 
       return res.render("product-delete", {
         title: "Deletar produto",
@@ -355,11 +377,65 @@ const productController = {
     }
   },
 
-  viewProduct: (req, res) => {
-    res.render("description-product", {
-      title: "Produto",
-      user: req.cookies.user,
-    });
+  viewProduct: async (req, res) => {
+    const { id } = req.params;
+    try {
+      const product = await Product.findOne({
+        attributes: [
+          "id",
+          "name",
+          "description",
+          "price",
+          "quantity",
+          "category_id",
+        ],
+        where: {
+          id,
+        },
+        include: [
+          {
+            model: Category,
+            required: true,
+          },
+          {
+            model: Image,
+            required: true,
+          },
+          {
+            model: Order,
+            required: true,
+          },
+        ],
+      });
+
+      if (!product) {
+        throw Error("PRODUCT_NOT_FOUND");
+      }
+
+      product.Image.image = files.base64Encode(
+        upload.path + product.Image.image
+      );
+
+      console.log(product);
+
+      return res.render("description-product", {
+        title: "Visualizar Produto",
+        product,
+        user: req.cookies.user,
+      });
+    } catch (error) {
+      if (error.message === "PRODUCT_NOT_FOUND") {
+        res.render("description-product", {
+          title: "Visualizar produto",
+          message: "Produto não encontrado!",
+        });
+      } else {
+        res.render("description-product", {
+          title: "Visualizar produto",
+          message: "Erro ao encontrar produto!",
+        });
+      }
+    }
   },
 
   viewPayment: (req, res) => {
