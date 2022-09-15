@@ -193,7 +193,7 @@ INSERT INTO categorys(name, description)
 VALUES
 ("Linha masculina", "Perfumes selecionados para o alvo masculino"),
 ("Linha feminina", "Perfumes selecionados para o alvo feminino"),
-("Linha infaltil", "Perfumes selecionados para o alvo infaltil");
+("Linha infantil", "Perfumes selecionados para o alvo infaltil");
 
 
 -- Lista categorys
@@ -203,10 +203,17 @@ SELECT * FROM categorys;
 INSERT INTO images (image)
 VALUES
 ('5c44e337a8952067d67c.png'),
-('14bdccbf5ea6c44cbe11.png'),
+('3559c4a90933138eab39.png'),
 ('f7b9204afaf9afa3d598.png'),
-('5c44e337a8952067d67c.png'),
-('14bdccbf5ea6c44cbe11.png');
+('14bdccbf5ea6c44cbe11.png'),
+('269774000d8b80dcd558.png'),
+('65a079d92f8649bb0a94.png'),
+('70e04da96f69dfe16150.png'),
+('ae5ef042e140ecfbae9c.png'),
+('b7672ec620b9c8cdd4cc.png'),
+('729249da76ed9b13f8a1.png'),
+('5eab1531b512d11232f1.png'),
+('fb8cec0033901609b3f1.png');
 
 -- Lista de imagens
 SELECT * FROM images;
@@ -215,11 +222,18 @@ SELECT * FROM images;
 -- Insere um ou mais produtos
 INSERT INTO products (name, description, price, category_id, quantity, image_id)
 VALUES 
-	("Carolina Herrera", "Perfume feminino com fragrância suave", 29.93, 1, 10, 1),
-	("Paco Rabanne", "Perfume infantil com fragrância suave", 49.99, 1, 50, 2),
-	("Thierry Mugler", "Perfume feminino com fragrância suave", 99.99, 3, 150, 3),
-	("Dolce Gabbana", "Perfume masculino com fragrância suave", 57.99, 2, 20, 4),
-	("Calvin Klein", "Perfume infantil com fragrância suave", 204.99, 3, 60, 5);
+	("CK One", "CK One - Perfume Masculino - Eau de Toilette - 100ml", 29.93, 1, 10, 1),
+	("Polo Black", "Polo Black - Perfume Masculino - Eau de Toilette - 100ml", 49.99, 1, 50, 2),
+	("Giovanna baby", "Giovanna baby - Perfume Infantil - Eau de Toilette - 100ml", 99.99, 3, 150, 3),
+	("Dolce Gabbana", "Dolce Gabban - Perfume Feminino - Eau de Toilette - 100ml", 57.99, 2, 20, 4),
+	("Avon baby colônia", "Avon baby colônia - Perfume Infantil - Eau de Toilette - 100ml", 204.99, 3, 60, 5),
+    ("Ferrari Black", "Ferrari Black - Perfume Masculino - Eau de Toilette - 100ml", 29.93, 1, 10, 11),
+	("Malbec Black", "Malbec Black - Perfume Masculino - 100ml", 49.99, 1, 50, 12),
+	("Baby touch", "Baby touch - Perfume Infantil - Eau de Infantil - 100ml", 99.99, 3, 150, 7),
+	("Light Blue", "Light Blue - Perfume Feminino - Eau de Toilette - 100ml", 57.99, 2, 20, 10),
+	("Johnson's baby", "Johnson's baby - Perfume Infantil - Eau de Toilette - 100ml", 204.99, 3, 60, 6),
+	("Lady Million", "Lady Million - Perfume Feminino - Eau de Toilette - 100ml", 57.99, 2, 20, 8),
+    ("Chanel nº5", "Chanel nº5 - Perfume Feminino - Eau de Toilette - 100ml", 57.99, 2, 20, 9);
 
 -- Lista produtos
 SELECT * FROM products;
@@ -236,7 +250,11 @@ VALUES
     ("entregue", 15),
     ("processando", 15),
     ("a caminho", 14),
-    ("processando", 14);
+    ("processando", 1),
+    ("entregue", 2),
+    ("processando", 3),
+    ("entregue", 4),
+    ("a caminho", 7);
     
     
 -- Lista pedidos
@@ -256,7 +274,19 @@ VALUES
     (5, 2),
     (6, 3),
     (6, 2),
-    (5, 5);
+    (5, 5),
+    (7, 6),
+    (7, 7),
+    (8, 8),
+    (8, 9),
+    (9, 10),
+    (9, 11),
+    (10, 12),
+    (10, 7),
+    (11, 8),
+    (11, 7),
+    (12, 9),
+    (12, 10);
     
 -- Lista pedidos-produtos
 SELECT * FROM orders_products;

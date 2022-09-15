@@ -40,11 +40,10 @@ const indexController = {
       }
       products.map((product) => {
         if (product.Image) {
-          product.Image.image = files.base64Encode(
-            upload.path + product.Image.image
-          );
+          product.Image.image = files.base64Encode(upload.path + product.Image.image);
         }
       });
+
 
       return res.render("index", {
         title: "Perfuma",
@@ -52,7 +51,6 @@ const indexController = {
         user: req.cookies.user,
       });
     } catch (error) {
-      console.log(error);
       if (error.message === "PRODUCT_NOT_FOUND") {
         res.render("index", {
           title: "Perfuma",

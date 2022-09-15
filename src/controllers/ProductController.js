@@ -1,3 +1,4 @@
+const fs = require("fs");
 const files = require("../helpers/files");
 const { validationResult } = require("express-validator");
 const upload = require("../config/upload");
@@ -60,7 +61,6 @@ const productController = {
         user: req.cookies.user,
       });
     } catch (error) {
-      console.log(error);
       if (error.message === "PRODUCT_NOT_FOUND") {
         res.render("products", {
           title: "Produtos",
@@ -88,6 +88,7 @@ const productController = {
           "price",
           "quantity",
           "category_id",
+          "image_id",
         ],
         where: {
           id,
@@ -186,16 +187,35 @@ const productController = {
           old: req.body,
         });
       }
-      const products = await Product.create({
+
+      const image = await Image.create({
+        image: filename,
+      });
+
+      let resultCategoria = 0;
+      switch (categoria) {
+        case "Linha Masculina":
+          resultCategoria = 1;
+          break;
+        case "Linha Feminina":
+          resultCategoria = 2;
+          break;
+        case "Linha Infantil":
+          resultCategoria = 3;
+          break;
+      }
+
+      const product = await Product.create({
         name: nome,
         description: descricao,
-        price: preco,
-        quantity: quantidade,
-        category_id: categoria,
+        price: parseFloat(preco.replace("R$", "").replace(",", ".")),
+        quantity: parseInt(quantidade),
+        category_id: resultCategoria,
+        image_id: parseInt(image.id),
       });
       res.render("product-create", {
         title: "Sucesso",
-        message: `Produto ${products.name} foi cadastrado com sucesso!`,
+        message: `Produto ${product.name} foi cadastrado com sucesso!`,
       });
     } catch (error) {
       res.render("product-create", {
@@ -218,6 +238,7 @@ const productController = {
           "price",
           "quantity",
           "category_id",
+          "image_id",
         ],
         where: {
           id,
@@ -260,11 +281,23 @@ const productController = {
   // Não retorna página
   update: async (req, res) => {
     const { id } = req.params;
-    const { nome, descricao, preco, categoria, quantidade } = req.body;
+    const { nome, descricao, preco, quantidade, categoria } = req.body;
 
     let filename;
     if (req.file) {
       filename = req.file.filename;
+    }
+
+    switch (categoria) {
+      case "Linha masculina":
+        categoria = 1;
+        break;
+      case "Linha feminina":
+        categoria = 2;
+        break;
+      case "Linha infantil":
+        categoria = 3;
+        break;
     }
 
     try {
@@ -272,9 +305,10 @@ const productController = {
         {
           name: nome,
           description: descricao,
-          price: preco,
+          price: preco.replace(",", "."),
           quantity: quantidade,
           category_id: categoria,
+          image_id: image_id,
         },
         {
           where: { id },
@@ -319,6 +353,7 @@ const productController = {
           "price",
           "quantity",
           "category_id",
+          "image_id",
         ],
         where: {
           id,
@@ -388,6 +423,7 @@ const productController = {
           "price",
           "quantity",
           "category_id",
+          "image_id",
         ],
         where: {
           id,
@@ -401,10 +437,6 @@ const productController = {
             model: Image,
             required: true,
           },
-          {
-            model: Order,
-            required: true,
-          },
         ],
       });
 
@@ -415,8 +447,6 @@ const productController = {
       product.Image.image = files.base64Encode(
         upload.path + product.Image.image
       );
-
-      console.log(product);
 
       return res.render("description-product", {
         title: "Visualizar Produto",
@@ -438,8 +468,19 @@ const productController = {
     }
   },
 
+  viewMyCart: (req, res) => {
+
+    // carts = JSON.parse(req.localStorage.getItem("myCart"));
+    // console.log(carts.length);
+
+    res.render("mycart", {
+      title: "Meu carrinho",
+      user: req.cookies.user,
+    });
+  },
+
   viewPayment: (req, res) => {
-    res.render("product-payment", {
+    res.render("finished-product-payment", {
       title: "Pagamento",
       user: req.cookies.user,
     });

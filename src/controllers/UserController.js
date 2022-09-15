@@ -1,3 +1,4 @@
+const fs = require("fs");
 const files = require("../helpers/files");
 const { validationResult } = require("express-validator");
 const bcrypt = require("bcrypt");
@@ -123,7 +124,7 @@ const userController = {
 
     if (!errors.isEmpty()) {
       if (req.file) {
-        delete(upload.path + req.file.filename);
+        fs.unlinkSync(upload.path + req.file.filename);
       }
       return res.render("user-create", {
         title: "Cadastrar usuário",

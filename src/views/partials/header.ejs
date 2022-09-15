@@ -22,7 +22,7 @@
         <% } else {%>
           <a href=""><img src="/img/love.png" alt="Favoritos"></a>
           <% }%>
-            <a href="/"><img src="/img/shopping-bag.png" alt="Carrinho"></a>
+            <a href="/product/mycart" onclick="showItemsCart()" class="bag-product"><img src="/img/shopping-bag.png" alt="Carrinho"><span id="count-cart"></span></a>
     </div>
   </div>
 
@@ -44,6 +44,8 @@
 
 
           <% if (locals.user) {%>
+            <li class="navbar-item"><a href="/" class="nav-link">Home</a></li>
+            <li class="navbar-item divisor d-none d-md-block"></li>
             <a class="nav-link">Olá - <%= locals.user.name %></a>
             <li class="navbar-item divisor d-none d-md-block"></li>
             <% }%>
@@ -61,6 +63,7 @@
                     <a class="dropdown-item" href="/user/<%= locals.user.id %> ">Meu perfil</a>
                     <a class="dropdown-item" href="#">Pedidos</a>
                     <a class="dropdown-item" href="#">Favoritos</a>
+                    <a class="dropdown-item" href="/product/mycart">Meu carrinho</a>
                     <a class="dropdown-item" href="#">Configuração</a>
                     <div class="dropdown-divider"></div>
                     <a class="dropdown-item" href="/logout">Sair</a>

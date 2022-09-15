@@ -10,7 +10,7 @@ module.exports = [
         return true
     }).bail(),
 
-    body('descricao').isLength({ min: 10 }).withMessage('O nome deve ter no mínimo 10 caracteres!').bail(),
+    body('descricao').isLength({ min: 20 }).withMessage('A descrição deve ter no mínimo 20 caracteres!').bail(),
     body('descricao').custom((value) => {
         if (!value) {            
             return Promise.reject('Campo obrigatório');
@@ -19,7 +19,6 @@ module.exports = [
         return true
     }).bail(),
 
-    body('preco').isLength({ min:4 }).withMessage('O campo deve ter no mínimo 4 caracteres').bail(),
     body('preco').custom((value, { req }) => {
         if (!value) {
             return Promise.reject('Campo obrigatório');
@@ -29,6 +28,14 @@ module.exports = [
     }),
 
     body('categoria').custom((value, { req }) => {
+        if (!value) {
+            return Promise.reject('Campo obrigatório');
+        }
+
+        return true
+    }),
+
+    body('quantidade').custom((value, { req }) => {
         if (!value) {
             return Promise.reject('Campo obrigatório');
         }

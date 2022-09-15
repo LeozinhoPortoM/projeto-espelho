@@ -22,6 +22,8 @@ router.delete("/delete/:id",isAuth, productControlller.destroy);
 
 router.get("/:id/description", productControlller.viewProduct);
 
+router.get("/mycart", isAuth, productControlller.viewMyCart);
+
 router.get("/payment", isAuth, productControlller.viewPayment);
 
 router.get("/finish", isAuth, productControlller.viewFinishPayment);
