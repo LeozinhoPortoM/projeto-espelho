@@ -9,6 +9,7 @@ const db = require("../config/sequelize");
 const User = require("../models/User");
 const Order = require("../models/Order");
 const Product = require("../models/Product");
+const Image = require("../models/Image");
 const { Op } = require("sequelize");
 
 const userController = {
@@ -75,6 +76,7 @@ const userController = {
       });
 
       const orders = await Order.findAll({
+        attributes: ["id", "status", "created_at", "user_id"],
         where: {
           user_id: user.id,
         },
@@ -83,6 +85,24 @@ const userController = {
           required: true,
         },
       });
+      orders.map(order => console.log(order.created_at));
+
+      const idsImage = orders.map((order) =>
+        order.Products.map((product) => product.image_id)
+      );
+
+      const products = await Product.findAll({
+        where: {
+          image_id: idsImage,
+        },
+        include: {
+          model: Image,
+          required: true,
+        },
+      });
+
+      // console.log(products)
+
       if (!user) {
         throw Error("USER_NOT_FOUND");
       }

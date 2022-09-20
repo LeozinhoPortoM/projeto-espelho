@@ -228,33 +228,64 @@ if (closeModalButton || fade) {
   });
 }
 
+
+// Data de entrega do produto
+
+const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
+  "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+];
+
+getLongMonthName = function(date) {
+    return monthNames[date.getMonth()];
+}
+
+getShortMonthName = function(date) {
+    return monthNames[date.getMonth()].substring(0, 3);
+}
+
+var data = new Date();
+var dia = String(data.getDate() + 8).padStart(2, '0');
+var diaTwo = String(data.getDate() + 10).padStart(2, '0');
+// var mes = String(data.getMonth() + 1).padStart(2, '0');
+// var mes = String(data.getMonth() + 1);
+// var ano = data.getFullYear();
+// dataAtual = dia + '/' + mes + '/' + ano;
+
+
+document.querySelector('.date-delivery').innerHTML = `${dia} e ${diaTwo} de ${getLongMonthName(new Date())}`
+
+
+
 // Carrinho
 
 var carts = [];
+var total = 0;
 
 if (localStorage.getItem("myCart")) {
   carts = JSON.parse(localStorage.getItem("myCart"));
-  console.log(carts.length);
-}
-
-function addItemCart() {
-  let name = document.getElementById("name-product").innerText;
-  let description = document.getElementById("description-product").innerText;
-  let price = document.getElementById("price-product").innerText;
-
-  carts.push({ name, description, price });
-  const cartsJson = JSON.stringify(carts);
-  localStorage.setItem("myCart", cartsJson);
-  updateCart();
 }
 
 window.onload = () => {
   updateCart();
-  const carrinho = document.getElementById("cart-list");
-  if (carrinho) {
+  const cartList = document.getElementById("cart-list");
+  if (cartList) {
     showItemsCart();
   }
 };
+
+function addItemCart() {
+  let userId = document.getElementById("user-logged").innerText;
+  let id = document.getElementById("id-product").innerText;
+  let name = document.getElementById("name-product").innerText;
+  let description = document.getElementById("description-product").innerText;
+  let price = document.getElementById("price-product").innerText;
+
+  carts.push({userId, id, name, description, price });
+  const cartsJson = JSON.stringify(carts);
+  localStorage.setItem("myCart", cartsJson);
+  console.log(cartsJson);
+  updateCart();
+}
 
 function updateCart() {
   let countCart = document.getElementById("count-cart");
@@ -264,27 +295,39 @@ function updateCart() {
     countCart.style.display = "block";
     countCart.innerText = carts.length;
   }
+  carts.map(item => {
+    total += parseFloat(item.price.replace(',' , '.'));
+  })
+  if(document.querySelector(".total")){
+    document.querySelector(".total").innerHTML = `R$ ${total.toFixed(2).replace('.', ',')}`;
+  }
+   
 }
 
 function showItemsCart() {
   carts.map((item) => {
     let modelsItem = document.querySelector(".view .itens").cloneNode(true);
 
-    modelsItem.querySelector(".item--name").innerHTML = item.name;
-    modelsItem.querySelector(".item--desc").innerHTML = item.description;
-    modelsItem.querySelector(".item--price").innerHTML = item.price;
+    modelsItem.querySelector(".user--id").value = item.userId;
+    modelsItem.querySelector(".item--id").value = item.id;
+    modelsItem.querySelector(".area-name-desc .item--name").innerHTML = item.name;
+    modelsItem.querySelector(".area-name-desc .item--desc").innerHTML = item.description;
+    modelsItem.querySelector(".area-price-button .item--price").innerHTML = `R$ ${item.price}`;
 
     document.querySelector(".view-cart").append(modelsItem);
   });
 }
 
-function removeItemCar() {
-  carts.splice(carts, 1);
+function removeItemCar(e) {
+  e.preventDefault();
+  let id = document.querySelector(".item--id")
+  carts.splice(id, 1);
   const cartsJson = JSON.stringify(carts);
   localStorage.setItem("myCart", cartsJson);
+  document.location.reload(true);
 }
 
 function clearItemsCart() {
   carts = [];
-  localStorage.myCart = JSON.stringify(carts);
+  localStorage.removeItem("myCart");
 }

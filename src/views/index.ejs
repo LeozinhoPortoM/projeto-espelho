@@ -104,7 +104,7 @@
         <div class="perfumes">
           <a href="/product/<%= product.id %>/description">
             <img src="<%= product.Image.image %> " alt="" />
-            <h5><%= product.description %></h5>
+            <h5><%= product.description.slice(0, 50) %></h5>
             <h4>R$ <%= product.price.replace('.', ',') %></h4>
             <h5>8x sem juros no cartão de Credito</h5>
             <button type="button">Comprar</button>
@@ -122,7 +122,7 @@
         <div class="perfumes">
           <a href="/product/<%= product.id %>/description">
             <img src="<%= product.Image.image %> " alt="" />
-            <h5><%= product.description %></h5>
+            <h5><%= product.description.slice(0, 50) %></h5>
             <h4>R$ <%= product.price.replace('.', ',') %></h4>
             <h5>8x sem juros no cartão de Credito</h5>
             <button type="button">Comprar</button>
@@ -139,7 +139,7 @@
         <div class="perfumes">
           <a href="/product/<%= product.id %>/description">
             <img src="<%= product.Image.image %> " alt="" />
-            <h5><%= product.description %></h5>
+            <h5><%= product.description.slice(0, 50) %></h5>
             <h4>R$ <%= product.price.replace('.', ',') %></h4>
             <h5>8x sem juros no cartão de Credito</h5>
             <button type="button">Comprar</button>

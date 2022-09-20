@@ -4,6 +4,7 @@
     <div class="container-top-description-product">
       <div class="container-title-imageproduct">
         <h4>
+          <span id="id-product"><%= product.id %> </span>
           <span id="name-product"><%= product.name %></span> -
           <span id="description-product"><%= product.description %></span>
         </h4>
@@ -48,7 +49,7 @@
 
         <div class="btn-pay">
           <% if (locals.user) { %>
-          <a href="/product/payment">
+          <a href="/order/payment">
             <button type="button">Comprar</button>
           </a>
           <a>
@@ -67,8 +68,8 @@
           </a>
           <% } %>
           <h4>
-            <img src="../../img/caminhao-bau.png" alt="" />Chegará entre os dias
-            23 e 26 de agosto por R$ 13.71.
+            <img src="../../img/caminhao-bau.png" alt="" />Chegará entre os dias <span class="date-delivery"></span>
+             por R$ 13.71.
           </h4>
           <h4>
             Você também pode escolher uma das nossas lojas para fazer a

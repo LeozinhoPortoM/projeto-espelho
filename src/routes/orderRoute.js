@@ -21,6 +21,12 @@ router.delete("/delete/:id",isAuth, orderController.destroy);
 router.get('/',isAuth, orderController.index);
 router.get('/:id/product',isAuth, orderController.show);
 
+router.get("/mycart", isAuth, orderController.viewMyCart);
+
+router.get("/payment", isAuth, orderController.viewPayment);
+
+router.get("/finish", isAuth, orderController.viewFinishPayment);
+
 
 
 module.exports = router;

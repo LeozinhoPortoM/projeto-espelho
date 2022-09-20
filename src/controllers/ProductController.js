@@ -7,6 +7,8 @@ const Product = require("../models/Product");
 const Category = require("../models/Category");
 const Image = require("../models/Image");
 const Order = require("../models/Order");
+const { Op } = require("sequelize");
+
 
 const productController = {
   // Lista todos os produtos
@@ -213,10 +215,7 @@ const productController = {
         category_id: resultCategoria,
         image_id: parseInt(image.id),
       });
-      res.render("product-create", {
-        title: "Sucesso",
-        message: `Produto ${product.name} foi cadastrado com sucesso!`,
-      });
+      return res.redirect("products");
     } catch (error) {
       res.render("product-create", {
         title: "Erro",
@@ -288,15 +287,20 @@ const productController = {
       filename = req.file.filename;
     }
 
+    const image = await Image.create({
+      image: filename,
+    });
+
+    let resultCategoria = 0;
     switch (categoria) {
-      case "Linha masculina":
-        categoria = 1;
+      case "Linha Masculina":
+        resultCategoria = 1;
         break;
-      case "Linha feminina":
-        categoria = 2;
+      case "Linha Feminina":
+        resultCategoria = 2;
         break;
-      case "Linha infantil":
-        categoria = 3;
+      case "Linha Infantil":
+        resultCategoria = 3;
         break;
     }
 
@@ -305,10 +309,10 @@ const productController = {
         {
           name: nome,
           description: descricao,
-          price: preco.replace(",", "."),
-          quantity: quantidade,
-          category_id: categoria,
-          image_id: image_id,
+          price: parseFloat(preco.replace(",", ".")),
+          quantity: parseInt(quantidade),
+          category_id: resultCategoria,
+          image_id: parseInt(image.id),
         },
         {
           where: { id },
@@ -468,29 +472,72 @@ const productController = {
     }
   },
 
-  viewMyCart: (req, res) => {
+  search: async (req, res) => {
+    try {
+      const { page = 1, key } = req.query;
 
-    // carts = JSON.parse(req.localStorage.getItem("myCart"));
-    // console.log(carts.length);
+      const { count: total, rows: products } = await Product.findAndCountAll({
+        attributes: [
+          "id",
+          "name",
+          "description",
+          "price",
+          "quantity",
+          "category_id",
+          "image_id",
+        ],
+        where: {
+          name: { [Op.like]: `%${key}%` },
+          is_active: 1,
+        },
+        include: [
+          {
+            model: Category,
+            required: true,
+          },
+          {
+            model: Image,
+            required: true,
+          },
+        ],
+        limit: 6,
+        offset: (page - 1) * 6,
+        order: [["name", "ASC"]],
+      });
 
-    res.render("mycart", {
-      title: "Meu carrinho",
-      user: req.cookies.user,
-    });
-  },
+      const totalPage = Math.round(total / 5);
 
-  viewPayment: (req, res) => {
-    res.render("finished-product-payment", {
-      title: "Pagamento",
-      user: req.cookies.user,
-    });
-  },
+      if (!products) {
+        throw Error("PRODUCT_NOT_FOUND");
+      }
 
-  viewFinishPayment: (req, res) => {
-    res.render("finished-product-payment", {
-      title: "Compra finalizada",
-      user: req.cookies.user,
-    });
+      products.map((product) => {
+        if (product.Image) {
+          product.Image.image = files.base64Encode(
+            upload.path + product.Image.image
+          );
+        }
+      });
+
+      return res.render("products", {
+        title: "Lista de produtos",
+        listProducts: products,
+        totalPage,
+        user: req.cookies.user,
+      });
+    } catch (error) {
+      if (error.message === "PRODUCT_NOT_FOUND") {
+        res.render("products", {
+          title: "Produtos",
+          errors: { message: "Nenhum produto encontrado" },
+        });
+      } else {
+        res.render("products", {
+          title: "Produtos",
+          errors: { message: "Erro ao encontrar os produtos" },
+        });
+      }
+    }
   },
 };
 module.exports = productController;

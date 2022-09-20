@@ -61,7 +61,7 @@ const orderController = {
       if (!order) {
         throw Error("ORDER_NOT_FOUND");
       }
-      order.map(order => console.log(order.Products));
+      order.map((order) => console.log(order.Products));
 
       return res.render("orders-products", {
         title: "Visualizar pedido",
@@ -90,46 +90,37 @@ const orderController = {
   },
 
   store: async (req, res) => {
-    const errors = validationResult(req);
-    const { nome, descricao } = req.body;
-
-    if (!errors.isEmpty()) {
-      return res.render("order-create", {
-        title: "Cadastrar pedido",
-        errors: errors.mapped(),
-        old: req.body,
-      });
-    }
+    const { carrinho, userId } = req.body;
 
     try {
-      const orderExists = await Order.findOne({
-        attributes: ["name"],
+      const product = await Product.findAll({
+        attributes: [
+          "id",
+          "name",
+          "description",
+          "price",
+          "quantity",
+          "category_id",
+          "image_id",
+        ],
         where: {
-          name: nome,
+          id: carrinho,
         },
       });
 
-      if (orderExists) {
-        return res.render("order-create", {
-          title: "Error",
-          errors: {
-            nome: {
-              msg: "Este pedido já está registrado",
-            },
-          },
-          old: req.body,
-        });
-      }
       const order = await Order.create({
-        name: nome,
-        description: descricao,
+        status: "processando",
+        user_id: userId[0],
       });
-      res.render("order-create", {
-        title: "Sucesso",
-        message: `Pedido ${order.name} foi cadastrado com sucesso!`,
+
+      await order.addProduct(product);
+
+      res.render("product-payment", {
+        title: "Pagamento",
+        message: `Pedido cadastrado com sucesso`,
       });
     } catch (error) {
-      res.render("order-create", {
+      res.render("mycart", {
         title: "Erro",
         message: "Erro ao cadastrar pedido!",
       });
@@ -268,6 +259,27 @@ const orderController = {
         errors: { message: "Erro ao deletar pedido" },
       });
     }
+  },
+
+  viewMyCart: (req, res) => {
+    res.render("mycart", {
+      title: "Meu carrinho",
+      user: req.cookies.user,
+    });
+  },
+
+  viewPayment: (req, res) => {
+    res.render("product-payment", {
+      title: "Pagamento",
+      user: req.cookies.user,
+    });
+  },
+
+  viewFinishPayment: (req, res) => {
+    res.render("finished-product-payment", {
+      title: "Compra finalizada",
+      user: req.cookies.user,
+    });
   },
 };
 
