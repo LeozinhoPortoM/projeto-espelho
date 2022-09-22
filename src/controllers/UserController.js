@@ -85,7 +85,7 @@ const userController = {
           required: true,
         },
       });
-      orders.map(order => console.log(order.created_at));
+      orders.map(order => console.log(order.createdAt));
 
       const idsImage = orders.map((order) =>
         order.Products.map((product) => product.image_id)

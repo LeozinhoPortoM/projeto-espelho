@@ -201,7 +201,7 @@ function activePagination(elemento) {
   elemento.classList.add("active");
 }
 
-// Window modal
+// Window modal logout
 
 const openModalButton = document.querySelectorAll("#open-modal");
 const closeModalButton = document.querySelector("#close-modal");
@@ -228,33 +228,72 @@ if (closeModalButton || fade) {
   });
 }
 
+// // Window modal orders
+
+// const openModalButtonOrder = document.querySelectorAll("#open-modal-order");
+// const closeModalButtonOrder = document.querySelector("#close-modal-order");
+// const modalOrder = document.querySelector("#modal-order");
+// const fadeOrder = document.querySelector("#fade-order");
+
+// const toggleModalOrder = () => {
+//   [modalOrder, fadeOrder].forEach((el) => el.classList.toggle("hide"));
+// };
+
+// if (openModalButtonOrder) {
+//   openModalButtonOrder.forEach((el) => {
+//     el.addEventListener("click", () => {
+//       console.log('Clicou');
+//       toggleModalOrder();
+//     });
+//   });
+// }
+
+// if (closeModalButtonOrder || fadeOrder) {
+//   [closeModalButtonOrder, fadeOrder].forEach((el) => {
+//     el.addEventListener("click", () => {
+//       toggleModalOrder();
+//     });
+//   });
+// }
 
 // Data de entrega do produto
 
-const monthNames = ["Janeiro", "Fevereiro", "Março", "Abril", "Maio", "Junho",
-  "Julho", "Agosto", "Setembro", "Outubro", "Novembro", "Dezembro"
+const monthNames = [
+  "Janeiro",
+  "Fevereiro",
+  "Março",
+  "Abril",
+  "Maio",
+  "Junho",
+  "Julho",
+  "Agosto",
+  "Setembro",
+  "Outubro",
+  "Novembro",
+  "Dezembro",
 ];
 
-getLongMonthName = function(date) {
-    return monthNames[date.getMonth()];
-}
+getLongMonthName = function (date) {
+  return monthNames[date.getMonth()];
+};
 
-getShortMonthName = function(date) {
-    return monthNames[date.getMonth()].substring(0, 3);
-}
+getShortMonthName = function (date) {
+  return monthNames[date.getMonth()].substring(0, 3);
+};
 
 var data = new Date();
-var dia = String(data.getDate() + 8).padStart(2, '0');
-var diaTwo = String(data.getDate() + 10).padStart(2, '0');
+var dia = String(data.getDate() + 8).padStart(2, "0");
+var diaTwo = String(data.getDate() + 10).padStart(2, "0");
 // var mes = String(data.getMonth() + 1).padStart(2, '0');
 // var mes = String(data.getMonth() + 1);
 // var ano = data.getFullYear();
 // dataAtual = dia + '/' + mes + '/' + ano;
 
-
-document.querySelector('.date-delivery').innerHTML = `${dia} e ${diaTwo} de ${getLongMonthName(new Date())}`
-
-
+if (document.querySelector(".date-delivery")) {
+  document.querySelector(
+    ".date-delivery"
+  ).innerHTML = `${dia} e ${diaTwo} de ${getLongMonthName(new Date())}`;
+}
 
 // Carrinho
 
@@ -280,7 +319,7 @@ function addItemCart() {
   let description = document.getElementById("description-product").innerText;
   let price = document.getElementById("price-product").innerText;
 
-  carts.push({userId, id, name, description, price });
+  carts.push({ userId, id, name, description, price });
   const cartsJson = JSON.stringify(carts);
   localStorage.setItem("myCart", cartsJson);
   console.log(cartsJson);
@@ -295,13 +334,14 @@ function updateCart() {
     countCart.style.display = "block";
     countCart.innerText = carts.length;
   }
-  carts.map(item => {
-    total += parseFloat(item.price.replace(',' , '.'));
-  })
-  if(document.querySelector(".total")){
-    document.querySelector(".total").innerHTML = `R$ ${total.toFixed(2).replace('.', ',')}`;
+  carts.map((item) => {
+    total += parseFloat(item.price.replace(",", "."));
+  });
+  if (document.querySelector(".total")) {
+    document.querySelector(".total").innerHTML = `R$ ${total
+      .toFixed(2)
+      .replace(".", ",")}`;
   }
-   
 }
 
 function showItemsCart() {
@@ -310,9 +350,13 @@ function showItemsCart() {
 
     modelsItem.querySelector(".user--id").value = item.userId;
     modelsItem.querySelector(".item--id").value = item.id;
-    modelsItem.querySelector(".area-name-desc .item--name").innerHTML = item.name;
-    modelsItem.querySelector(".area-name-desc .item--desc").innerHTML = item.description;
-    modelsItem.querySelector(".area-price-button .item--price").innerHTML = `R$ ${item.price}`;
+    modelsItem.querySelector(".area-name-desc .item--name").innerHTML =
+      item.name;
+    modelsItem.querySelector(".area-name-desc .item--desc").innerHTML =
+      item.description;
+    modelsItem.querySelector(
+      ".area-price-button .item--price"
+    ).innerHTML = `R$ ${item.price}`;
 
     document.querySelector(".view-cart").append(modelsItem);
   });
@@ -320,7 +364,7 @@ function showItemsCart() {
 
 function removeItemCar(e) {
   e.preventDefault();
-  let id = document.querySelector(".item--id")
+  let id = document.querySelector(".item--id");
   carts.splice(id, 1);
   const cartsJson = JSON.stringify(carts);
   localStorage.setItem("myCart", cartsJson);

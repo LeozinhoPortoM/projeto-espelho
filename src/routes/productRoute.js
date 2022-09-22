@@ -5,7 +5,7 @@ const router = express.Router();
 const productControlller = require("../controllers/ProductController");
 
 // Middlewares
-const upload = require("../middlewares/multer");
+const upload = require("../middlewares/multerProduct");
 const validator = require("../middlewares/validatorProduct");
 const isAuth = require("../middlewares/auth");
 

@@ -47,6 +47,12 @@ const indexController = {
         }
       });
 
+      if(req.cookies.user){
+        if (req.cookies.user.is_admin === 1) {
+          return res.redirect("/administrator");
+        }
+      }
+
       return res.render("index", {
         title: "Perfuma",
         listProducts: products,

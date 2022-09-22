@@ -11,9 +11,13 @@ const orderController = {
     try {
       const { page = 1 } = req.query;
       const { count: total, rows: orders } = await Order.findAndCountAll({
-        attributes: ["id", "status", "is_active"],
+        attributes: ["id", "status", "is_active", "created_at"],
         where: {
           is_active: 1,
+        },
+        include: {
+          model: Product,
+          required: true,
         },
         limit: 6,
         offset: (page - 1) * 6,
@@ -23,6 +27,7 @@ const orderController = {
       if (!orders) {
         throw Error("ORDER_NOT_FOUND");
       }
+      // orders.map(order => console.log(order.Products));
       return res.render("orders", {
         title: "Lista de pedidos",
         listOrders: orders,
@@ -61,7 +66,6 @@ const orderController = {
       if (!order) {
         throw Error("ORDER_NOT_FOUND");
       }
-      order.map((order) => console.log(order.Products));
 
       return res.render("orders-products", {
         title: "Visualizar pedido",
