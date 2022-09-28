@@ -47,6 +47,7 @@ const indexController = {
         }
       });
 
+
       if(req.cookies.user){
         if (req.cookies.user.is_admin === 1) {
           return res.redirect("/administrator");
@@ -105,7 +106,6 @@ const indexController = {
         order: [["name", "ASC"]],
       });
 
-      console.log("Entrou", products);
 
       const totalPage = Math.round(total / 5);
 
@@ -120,6 +120,7 @@ const indexController = {
           );
         }
       });
+
 
       return res.render("list-search", {
         title: "Produtos",

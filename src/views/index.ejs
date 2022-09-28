@@ -3,7 +3,7 @@
 <main class="container-main">
   <section id="container">
     <div class="img-whats">
-      <img src="../../img/whatsappcolorido.png" alt="Whatsapp" />
+      <a href="https://web.whatsapp.com/send?phone=5586999215914" target="_blank"><img src="../../img/whatsappcolorido.png" alt="Whatsapp" /></a>
     </div>
 
     <!-- Inicio Carousel -->
@@ -104,13 +104,15 @@
         <div class="perfumes">
           <a href="/product/<%= product.id %>/description">
             <img src="<%= product.Image.image %> " alt="" />
-            <h5><%= product.description.slice(0, 50) %></h5>
+            <h3><%= product.name %></h3>
+            <h5><%= product.description %></h5>
             <h4>R$ <%= product.price.replace('.', ',') %></h4>
-            <h5>8x sem juros no cartão de Credito</h5>
+            <h6>8x sem juros no cartão de Credito</h6>
             <button type="button">Comprar</button>
           </a>
         </div>
         <% } %> <% } %>
+        <!-- <div class="ver-mais"><a href="">Ver mais</a></div> -->
       </div>
     </section>
 
@@ -122,9 +124,10 @@
         <div class="perfumes">
           <a href="/product/<%= product.id %>/description">
             <img src="<%= product.Image.image %> " alt="" />
-            <h5><%= product.description.slice(0, 50) %></h5>
+            <h3><%= product.name %></h3>
+            <h5><%= product.description %></h5>
             <h4>R$ <%= product.price.replace('.', ',') %></h4>
-            <h5>8x sem juros no cartão de Credito</h5>
+            <h6>8x sem juros no cartão de Credito</h6>
             <button type="button">Comprar</button>
           </a>
         </div>
@@ -139,13 +142,15 @@
         <div class="perfumes">
           <a href="/product/<%= product.id %>/description">
             <img src="<%= product.Image.image %> " alt="" />
-            <h5><%= product.description.slice(0, 50) %></h5>
+            <h3><%= product.name %></h3>
+            <h5><%= product.description %></h5>
             <h4>R$ <%= product.price.replace('.', ',') %></h4>
-            <h5>8x sem juros no cartão de Credito</h5>
+            <h6>8x sem juros no cartão de Credito</h6>
             <button type="button">Comprar</button>
           </a>
         </div>
         <% } %> <% } %>
+        <!-- <div class="ver-mais"><a href="">Ver mais</a></div> -->
       </div>
     </section>
     <% } else { %>

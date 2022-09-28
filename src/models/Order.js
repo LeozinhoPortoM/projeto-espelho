@@ -21,6 +21,9 @@ const Order = db.define(
     user_id: {
       type: Sequelize.DataTypes.INTEGER.UNSIGNED,
     },
+    created_at: {
+      type: Sequelize.DataTypes.DATE,
+    }
   },
   {
   }

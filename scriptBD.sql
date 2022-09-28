@@ -54,6 +54,8 @@ VALUES
 -- Lista todos os usuários
 SELECT * FROM users;
 
+-- UPDATE users SET is_admin = 1 WHERE id = 16;
+
 -- Deleta o usuário a partir do id
 -- DELETE FROM users WHERE id = 1;
 
@@ -228,7 +230,7 @@ VALUES
 	("Dolce Gabbana", "Dolce Gabban - Perfume Feminino - Eau de Toilette - 100ml", 57.99, 2, 20, 4),
 	("Avon baby colônia", "Avon baby colônia - Perfume Infantil - Eau de Toilette - 100ml", 204.99, 3, 60, 5),
     ("Ferrari Black", "Ferrari Black - Perfume Masculino - Eau de Toilette - 100ml", 29.93, 1, 10, 11),
-	("Malbec Black", "Malbec Black - Perfume Masculino - 100ml", 49.99, 1, 50, 12),
+	("Malbec Black", "Malbec Black - Perfume Masculino - Eau de Toilette - 100ml", 49.99, 1, 50, 12),
 	("Baby touch", "Baby touch - Perfume Infantil - Eau de Infantil - 100ml", 99.99, 3, 150, 7),
 	("Light Blue", "Light Blue - Perfume Feminino - Eau de Toilette - 100ml", 57.99, 2, 20, 10),
 	("Johnson's baby", "Johnson's baby - Perfume Infantil - Eau de Toilette - 100ml", 204.99, 3, 60, 6),
@@ -240,7 +242,7 @@ SELECT * FROM products;
 
 
 
--- Insere um ou mais produtos
+-- Insere um ou mais pedidos
 INSERT INTO orders (status, user_id)
 VALUES 
 	("entregue", 3),

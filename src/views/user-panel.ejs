@@ -22,14 +22,12 @@
         </div>
 
         <% }%>
-      </section> 
+      </section>
 
       <section class="purchases-made">
         <div class="title-purchase">
           <h3>Compras Realizadas</h3>
         </div>
-
-        
 
         <% for (let order of listOrders) { %> <% for (let product of
         order.Products) { %>
@@ -41,8 +39,15 @@
               <h3><%= product.name%></h3>
             </div>
             <div class="name-purchase">
-              <h4>Stato do pedido</h4>
-              <h3><%= order.createdAt %></h3>
+              <h4>Data do pedido</h4>
+              <h3>
+                <%= `${order.created_at.getDate()} /
+                ${order.created_at.getMonth() + 1} /
+                ${order.created_at.getFullYear()}` %>
+              </h3>
+            </div>
+            <div class="name-purchase">
+              <h4>Status do pedido</h4>
               <h3><%= order.status %></h3>
             </div>
           </div>

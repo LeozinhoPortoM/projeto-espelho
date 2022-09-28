@@ -85,7 +85,7 @@ const userController = {
           required: true,
         },
       });
-      orders.map(order => console.log(order.createdAt));
+
 
       const idsImage = orders.map((order) =>
         order.Products.map((product) => product.image_id)
@@ -100,8 +100,6 @@ const userController = {
           required: true,
         },
       });
-
-      // console.log(products)
 
       if (!user) {
         throw Error("USER_NOT_FOUND");
@@ -295,13 +293,8 @@ const userController = {
           where: { id },
         }
       );
-      if (req.cookies.user.admin) {
-        return res.render("user-edit-adm", {
-          title: "Editar usuário",
-          user: req.cookies.user,
-          users,
-          message: `Usuário atualizado com sucesso!`,
-        });
+      if (req.cookies.user.is_admin === 1) {
+        return res.redirect('/user');
       } else {
         return res.render("user-edit", {
           title: "Usuário Atualizado",
@@ -371,10 +364,7 @@ const userController = {
         }
       );
 
-      return res.render("user-delete", {
-        title: "Usuário deletado",
-        message: "Usuário deletado com sucesso!",
-      });
+      return res.redirect('/user');
     } catch (error) {
       res.render("user-delete", {
         title: "Usuários",

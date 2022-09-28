@@ -10,24 +10,38 @@ const orderController = {
 
     try {
       const { page = 1 } = req.query;
-      const { count: total, rows: orders } = await Order.findAndCountAll({
+      const { count: total } = await Order.findAndCountAll({
+        where: {
+          is_active: 1,
+        },
+      });
+
+
+      const orders = await Order.findAll({
         attributes: ["id", "status", "is_active", "created_at"],
         where: {
           is_active: 1,
         },
-        include: {
-          model: Product,
-          required: true,
-        },
+        include: [
+          {
+            model: Product,
+            required: true,
+          },
+          {
+            model: User,
+            required: true,
+          },
+        ],
         limit: 6,
         offset: (page - 1) * 6,
         order: [["id", "ASC"]],
       });
+
+
       const totalPage = Math.round(total / 5);
       if (!orders) {
         throw Error("ORDER_NOT_FOUND");
       }
-      // orders.map(order => console.log(order.Products));
       return res.render("orders", {
         title: "Lista de pedidos",
         listOrders: orders,
@@ -52,33 +66,39 @@ const orderController = {
   show: async (req, res) => {
     const { id } = req.params;
     try {
-      const order = await Order.findAll({
+      const order = await Order.findOne({
         attributes: ["id", "status", "is_active"],
         where: {
           id,
         },
-        include: {
+        include: [
+          {
           model: Product,
           required: true,
         },
+        {
+          model: User,
+          required: true,
+        },
+      ],
       });
 
       if (!order) {
         throw Error("ORDER_NOT_FOUND");
       }
 
-      return res.render("orders-products", {
+      return res.render("order", {
         title: "Visualizar pedido",
         order,
       });
     } catch (error) {
       if (error.message === "ORDER_NOT_FOUND") {
-        res.render("order-products", {
+        res.render("order", {
           title: "Pedido",
           message: "Pedido não encontrado!",
         });
       } else {
-        res.render("order-products", {
+        res.render("order", {
           title: "Pedido",
           message: "Erro ao encontrar pedido!",
         });

@@ -1,13 +1,25 @@
 const { validationResult } = require("express-validator");
+const files = require("../helpers/files");
+const upload = require("../config/upload");
+
+
 
 const Category = require("../models/Category");
 const Product = require("../models/Product");
+const Image = require("../models/Image");
 
 const categoryController = {
   index: async (req, res) => {
     try {
       const { page = 1 } = req.query;
-      const { count: total, rows: categorys } = await Category.findAndCountAll({
+      const { count: total } = await Category.findAndCountAll({
+        where: {
+          is_active: 1,
+        }
+      });
+
+
+      const categories = await Category.findAll({
         attributes: ["id", "name", "description", "is_active"],
         where: {
           is_active: 1,
@@ -20,15 +32,17 @@ const categoryController = {
         offset: (page - 1) * 6,
         order: [["name", "ASC"]],
       });
+
+
       const totalPage = Math.round(total / 5);
 
-      if (!categorys) {
+      if (!categories) {
         throw Error("CATEGORY_NOT_FOUND");
       }
 
       return res.render("categorys", {
         title: "Lista de categorias",
-        listCategorys: categorys,
+        listCategorys: categories,
         totalPage,
         user: req.cookies.user,
       });
@@ -65,11 +79,31 @@ const categoryController = {
         throw Error("CATEGORY_NOT_FOUND");
       }
 
+      const productImageId = category.Products.map(product => product.image_id);
+      const products = await Product.findAll({
+        attributes: ["name", "description", "price", "is_active"],
+        where: {
+          image_id: productImageId,
+        },
+        include: {
+          model: Image,
+          required: true,
+        }
+      });
+      
+      products.map(product => {
+        console.log(product.Image);
+          product.Image.image = files.base64Encode(upload.path + product.Image.image);
+      });
+
+      
       return res.render("products-category", {
         title: "Visualizar categoria",
         category,
+        listProducts: products,
       });
     } catch (error) {
+      console.log(error);
       if (error.message === "CATEGORY_NOT_FOUND") {
         res.render("products-category", {
           title: "Categoria",

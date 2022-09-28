@@ -3,7 +3,7 @@
 <main id="container-principal-product">
   <div class="way">
     <h5><a href="/category/">Categoria</a></h5>
-    <h5>- Produtos da categoria: <%= category.name %></h5>
+    <h5>- Produtos da categoria: <%=category.name%></h5>
   </div>
   <!-- <div class="add-item">
     <form action="/product/create" method="get">
@@ -11,14 +11,13 @@
     </form>
   </div> -->
 
-  <%- include("./partials/search") %> <% if (category.Products.length > 0) { %>
+  <%- include("./partials/search") %> <% if (listProducts.length > 0) { %>
   <div class="table">
-    <% category.Products.forEach(product => { %> <% if(product.is_active === 1)
-    { %>
+    <% listProducts.forEach(product => { %> <% if(product.is_active === 1) { %>
 
     <div class="box">
       <div class="img-product">
-        <img src=" <%= product.Images %> " alt="" />
+        <img src=" <%= product.Image.image %> " alt="" />
         <div class="name-product">
           <h3><%= product.name %></h3>
         </div>

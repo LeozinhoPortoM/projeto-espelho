@@ -228,34 +228,6 @@ if (closeModalButton || fade) {
   });
 }
 
-// // Window modal orders
-
-// const openModalButtonOrder = document.querySelectorAll("#open-modal-order");
-// const closeModalButtonOrder = document.querySelector("#close-modal-order");
-// const modalOrder = document.querySelector("#modal-order");
-// const fadeOrder = document.querySelector("#fade-order");
-
-// const toggleModalOrder = () => {
-//   [modalOrder, fadeOrder].forEach((el) => el.classList.toggle("hide"));
-// };
-
-// if (openModalButtonOrder) {
-//   openModalButtonOrder.forEach((el) => {
-//     el.addEventListener("click", () => {
-//       console.log('Clicou');
-//       toggleModalOrder();
-//     });
-//   });
-// }
-
-// if (closeModalButtonOrder || fadeOrder) {
-//   [closeModalButtonOrder, fadeOrder].forEach((el) => {
-//     el.addEventListener("click", () => {
-//       toggleModalOrder();
-//     });
-//   });
-// }
-
 // Data de entrega do produto
 
 const monthNames = [
@@ -281,9 +253,11 @@ getShortMonthName = function (date) {
   return monthNames[date.getMonth()].substring(0, 3);
 };
 
-var data = new Date();
-var dia = String(data.getDate() + 8).padStart(2, "0");
-var diaTwo = String(data.getDate() + 10).padStart(2, "0");
+var dayOne = new Date();
+dayOne.setDate(dayOne.getDate() + 8);
+var dayTwo = new Date();
+dayTwo.setDate(dayTwo.getDate() + 11);
+// var dayTwo = String(data.getDate() + 10).padStart(2, "0");
 // var mes = String(data.getMonth() + 1).padStart(2, '0');
 // var mes = String(data.getMonth() + 1);
 // var ano = data.getFullYear();
@@ -292,7 +266,7 @@ var diaTwo = String(data.getDate() + 10).padStart(2, "0");
 if (document.querySelector(".date-delivery")) {
   document.querySelector(
     ".date-delivery"
-  ).innerHTML = `${dia} e ${diaTwo} de ${getLongMonthName(new Date())}`;
+  ).innerHTML = `${dayOne.getDate()} e ${dayTwo.getDate()} de ${getLongMonthName(dayTwo)}`;
 }
 
 // Carrinho

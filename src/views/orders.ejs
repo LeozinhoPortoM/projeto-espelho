@@ -20,39 +20,28 @@
   <div class="container-orders">
     <% for (let order of listOrders) { %>
     <div class="oders">
-      <a id="open-modal">
-        <h4><%= order.id %></h4>
-        <h4><%= order.created_At %></h4>
-        <h4><%= order.status %></h4>
+      <a href="/order/<%= order.id %>">
+        <div class="name-purchase">
+          <h4>Cliente</h4>
+          <h5><%= order.User.name %> <%= order.User.last_name %></h5>
+        </div>
+        <div class="name-purchase">
+          <h4>Data do pedido</h4>
+          <h5>
+            <%= `${order.created_at.getDate()} / ${order.created_at.getMonth() +
+            1} / ${order.created_at.getFullYear()}` %>
+          </h5>
+        </div>
+        <div class="name-purchase">
+          <h4>Status do pedido</h4>
+          <h5><%= order.status %></h5>
+        </div>
       </a>
     </div>
-
   </div>
 
-  <!-- Modal -->
-  <div id="fade" class="hide"></div>
-  <div id="modal" class="hide">
-    <div class="modal-header">
-      <h3>Produto do pedido</h3>
-    </div>
-    <% for(let product of order.Products){ %>
-    <div class="modal-body">
-      <span>Nome: </span>
-        <%= product.name  %> 
-        <span>Descrição: </span>
-        <%= product.description  %> 
-        <span>Preço: </span>
-        <%= product.price  %> 
-      </div>
-      <% } %>  
-    <div class="modal-footer">
-      <button id="close-modal">Fechar</button>
-    </div>
-  </div>
-  <% } %>
-
-
-  <% } %> <%- include("./partials/pagination") %>
+  
+  <% } %> <% } %> <%- include("./partials/pagination") %>
 </main>
 
 <%- include("./partials/footer-adm") %>
