@@ -1,0 +1,45 @@
+<%- include("./partials/head") %> <%- include("./partials/header") %>
+
+<main class="container-main">
+  <div id="container-form">
+    <div class="logo-pix">
+      <img src="../../img/Logo Pix.png" alt="Logo Pix" height="40px" />
+    </div>
+    <div class="valor-pix">
+      <h4>Valor a pagar: <span class="total"></span></h4>
+    </div>
+    <div class="inform-pix">
+      <h4>Escolha uma forma de pagamento</h4>
+    </div>
+    <div class="container-forma-pag">
+      <div class="container-esquerdo">
+        <h4>
+          Idenficando sua tranferencia com um idencificador único
+        </h4>
+        <h6>00020101021226990014br.gov.bcb.pix2577</h6>
+        <button type="button">Copia e Cola ID</button>
+        <p><strong>Instruções de pagamento com ID:</strong></p>
+        <ul>
+          <li>1. Use o ID da transação</li>
+          <li>
+            2. Use o ID para idenficar seu pagamento PIX no aplicativo do seu banco
+          </li>
+        </ul>
+      </div>
+      <div class="container-direito">
+        <h4>Ou tendo o código QR no aplicativo do seu banco.</h4>
+        <img src="../../img/QR Code.png" alt="QR CODE" />
+      </div>
+    </div>
+    <div class="container-footer-pix">
+      <div class="container-lembrete">
+        <h4><span class="date-pix"></span></h4>
+      </div>
+      <div class="btn-pix">
+        <a href="/order/finish"><button type="button">Finalizar</button></a>
+      </div>
+    </div>
+  </div>
+</main>
+
+<%- include("./partials/footer") %>

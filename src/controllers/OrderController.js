@@ -293,7 +293,7 @@ const orderController = {
   },
 
   viewPayment: (req, res) => {
-    res.render("product-payment", {
+    res.render("finished-product-payment-pix", {
       title: "Pagamento",
       user: req.cookies.user,
     });

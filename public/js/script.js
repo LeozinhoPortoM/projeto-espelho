@@ -253,21 +253,36 @@ getShortMonthName = function (date) {
   return monthNames[date.getMonth()].substring(0, 3);
 };
 
+
+// Data da previsão de entrega
+
 var dayOne = new Date();
 dayOne.setDate(dayOne.getDate() + 8);
 var dayTwo = new Date();
 dayTwo.setDate(dayTwo.getDate() + 11);
-// var dayTwo = String(data.getDate() + 10).padStart(2, "0");
-// var mes = String(data.getMonth() + 1).padStart(2, '0');
-// var mes = String(data.getMonth() + 1);
-// var ano = data.getFullYear();
-// dataAtual = dia + '/' + mes + '/' + ano;
 
 if (document.querySelector(".date-delivery")) {
   document.querySelector(
     ".date-delivery"
-  ).innerHTML = `${dayOne.getDate()} e ${dayTwo.getDate()} de ${getLongMonthName(dayTwo)}`;
+  ).innerHTML = `${dayOne.getDate()} e ${dayTwo.getDate()} de ${getLongMonthName(
+    dayTwo
+  )}`;
 }
+
+// Data máxima para o PIX
+var data = new Date();
+data.setDate(data.getDate() + 3);
+var dia = String(data.getDate()).padStart(2, "0");
+var mes = String(data.getMonth() + 1).padStart(2, "0");
+var ano = data.getFullYear();
+// var dataAtual = dia + "/" + mes + "/" + ano;
+
+if (document.querySelector(".date-pix")) {
+  document.querySelector(
+    ".date-pix"
+  ).innerHTML = `Lembre-se que seu pagamento PIX expira em ${dia}/${mes}/${ano}`;
+}
+
 
 // Carrinho
 
